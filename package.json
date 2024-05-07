@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "formik": "^2.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "scss": "^0.2.4"
+    "react-router-dom": "^6.23.0",
+    "sass": "^1.77.0",
+    "scss": "^0.2.4",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
