@@ -1,0 +1,46 @@
+import "./menu.scss";
+import logo from "../../assets/png/Logo_aluhd.png";
+import { Link } from "react-router-dom";
+import DashboardSVG from "../../assets/svg/DashboardSVG";
+import QRcodeSVG from "../../assets/svg/QRcodeSVG";
+import BellSVG from "../../assets/svg/BellSVG";
+import PageSVG from "../../assets/svg/PageSVG";
+import InfoAccount from "../InfoAccount/InfoAccount";
+import imgAvatar from "../../../public/avatar/jeune-belle-femme-pull-chaud-rose-aspect-naturel-souriant-portrait-isole-cheveux-longs_285396-896.avif";
+import NoteBookSVG from "../../assets/svg/NoteBookSVG";
+
+const Menu = () => {
+  return (
+    <menu className="menu-content content">
+      <img src={logo} alt="" className="logo" />
+      <div className="separator"></div>
+      <div className="navigator">
+        <div className="item">
+          <Link to="/generator">
+            <DashboardSVG height="30" width="30" />
+            <span>Tableau de bord</span>
+          </Link>
+          <Link to="/generator">
+            <QRcodeSVG height="20" width="30" />
+            <span>Générer un QRCode</span>
+          </Link>
+          <Link to="/">
+            <BellSVG height="24" width="30" />
+            <span>Notifications</span>
+          </Link>
+          <Link to="">
+            <PageSVG height="24" width="30" />
+            <span>Page de captation</span>
+          </Link>
+          <Link to="">
+            <NoteBookSVG width="30" height="23" />
+            <span>Journals des événements</span>
+          </Link>
+        </div>
+        <InfoAccount img={imgAvatar} name="Cedric R." />
+      </div>
+    </menu>
+  );
+};
+
+export default Menu;
