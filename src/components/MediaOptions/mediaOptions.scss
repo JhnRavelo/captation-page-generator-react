@@ -1,0 +1,29 @@
+@import "../../variables.scss";
+
+.media-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+
+  .media-content {
+    align-items: center;
+    display: flex;
+    color: $gris-color;
+    padding: 5px;
+    gap: 5px;
+    transition: 0.25s ease;
+
+    span {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    &:hover,
+    &.active {
+      border-top: 1px solid aliceblue;
+      color: aliceblue;
+      cursor: pointer;
+      transform: translateY(-4px);
+    }
+  }
+}
