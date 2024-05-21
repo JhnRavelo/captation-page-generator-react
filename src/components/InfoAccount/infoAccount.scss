@@ -61,6 +61,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     transition: 0.25s ease;
+    margin-right: auto;
   }
 
   span:last-child {
@@ -68,7 +69,6 @@
     padding: 0;
     border: none;
     background-color: transparent;
-    margin-left: auto;
     cursor: pointer;
     transition: 0.25s ease;
 

@@ -12,7 +12,7 @@ const MediaOptions = () => {
 
   return (
     <div className="media-container" ref={mediaRef}>
-      <div className="media-content" onClick={(e) => active(e, mediaRef)}>
+      <div className="media-content active" onClick={(e) => active(e, mediaRef)}>
         <JournalSVG width="30" height="25" />
         <span>Journaux</span>
       </div>

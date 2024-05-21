@@ -1,7 +1,7 @@
 import LogoEuro from "../../assets/png/Logo_aluhd.png";
 import LogoVertec from "../../assets/png/vertec.png";
 import LogoAlu from "../../assets/png/alu.png";
-import LogoSmart from "../../assets/png/logo EA SMART-RVB blanc-2.png";
+import LogoSmart from "../../assets/png/EA_smart.png";
 import "./company.scss";
 import { useRef } from "react";
 import useActive from "../../hooks/useActive";
