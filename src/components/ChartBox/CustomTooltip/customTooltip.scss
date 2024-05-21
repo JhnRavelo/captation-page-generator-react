@@ -1,0 +1,9 @@
+@import "../../../variables.scss";
+
+.custom-tooltip {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: $black-back-ground;
+    border-width: 2px;
+    border-style: solid;
+}
