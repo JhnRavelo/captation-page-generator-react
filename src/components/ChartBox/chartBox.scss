@@ -1,0 +1,87 @@
+@import "../../variables.scss";
+
+@mixin chart-image-before {
+  &::before {
+    content: "";
+    transform: rotate(45deg);
+    border-radius: 7px;
+  }
+}
+
+.chart-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 20px 5px 20px;
+  gap: 10px;
+  box-shadow: $black-shadow 0px 1px 4px;
+
+  .chart {
+    width: 100%;
+    height: 90%;
+  }
+
+  .chart-info {
+    padding: 10px;
+    display: flex;
+    gap: 30px;
+
+    .chart-image {
+      display: flex;
+      align-items: center;
+      position: relative;
+      color: aliceblue;
+      width: 40px;
+      height: 40px;
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &::before {
+        height: 40px;
+        width: 40px;
+        content: "";
+        transform: rotate(45deg);
+        border-radius: 7px;
+      }
+
+      &.blue::before {
+        background: linear-gradient(to top right, #7871ff, #6feaff);
+      }
+
+      &.orange::before {
+        background: linear-gradient(to top right, #f88781, #eb9721);
+      }
+    }
+
+    .chart-desc {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      span {
+        &:first-child {
+          font-size: 22px;
+          font-weight: 700;
+        }
+
+        &.chart-percentage {
+          margin-left: 20px;
+          color: $gris-color;
+          font-size: 17px;
+          font-weight: 500;
+
+          .percentage-value {
+            font-size: 18px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
