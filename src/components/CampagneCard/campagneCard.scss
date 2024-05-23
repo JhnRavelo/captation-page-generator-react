@@ -1,0 +1,103 @@
+@import "../../variables.scss";
+
+.campagne-content {
+  width: 30%;
+  height: auto;
+  border: $black-border 2px solid;
+  box-shadow: 0 0 4px $black-shadow;
+  border-radius: 5px;
+  color: $gris-color;
+  cursor: pointer;
+  padding: 5px 15px;
+
+  &:hover {
+    .title {
+      svg {
+        opacity: 1;
+      }
+    }
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title-left {
+      display: flex;
+      gap: 10px;
+    }
+
+    svg {
+      color: red;
+      opacity: 0;
+      transition: 0.2s ease-in;
+
+      &:active {
+        transform: scale(0.96);
+      }
+    }
+
+    .circle {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: green;
+      border: greenyellow 2px solid;
+    }
+
+    h3 {
+      color: inherit;
+    }
+  }
+  .description {
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .campagne-description {
+      display: flex;
+      gap: 15px;
+      overflow: hidden;
+      width: 95%;
+      height: auto;
+
+      span {
+        font-size: 16px;
+        font-weight: 300;
+      }
+
+      div {
+        font-size: 14px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 270px;
+        height: 2.4em;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        line-clamp: 2;
+        box-orient: vertical;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      .arrow {
+        color: $gris-color;
+      }
+
+      .date {
+        display: flex;
+        gap: 5px;
+        height: auto;
+      }
+
+      svg {
+        color: aliceblue;
+      }
+    }
+  }
+}
