@@ -7,6 +7,7 @@ a {
 
 .main {
   min-height: 100vh;
+  padding: 10px;
 }
 
 .background.dashboard {
@@ -34,18 +35,17 @@ a {
 }
 
 .container {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 
   .content {
-    height: 95vh;
+    height: 97vh;
     border-radius: 10px;
     border: 2px solid $black-border;
     box-shadow: 0 0 40px $black-shadow;
     background-color: $black-back-ground;
     backdrop-filter: blur(10px);
     padding: 20px 15px;
-    margin-top: 10px;
     z-index: 100;
   }
   .menu-container {
@@ -54,7 +54,26 @@ a {
   .page-container {
     flex: 4;
     .page-content {
-        width: 98.5%;
+      width: 100%;
+
+      .main-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .year-container {
+          display: flex;
+          justify-content: center;
+        }
+
+        .infos-container {
+          display: flex;
+          height: 410px;
+          width: 100%;
+          gap: 10px;
+          padding: 10px 20px;
+        }
+      }
     }
   }
 }

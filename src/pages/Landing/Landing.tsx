@@ -1,3 +1,6 @@
+import Company from "../../components/Company/Company";
+import InputYear from "../../components/InputYear/InputYear";
+import MediaOptions from "../../components/MediaOptions/MediaOptions";
 import Menu from "../../components/Menu/Menu";
 import AdminRouter from "../../routers/AdminRouter";
 import "./landing.scss";
@@ -8,8 +11,8 @@ const Landing = () => {
       className="main"
       onClick={(e) => {
         if (!(e.target instanceof Element)) return;
-        const parent = e.target.parentNode
-        if(!parent || !(parent instanceof Element)) return;
+        const parent = e.target.parentNode;
+        if (!parent || !(parent instanceof Element)) return;
         const isOutsideOptions = !(
           parent.classList.contains("option") ||
           parent.classList.contains("more-options")
@@ -32,7 +35,16 @@ const Landing = () => {
         </div>
         <div className="page-container">
           <div className="page-content content">
-            <AdminRouter />
+            <div className="main-stat">
+              <MediaOptions />
+              <div className="year-container">
+                <InputYear />
+              </div>
+              <div className="infos-container">
+                <AdminRouter />
+              </div>
+              <Company />
+            </div>
           </div>
         </div>
       </div>
