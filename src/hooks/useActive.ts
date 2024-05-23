@@ -1,6 +1,8 @@
 const useActive = () => {
   return (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    e:
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+      | React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     lists: React.RefObject<HTMLDivElement>
   ) => {
     lists.current?.childNodes.forEach((list) => {

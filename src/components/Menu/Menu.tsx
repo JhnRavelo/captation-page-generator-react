@@ -8,31 +8,40 @@ import PageSVG from "../../assets/svg/PageSVG";
 import InfoAccount from "../InfoAccount/InfoAccount";
 import imgAvatar from "../../../public/avatar/jeune-belle-femme-pull-chaud-rose-aspect-naturel-souriant-portrait-isole-cheveux-longs_285396-896.avif";
 import NoteBookSVG from "../../assets/svg/NoteBookSVG";
+import MarketingSVG from "../../assets/svg/MarketingSVG";
+import useActive from "../../hooks/useActive";
+import { useRef } from "react";
 
 const Menu = () => {
+  const active = useActive()
+  const menuRef = useRef<HTMLDivElement>(null)
   return (
     <menu className="menu-content content">
       <img src={logo} alt="" className="logo" />
       <div className="separator"></div>
       <div className="navigator">
-        <div className="item">
-          <Link to="/generator">
+        <div className="item" ref={menuRef}>
+          <Link to="/marketing" className="active" onClick={(e)=>active(e, menuRef)}>
             <DashboardSVG height="30" width="30" />
             <span>Tableau de bord</span>
           </Link>
-          <Link to="/generator">
+          <Link to="/marketing/campagne" onClick={(e)=>active(e, menuRef)}>
+            <MarketingSVG height="25" width="30" />
+            <span>Campagne marketing</span>
+          </Link>
+          <Link to="/marketing" onClick={(e)=>active(e, menuRef)}>
             <QRcodeSVG height="20" width="30" />
             <span>Générer un QRCode</span>
           </Link>
-          <Link to="/">
+          <Link to="/" onClick={(e)=>active(e, menuRef)}>
             <BellSVG height="24" width="30" />
             <span>Notifications</span>
           </Link>
-          <Link to="">
+          <Link to="" onClick={(e)=>active(e, menuRef)}>
             <PageSVG height="24" width="30" />
             <span>Page de captation</span>
           </Link>
-          <Link to="">
+          <Link to="" onClick={(e)=>active(e, menuRef)}>
             <NoteBookSVG width="30" height="23" />
             <span>Journals des événements</span>
           </Link>
