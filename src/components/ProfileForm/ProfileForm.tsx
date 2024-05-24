@@ -1,5 +1,4 @@
 import { Field, Form, Formik } from "formik";
-import { Fragment } from "react/jsx-runtime";
 import { TypeValidateLogin } from "../../utils/validationSchema";
 import {
   TypeInitialProfile,
@@ -83,7 +82,7 @@ const ProfileForm = ({
             {forms &&
               forms.length > 0 &&
               forms.map((form, index) => (
-                <Fragment key={index}>
+                <div key={index} className="input-container">
                   <label htmlFor={form.name}>{form.header}</label>
                   <Field
                     type={form.type}
@@ -96,7 +95,7 @@ const ProfileForm = ({
                   ) : errors[form.name] ? (
                     <p className="error">{errors[form.name]}</p>
                   ) : null}
-                </Fragment>
+                </div>
               ))}
             <button type="submit">{btnTitle}</button>
           </Form>

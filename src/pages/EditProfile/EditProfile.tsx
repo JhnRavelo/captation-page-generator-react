@@ -44,7 +44,7 @@ const signupFields: TypeProfileFormFields = [
 ];
 
 const EditProfile = () => {
-  const authContext = useAuth()
+  const authContext = useAuth();
 
   const initialSignupValue: TypeInitialProfile = {
     email: authContext?.auth?.email ? authContext?.auth?.email : "",
