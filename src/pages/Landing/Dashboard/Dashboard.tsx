@@ -1,10 +1,11 @@
 import { dataHome } from "../../../assets/ts/data";
 import ChartBox from "../../../components/ChartBox/ChartBox";
+import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
 import "./dashboard.scss";
 
 const Dashboard = () => {
   return (
-    <>
+    <MediaCompanyContainer>
       <div className="info">
         <ChartBox
           nbrTotal={320}
@@ -25,7 +26,7 @@ const Dashboard = () => {
           percentage={-56}
         />
       </div>
-    </>
+    </MediaCompanyContainer>
   );
 };
 

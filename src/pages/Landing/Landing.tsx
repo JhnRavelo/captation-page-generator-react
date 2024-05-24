@@ -1,11 +1,11 @@
-import Company from "../../components/Company/Company";
-import InputYear from "../../components/InputYear/InputYear";
-import MediaOptions from "../../components/MediaOptions/MediaOptions";
+import AddForm from "../../components/Form/Form";
 import Menu from "../../components/Menu/Menu";
+import useForm from "../../hooks/useForm";
 import AdminRouter from "../../routers/AdminRouter";
 import "./landing.scss";
 
 const Landing = () => {
+  const formContext = useForm()
   return (
     <div
       className="main"
@@ -29,22 +29,14 @@ const Landing = () => {
         <div className="shape"></div>
         <div className="shape"></div>
       </div>
+      {formContext?.openForm && <AddForm />}
       <div className="container">
         <div className="menu-container">
           <Menu />
         </div>
         <div className="page-container">
           <div className="page-content content">
-            <div className="main-stat">
-              <MediaOptions />
-              <div className="year-container">
-                <InputYear />
-              </div>
-              <div className="infos-container">
-                <AdminRouter />
-              </div>
-              <Company />
-            </div>
+            <AdminRouter />
           </div>
         </div>
       </div>

@@ -56,24 +56,6 @@ a {
     .page-content {
       width: 100%;
 
-      .main-stat {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        .year-container {
-          display: flex;
-          justify-content: center;
-        }
-
-        .infos-container {
-          display: flex;
-          height: 410px;
-          width: 100%;
-          gap: 10px;
-          padding: 10px 20px;
-        }
-      }
     }
   }
 }
