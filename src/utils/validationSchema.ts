@@ -13,6 +13,23 @@ export type TypeValidateLogin = Yup.ObjectSchema<
   ""
 >;
 
+export type TypeValidateForm = Yup.ObjectSchema<
+  {
+    name: string;
+    dateDebut: Date;
+    dateFin: Date;
+    description: string;
+  },
+  Yup.AnyObject,
+  {
+    name: undefined;
+    dateDebut: undefined;
+    dateFin: undefined;
+    description: undefined;
+  },
+  ""
+>;
+
 export const validateLogin = Yup.object({
   email: Yup.string()
     .required("Vous devez mettre votre adresse email")
@@ -45,4 +62,11 @@ export const validateProfile = Yup.object({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), ""], "Le mot de passe doit être le même")
     .required("Le mot de passe doit être confirmer"),
+});
+
+export const validateCampagne = Yup.object({
+  name: Yup.string().required("Vous devez mettre le titre du campagne"),
+  dateDebut: Yup.date().required("Vous devez mettre le debut de la campagne"),
+  dateFin: Yup.date().required("Vous devez mettre la fin de la campagne"),
+  description: Yup.string().required("Vous devez mettre un description"),
 });
