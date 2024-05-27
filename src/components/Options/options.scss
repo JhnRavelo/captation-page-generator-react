@@ -1,0 +1,33 @@
+@import "../../variables.scss";
+
+.options-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .option {
+    padding: 10px 20px;
+    border-bottom: aliceblue 2px solid;
+    transition: 0.2s ease;
+    span {
+      color: $gris-color;
+      font-weight: 600;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.15s ease;
+
+      &:hover {
+        color: aliceblue;
+      }
+    }
+    &.active {
+      border-left: aliceblue 2px solid;
+      border-right: aliceblue 2px solid;
+      border-top: aliceblue 2px solid;
+      border-bottom: 0;
+      span {
+        color: aliceblue;
+      }
+    }
+  }
+}
