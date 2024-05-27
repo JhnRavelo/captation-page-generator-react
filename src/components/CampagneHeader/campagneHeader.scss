@@ -1,0 +1,44 @@
+@import "../../variables.scss";
+
+.id-single-campagne-container {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    .id-single-campagne {
+      display: flex;
+      gap: 20px;
+      .circle {
+        width: 30px;
+        height: 30px;
+      }
+
+      span {
+        font-size: 24px;
+        font-weight: 700;
+        color: $gris-color;
+      }
+    }
+
+    .icon-campagne-container {
+      display: flex;
+      padding: 0 50px 0 0px;
+      gap: 80px;
+      .icon-campagne {
+        &:first-child {
+            color: #FC7845;
+        }
+        &:last-child {
+            color: #3978CD;
+        }
+        svg {
+          margin-right: 5px;
+          font-weight: 700;
+        }
+        span {
+            font-weight: 600;
+        }
+      }
+    }
+  }
