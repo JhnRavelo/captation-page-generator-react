@@ -3,6 +3,7 @@ import UserSVG from "../../assets/svg/UserSVG";
 import ClockSVG from "../../assets/svg/ClockSVG";
 import RightArrow from "../../assets/svg/RightArrow";
 import "./campagneCard.scss";
+import { useNavigate } from "react-router-dom";
 
 type CampagnePropsType = {
   campagne: Campagne;
@@ -18,11 +19,17 @@ export type Campagne = {
 };
 
 const CampagneCard = ({ campagne }: CampagnePropsType) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/marketing/campagne/23/edit");
+  };
+
   return (
-    <div className="campagne-content">
+    <div className="campagne-content" onClick={() => handleClick()}>
       <div className="title">
         <div className="title-left">
-          <div className="circle"></div>
+          <div className="circle circle-green"></div>
           <h3>{campagne.id}</h3>
         </div>
         <div className="title-right">

@@ -1,9 +1,11 @@
+import { Fragment } from "react/jsx-runtime";
 import AddButton from "../../../components/AddButton/AddButton";
 import CampagneCard from "../../../components/CampagneCard/CampagneCard";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
-import { TypeAddFormFields, TypeInitialValues } from "../../../context/AddFormProvider";
+import { TypeInitialValues } from "../../../context/AddFormProvider";
 import useForm from "../../../hooks/useForm";
 import "./campagne.scss";
+import { campagneFields } from "../../../assets/ts/campagne";
 
 const campagnes = [
   {
@@ -79,33 +81,6 @@ const initialValues: TypeInitialValues = {
   user: "",
 };
 
-const campagneFields: TypeAddFormFields = [
-  {
-    name: "name",
-    type: "text",
-    header: "Titre de la campagne",
-    placeholder: "Titre de la campagne",
-  },
-  {
-    name: "description",
-    type: "text",
-    header: "Description de la campagne",
-    placeholder: "Description de la campagne",
-  },
-  {
-    name: "dateDebut",
-    type: "date",
-    header: "Date de début de la campagne",
-    placeholder: "Date de début de la campagne",
-  },
-  {
-    name: "dateFin",
-    type: "date",
-    header: "Date de fin de la campagne",
-    placeholder: "Date de fin de la campagne",
-  },
-];
-
 const Campagne = () => {
   const formContext = useForm();
 
@@ -113,7 +88,7 @@ const Campagne = () => {
     formContext?.setOpenForm(true);
     formContext?.setSlug("campagne");
     formContext?.setInitialValues(initialValues);
-    formContext?.setFormFields(campagneFields)
+    formContext?.setFormFields(campagneFields);
   };
 
   return (
@@ -122,7 +97,11 @@ const Campagne = () => {
         <AddButton handleClick={handleClick} />
         <div className="campagne-container">
           {campagnes?.length > 0 &&
-            campagnes.map((campagne) => <CampagneCard campagne={campagne} />)}
+            campagnes.map((campagne, index) => (
+              <Fragment key={index}>
+                <CampagneCard campagne={campagne} />
+              </Fragment>
+            ))}
         </div>
       </div>
     </MediaCompanyContainer>
