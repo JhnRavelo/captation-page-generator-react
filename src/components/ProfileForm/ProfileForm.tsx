@@ -47,7 +47,7 @@ const ProfileForm = ({
       }
       if (res.data.success) {
         authContext?.setAuth(res.data.user);
-        navigate("/generator");
+        navigate("/marketing");
       } else {
         setError(res.data.message);
       }
@@ -71,7 +71,7 @@ const ProfileForm = ({
           <Form>
             {title === "Modifier Profile" ? (
               <div className="title-container">
-                <div className="arrow" onClick={() => navigate("/generator")}>
+                <div className="arrow" onClick={() => navigate("/marketing")}>
                   <LeftArrow width="50" height="40" />
                 </div>
                 <h3>{title}</h3>
