@@ -1,7 +1,6 @@
 import { dataHome } from "../../../assets/ts/data";
 import ChartBox from "../../../components/ChartBox/ChartBox";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
-import "./dashboard.scss";
 
 const Dashboard = () => {
   return (

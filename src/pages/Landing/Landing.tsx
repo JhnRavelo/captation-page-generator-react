@@ -1,4 +1,4 @@
-import AddForm from "../../components/Form/Form";
+import AddForm from "../../components/ModalForm/ModalForm";
 import Menu from "../../components/Menu/Menu";
 import useForm from "../../hooks/useForm";
 import AdminRouter from "../../routers/AdminRouter";
