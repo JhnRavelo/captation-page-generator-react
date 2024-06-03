@@ -3,6 +3,7 @@ export type SVGPropsType = {
   height: string;
   className?: string;
   svgRef?: React.MutableRefObject<SVGSVGElement | null>;
+  onClick?: () => void;
 };
 
 const DashboardSVG = ({ width, height }: SVGPropsType) => {

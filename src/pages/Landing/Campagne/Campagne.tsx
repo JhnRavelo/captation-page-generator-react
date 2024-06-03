@@ -89,13 +89,14 @@ const Campagne = () => {
     formContext?.setSlug("campagne");
     formContext?.setInitialValues(initialValues);
     formContext?.setFormFields(campagneFields);
+    formContext?.setTitle("add");
   };
 
   return (
     <MediaCompanyContainer>
       <div className="content-container">
         <AddButton handleClick={handleClick} />
-        <div className="campagne-container">
+        <div className="campagne-container cards-container">
           {campagnes?.length > 0 &&
             campagnes.map((campagne, index) => (
               <Fragment key={index}>

@@ -4,6 +4,7 @@ import ClockSVG from "../../assets/svg/ClockSVG";
 import RightArrow from "../../assets/svg/RightArrow";
 import "./campagneCard.scss";
 import { useNavigate } from "react-router-dom";
+import useForm from "../../hooks/useForm";
 
 type CampagnePropsType = {
   campagne: Campagne;
@@ -20,20 +21,40 @@ export type Campagne = {
 
 const CampagneCard = ({ campagne }: CampagnePropsType) => {
   const navigate = useNavigate();
+  const formContext = useForm();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const list = e.target;
+    if (list instanceof Element && list.parentNode instanceof Element) {
+      if (
+        list.parentNode.classList.contains("delete-icon") ||
+        list.classList.contains("delete-icon")
+      )
+        return;
+    }
     navigate("/marketing/campagne/23/edit");
   };
 
+  const handleDelete = () => {
+    formContext?.setTitle("delete");
+    formContext?.setOpenForm(true);
+    formContext?.setIdDelete(campagne.id);
+  };
+
   return (
-    <div className="campagne-content" onClick={() => handleClick()}>
+    <div className="campagne-content" onClick={(e) => handleClick(e)}>
       <div className="title">
         <div className="title-left">
           <div className="circle circle-green"></div>
           <h3>{campagne.id}</h3>
         </div>
         <div className="title-right">
-          <DeleteSVG width="30" height="30" />
+          <DeleteSVG
+            width="30"
+            height="30"
+            className="delete-icon"
+            onClick={() => handleDelete()}
+          />
         </div>
       </div>
       <div className="description">

@@ -1,11 +1,11 @@
-import AddForm from "../../components/ModalForm/ModalForm";
+import AddForm from "../../components/Modal/Modal";
 import Menu from "../../components/Menu/Menu";
 import useForm from "../../hooks/useForm";
 import AdminRouter from "../../routers/AdminRouter";
 import "./landing.scss";
 
 const Landing = () => {
-  const formContext = useForm()
+  const formContext = useForm();
   return (
     <div
       className="main"

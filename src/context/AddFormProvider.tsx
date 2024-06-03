@@ -4,6 +4,8 @@ import { TypeValidateForm, validateCampagne } from "../utils/validationSchema";
 
 export type TypeSlug = "campagne" | "page" | "";
 
+export type TypeTitleModal = "add" | "delete";
+
 type TypeAddFormContext = {
   slug: TypeSlug;
   setSlug: React.Dispatch<React.SetStateAction<TypeSlug>>;
@@ -15,6 +17,10 @@ type TypeAddFormContext = {
   setValidate: React.Dispatch<React.SetStateAction<TypeValidateForm>>;
   formFields: TypeAddFormFields;
   setFormFields: React.Dispatch<React.SetStateAction<TypeAddFormFields>>;
+  title: TypeTitleModal;
+  setTitle: React.Dispatch<React.SetStateAction<TypeTitleModal>>;
+  idDelete: string;
+  setIdDelete: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type TypeAddFormFields = {
@@ -24,8 +30,6 @@ export type TypeAddFormFields = {
   placeholder: string;
 }[];
 
-const AddFormContext = createContext<TypeAddFormContext | null>(null);
-
 export type TypeInitialValues = {
   name: string;
   dateDebut?: string;
@@ -33,6 +37,8 @@ export type TypeInitialValues = {
   description?: string;
   user?: string;
 };
+
+const AddFormContext = createContext<TypeAddFormContext | null>(null);
 
 const AddFormProvider = ({ children }: ContextPropsType) => {
   const [slug, setSlug] = useState<TypeSlug>("");
@@ -42,6 +48,8 @@ const AddFormProvider = ({ children }: ContextPropsType) => {
   });
   const [validate, setValidate] = useState<TypeValidateForm>(validateCampagne);
   const [formFields, setFormFields] = useState<TypeAddFormFields>([]);
+  const [title, setTitle] = useState<TypeTitleModal>("add");
+  const [idDelete, setIdDelete] = useState<string>("");
 
   return (
     <AddFormContext.Provider
@@ -56,6 +64,10 @@ const AddFormProvider = ({ children }: ContextPropsType) => {
         setValidate,
         formFields,
         setFormFields,
+        title,
+        setTitle,
+        idDelete,
+        setIdDelete,
       }}
     >
       {children}
