@@ -39,7 +39,7 @@ const signupFields: TypeProfileFormFields = [
     name: "confirmPassword",
     header: "Confirmez le mot de passe",
     placeholder: "Confirmez le mot de passe",
-    type: "text",
+    type: "password",
   },
 ];
 

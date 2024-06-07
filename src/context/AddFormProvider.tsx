@@ -2,9 +2,9 @@ import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
 import { TypeValidateForm, validateCampagne } from "../utils/validationSchema";
 
-export type TypeSlug = "campagne" | "page" | "";
+export type TypeSlug = "campagne" | "page" | "" | "QR-Code";
 
-export type TypeTitleModal = "add" | "delete";
+export type TypeTitleModal = "add" | "delete" | "qr-code";
 
 type TypeAddFormContext = {
   slug: TypeSlug;
@@ -24,7 +24,7 @@ type TypeAddFormContext = {
 };
 
 export type TypeAddFormFields = {
-  name: "name" | "dateDebut" | "dateFin" | "description";
+  name: "name" | "dateDebut" | "dateFin" | "description" | "logo";
   header: string;
   type: string;
   placeholder: string;
@@ -36,6 +36,7 @@ export type TypeInitialValues = {
   dateFin?: string;
   description?: string;
   user?: string;
+  logo?: File | null;
 };
 
 const AddFormContext = createContext<TypeAddFormContext | null>(null);
