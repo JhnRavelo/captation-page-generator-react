@@ -1,14 +1,7 @@
 @import "../../../variables.scss";
 @import "../../../animation.scss";
 
-.content-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  animation: fade-up 1s ease;
-  
-  .campagne-container {
-    column-gap: 55px;
-    row-gap: 10px;
-  }
+.campagne-container {
+  column-gap: 55px;
+  row-gap: 10px;
 }

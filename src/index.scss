@@ -104,3 +104,10 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+.page-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fade-up 1s ease;
+}

@@ -1,6 +1,6 @@
 import { Fragment } from "react/jsx-runtime";
 import AddButton from "../../../components/AddButton/AddButton";
-import CampagneCard from "../../../components/CampagneCard/CampagneCard";
+import CampagneCard from "../../../components/Card/Card";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
 import { TypeInitialValues } from "../../../context/AddFormProvider";
 import useForm from "../../../hooks/useForm";
@@ -94,13 +94,17 @@ const Campagne = () => {
 
   return (
     <MediaCompanyContainer>
-      <div className="content-container">
+      <div className="page-cards-container">
         <AddButton handleClick={handleClick} />
         <div className="campagne-container cards-container">
           {campagnes?.length > 0 &&
             campagnes.map((campagne, index) => (
               <Fragment key={index}>
-                <CampagneCard campagne={campagne} />
+                <CampagneCard
+                  card={campagne}
+                  slug="campagne"
+                  isClickable={true}
+                />
               </Fragment>
             ))}
         </div>
