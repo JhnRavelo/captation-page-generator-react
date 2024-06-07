@@ -1,0 +1,32 @@
+.qr-desc-image {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    .qr-image {
+      filter: brightness(0.5);
+    }
+    svg {
+      opacity: 1;
+    }
+  }
+
+  .qr-image {
+    width: 100px;
+    height: 100px;
+    transition: 0.25s ease-in-out;
+  }
+  svg {
+    cursor: pointer;
+    position: absolute;
+    color: aliceblue;
+    opacity: 0;
+    transition: 0.2s ease-in;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
