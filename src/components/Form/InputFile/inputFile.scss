@@ -1,0 +1,26 @@
+@import "../../../variables.scss";
+
+.labelInput {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+  border: 1px solid $black-border;
+  padding: 10px;
+  background-color: transparent;
+  color: $gris-fond-color;
+  outline: none;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  overflow: hidden;
+
+  img {
+    width: 20px;
+  }
+
+  span {
+    max-width: 350px;
+    font-size: 13px;
+  }
+}
