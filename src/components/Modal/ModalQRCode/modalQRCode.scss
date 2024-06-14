@@ -1,0 +1,45 @@
+@import "../../../variables.scss";
+
+.modal-qr-container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+
+    .modal-qr-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 50%;
+    
+      span {
+        color: $gris-fond-color;
+        .modal-qr-content-value {
+            color: aliceblue;
+        }
+      }
+    
+      .modal-qr-url {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+    }
+
+    .right {
+        align-items: center;
+        justify-content: center;
+        margin-top: -20px;
+
+        .apercu {
+          color: aliceblue;
+          padding: 8px;
+          transition: 0.25s ease;
+
+          &:hover {
+            color: $gris-fond-color;
+            border: 1px solid aliceblue;
+          }
+        }
+    }
+
+}
