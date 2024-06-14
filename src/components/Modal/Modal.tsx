@@ -4,6 +4,7 @@ import "./modal.scss";
 import { useState } from "react";
 import FormFields from "../Form/Form";
 import Delete from "./Delete/Delete";
+import ModalQRCode from "./ModalQRCode/ModalQRCode";
 
 const Modal = () => {
   const formContext = useForm();
@@ -26,15 +27,14 @@ const Modal = () => {
         <span className="close" onClick={() => formContext?.setOpenForm(false)}>
           X
         </span>
-        {formContext?.title == "add" ? (
+        {formContext?.title != "delete" ? (
           <>
-            <h3>
-              Ajouter un nouveau{" "}
-              {formContext &&
-                formContext?.slug[0].toUpperCase() +
-                  formContext?.slug.slice(1).toLowerCase()}
-            </h3>
-            <FormFields handleSubmit={handleSubmit} error={error} />
+            <h3>Ajouter un nouveau {formContext && formContext?.slug}</h3>
+            {formContext?.title == "qr-code" ? (
+              <ModalQRCode handleSubmit={handleSubmit} error={error} />
+            ) : (
+              <FormFields handleSubmit={handleSubmit} error={error} />
+            )}
           </>
         ) : (
           <Delete />
