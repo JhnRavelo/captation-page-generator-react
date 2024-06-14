@@ -40,7 +40,13 @@
       align-items: center;
       transition: 0.25s ease-in-out;
       cursor: pointer;
+
+      svg:active {
+        transition: 0.2s ease;
+        transform: scale(0.9);
+      }
     }
+    
     &:hover {
       img {
         filter: brightness(50%);
@@ -70,12 +76,9 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    transition: 0.25s ease;
-
-    &:active {
-      transform: scale(0.9);
-    }
+    transition: 0.25s ease;   
   }
+
   &:hover,
   &:focus {
     color: aliceblue;

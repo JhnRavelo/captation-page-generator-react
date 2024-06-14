@@ -13,9 +13,12 @@ const Landing = () => {
         if (!(e.target instanceof Element)) return;
         const parent = e.target.parentNode;
         if (!parent || !(parent instanceof Element)) return;
+        if (!parent.parentElement) return;
         const isOutsideOptions = !(
           parent.classList.contains("option") ||
-          parent.classList.contains("more-options")
+          parent.classList.contains("more-options") ||
+          parent.parentElement.classList.contains("option") ||
+          parent.parentElement.classList.contains("more-options")
         );
         if (isOutsideOptions) {
           const optionsMenu = document.querySelector(".options");

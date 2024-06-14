@@ -86,7 +86,7 @@ const Campagne = () => {
 
   const handleClick = () => {
     formContext?.setOpenForm(true);
-    formContext?.setSlug("campagne");
+    formContext?.setSlug("Campagne");
     formContext?.setInitialValues(initialValues);
     formContext?.setFormFields(campagneFields);
     formContext?.setTitle("add");
@@ -102,7 +102,7 @@ const Campagne = () => {
               <Fragment key={index}>
                 <CampagneCard
                   card={campagne}
-                  slug="campagne"
+                  slug="Campagne"
                   isClickable={true}
                 />
               </Fragment>
