@@ -11,7 +11,7 @@ const Delete = () => {
       </div>
       <div className="para-container">
         <p>
-          Vous êtes sûre de vouloir de supprimer le {formContext?.slug}{" "}
+          Vous êtes sûre de vouloir de supprimer le {formContext?.slug.toLowerCase()}{" "}
           {formContext?.idDelete} ?
         </p>
       </div>

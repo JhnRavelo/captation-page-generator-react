@@ -3,6 +3,9 @@ import MediaCompanyContainer from "../../../components/MediaCompanyContainer/Med
 import imgScan from "../../../../public/img/technico qr code.png";
 import "./qrCode.scss";
 import Card from "../../../components/Card/Card";
+import useForm from "../../../hooks/useForm";
+import { qrcodeFields } from "../../../assets/ts/qrcode";
+import { TypeInitialValues } from "../../../context/AddFormProvider";
 
 const qrCodes = [
   {
@@ -35,10 +38,21 @@ const qrCodes = [
   },
 ];
 
+const initialValues: TypeInitialValues = {
+  logo: null,
+};
+
 const QRCode = () => {
+  const formContext = useForm();
+
   const handleClick = () => {
-    console.log("");
+    formContext?.setOpenForm(true);
+    formContext?.setFormFields(qrcodeFields);
+    formContext?.setInitialValues(initialValues);
+    formContext?.setTitle("qr-code");
+    formContext?.setSlug("QR-Code");
   };
+
   return (
     <MediaCompanyContainer>
       <div className="page-cards-container">

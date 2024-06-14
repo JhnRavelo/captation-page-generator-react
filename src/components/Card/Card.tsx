@@ -47,7 +47,7 @@ const Card = ({ card, slug, isClickable }: CampagnePropsType) => {
       <CardTitle title={card.id} slug={slug} />
       <div className="description">
         <h4>{card.title}</h4>
-        {slug == "campagne" ? (
+        {slug == "Campagne" ? (
           <CampagneCardContent campagne={card} />
         ) : (
           <CardContentQRCode qrcode={card} />

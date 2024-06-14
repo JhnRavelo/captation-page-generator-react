@@ -5,24 +5,20 @@
   box-shadow: 0 0 4px $black-shadow;
   border-radius: 5px;
   color: $gris-color;
-  padding: 5px 15px;
+  padding: 5px 10px;
 
-  &.campagne {
+  &.Campagne {
     width: 337px;
     height: 164px;
     cursor: pointer;
   }
 
   &.QR-Code {
-    width: 260px;
+    width: 267px;
     height: 210px;
 
     .description {
-      padding-left: 30px;
-
-      h4 {
-        font-size: 18px;
-      }
+      padding-left: 35px;
 
       span {
         font-size: 14px;
