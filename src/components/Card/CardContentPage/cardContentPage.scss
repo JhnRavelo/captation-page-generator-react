@@ -1,0 +1,99 @@
+@import "../../../variables.scss";
+
+.page-desc-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  .screen-page-multi {
+    display: flex;
+    justify-content: space-between;
+
+    .ordi-container {
+      width: 310px;
+      height: 220px;
+
+      .ordi-content {
+        width: 258px;
+        height: 148px;
+        position: relative;
+        bottom: 245px;
+        left: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .ordi-title {
+          height: 90px;
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+
+          .ordi-logo-title {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 10px 0px 10px;
+
+            img {
+              width: 40px;
+            }
+            h4 {
+              font-size: 14px;
+            }
+          }
+
+          .ordi-campagne {
+            display: flex;
+            gap: 10px;
+            padding: 0px 10px;
+            img {
+              width: 80px;
+            }
+            .left {
+              margin-top: 10px;
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+
+              .input-ordi {
+                display: flex;
+                align-items: center;
+                border-radius: 0 2px 2px 0px;
+                width: 145px;
+                height: 20px;
+                background-color: aliceblue;
+                justify-content: space-between;
+                padding: 0px 2px;
+
+                span {
+                  font-size: 7px;
+                }
+                button {
+                  width: 40px;
+                  height: 16px;
+                  font-size: 9px;
+                  border-radius: 0 3px 3px 0px;
+                  background-color: #0d849cd3;
+                  border: none;
+                  color: aliceblue;
+                }
+              }
+              span {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+        .ordi-avantage {
+          display: flex;
+          justify-content: space-around;
+
+          img {
+            width: 25px;
+          }
+        }
+      }
+    }
+
+    
+  }
+}

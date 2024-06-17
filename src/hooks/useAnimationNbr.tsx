@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 
-const useAnimationNbr = (nbrTotal:number, totalRef:React.RefObject<HTMLSpanElement>) => {
+const useAnimationNbr = (
+  nbrTotal: number,
+  totalRef: React.RefObject<HTMLSpanElement>
+) => {
   useEffect(() => {
     if (totalRef.current) {
       const interval = 4000;
       let startValue = 0;
-      let endValue;
-      if(nbrTotal < 0){
-        endValue = Math.abs(nbrTotal)
-      }else {
+      let endValue: number;
+      if (nbrTotal < 0) {
+        endValue = Math.abs(nbrTotal);
+      } else {
         endValue = nbrTotal;
       }
       const duration = Math.floor(interval / endValue);

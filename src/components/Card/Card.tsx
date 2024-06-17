@@ -4,6 +4,7 @@ import CardTitle from "./CardTitle/CardTitle";
 import CampagneCardContent from "./CardContentCampagne/CardContentCampagne";
 import "./card.scss";
 import CardContentQRCode from "./CardContentQRCode/CardContentQRCode";
+import CardContentPage from "./CardContentPage/CardContentPage";
 
 type CampagnePropsType = {
   card: Card;
@@ -44,11 +45,13 @@ const Card = ({ card, slug, isClickable }: CampagnePropsType) => {
       className={"cards-content " + `${slug}`}
       onClick={(e) => handleClick(e)}
     >
-      <CardTitle title={card.id} slug={slug} />
+      <CardTitle card={card} slug={slug} />
       <div className="description">
-        <h4>{card.title}</h4>
+        {slug != "Page" && <h4>{card.title}</h4>}
         {slug == "Campagne" ? (
           <CampagneCardContent campagne={card} />
+        ) : slug == "Page" ? (
+          <CardContentPage page={card} />
         ) : (
           <CardContentQRCode qrcode={card} />
         )}

@@ -2,7 +2,7 @@ import useForm from "../../../hooks/useForm";
 import imgDelete from "../../../assets/png/poubelle.png";
 
 const Delete = () => {
-    const formContext = useForm()
+  const formContext = useForm();
   return (
     <>
       <div className="delete-title-container">
@@ -11,8 +11,8 @@ const Delete = () => {
       </div>
       <div className="para-container">
         <p>
-          Vous êtes sûre de vouloir de supprimer le {formContext?.slug.toLowerCase()}{" "}
-          {formContext?.idDelete} ?
+          Vous êtes sûre de vouloir de supprimer le{" "}
+          {formContext?.slug.toLowerCase()} {formContext?.idDelete} ?
         </p>
       </div>
       <div className="button__delete">

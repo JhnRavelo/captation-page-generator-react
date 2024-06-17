@@ -13,6 +13,13 @@
     cursor: pointer;
   }
 
+  &.Page {
+    width: 49%;
+    padding: 10px;
+    height: 350px;
+    overflow: hidden;
+  }
+
   &.QR-Code {
     width: 267px;
     height: 210px;
@@ -28,7 +35,7 @@
 
   &:hover {
     .title {
-      svg {
+      .title-right {
         opacity: 1;
       }
     }
@@ -42,12 +49,28 @@
     .title-left {
       display: flex;
       gap: 10px;
+      align-items: center;
     }
 
-    svg {
-      color: red;
+    .title-right {
       opacity: 0;
       transition: 0.2s ease-in;
+      display: flex;
+      gap: 120px;
+
+      .title-scan-nbr {
+        color: $orange;
+        
+
+        svg {
+          margin-right: 5px;
+          color: $orange;
+        }
+      }
+    }
+
+    .delete-icon {
+      color: red;
       cursor: pointer;
 
       &:active {
@@ -112,8 +135,6 @@
       svg {
         color: aliceblue;
       }
-
-      
     }
   }
 }

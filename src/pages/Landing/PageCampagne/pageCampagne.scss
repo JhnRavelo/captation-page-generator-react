@@ -1,0 +1,10 @@
+.page-cards-container {
+    width: 100%;
+
+    .cards-container {
+        &.Page {
+            flex-direction: row;
+            gap: 20px;
+        }
+    }
+}

@@ -34,17 +34,20 @@ const Menu = () => {
             <QRcodeSVG height="20" width="30" />
             <span>Générer un QRCode</span>
           </Link>
-          <Link to="/" onClick={(e) => active(e, menuRef)}>
-            <BellSVG height="24" width="30" />
-            <span>Notifications</span>
-          </Link>
-          <Link to="" onClick={(e) => active(e, menuRef)}>
+          <Link
+            to="/marketing/page-campagne"
+            onClick={(e) => active(e, menuRef)}
+          >
             <PageSVG height="24" width="30" />
             <span>Page de captation</span>
           </Link>
           <Link to="" onClick={(e) => active(e, menuRef)}>
             <NoteBookSVG width="30" height="23" />
             <span>Journals des événements</span>
+          </Link>
+          <Link to="/" onClick={(e) => active(e, menuRef)}>
+            <BellSVG height="24" width="30" />
+            <span>Notifications</span>
           </Link>
         </div>
         <InfoAccount img={imgAvatar} name="Cedric R." />

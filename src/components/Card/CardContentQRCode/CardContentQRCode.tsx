@@ -16,7 +16,7 @@ const CardContentQRCode = ({ qrcode }: QRCodePropsType) => {
     if (!imageUrl) return;
     const link = document.createElement("a");
     link.href = imageUrl;
-    link.download = "qr-code " + qrcode.title + ".png"; // Specify the filename you want to save as
+    link.download = "qr-code " + qrcode.title + ".png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
