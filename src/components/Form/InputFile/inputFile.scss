@@ -5,7 +5,6 @@
   border: 1px solid $black-border;
   padding: 10px;
   background-color: transparent;
-  color: $gris-fond-color;
   outline: none;
   border-radius: 3px;
   display: flex;
@@ -14,12 +13,17 @@
   gap: 10px;
   cursor: pointer;
   overflow: hidden;
+  height: 40px;
+  &.imgCampagne {
+    margin-top: 40px;
+  }
 
   img {
     width: 20px;
   }
 
   span {
+    color: aliceblue;
     max-width: 350px;
     font-size: 13px;
   }

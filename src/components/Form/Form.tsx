@@ -25,12 +25,12 @@ const FormFields = ({ handleSubmit, error }: FormFieldsPropsTypes) => {
           {formContext?.formFields &&
             formContext?.formFields.length > 0 &&
             formContext?.formFields.map((form, index) => {
-              if (form.name == "logo") {
+              if (form.name == "logo" || form.name == "imgCampagne") {
                 return (
                   <InputFile
                     name={form.name}
                     setFieldValue={setFieldValue}
-                    value={values.logo?.name}
+                    value={values[form.name]?.name}
                   />
                 );
               } else

@@ -5,6 +5,7 @@ import { useState } from "react";
 import FormFields from "../Form/Form";
 import Delete from "./Delete/Delete";
 import ModalQRCode from "./ModalQRCode/ModalQRCode";
+import ModalPage from "./ModalPage/ModalPage";
 
 const Modal = () => {
   const formContext = useForm();
@@ -32,6 +33,8 @@ const Modal = () => {
             <h3>Ajouter un nouveau {formContext && formContext?.slug}</h3>
             {formContext?.title == "qr-code" ? (
               <ModalQRCode handleSubmit={handleSubmit} error={error} />
+            ) : formContext?.title == "page" ? (
+              <ModalPage handleClick={handleSubmit} error={error} />
             ) : (
               <FormFields handleSubmit={handleSubmit} error={error} />
             )}

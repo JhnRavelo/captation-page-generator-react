@@ -1,10 +1,10 @@
 import { ErrorMessage, FormikErrors } from "formik";
 import imgGallery from "../../../assets/png/gallery.png";
 import { TypeInitialValues } from "../../../context/AddFormProvider";
-import "./inputFile.scss"
+import "./inputFile.scss";
 
 type InputFileProps = {
-  name: "logo";
+  name: "logo" | "imgCampagne";
   setFieldValue: (
     field: string,
     value: TypeInitialValues,
@@ -28,14 +28,18 @@ const InputFile = ({ name, setFieldValue, value }: InputFileProps) => {
           }
         }}
       />
-      <label htmlFor={name} className="labelInput">
+      <label htmlFor={name} className={"labelInput " + name}>
         <img
           src={imgGallery}
           alt="image de gallery"
           style={{ width: "20px", height: "20px" }}
         />
-        <span style={value ? { fontSize: "9px" } : undefined}>
-          {value ? value : "Si vous ne choisissez pas, le logo par défaut sera choisit."}
+        <span>
+          {value
+            ? value
+            : (name == "logo" && !value)
+            ? "Si vous ne choisissez pas, le logo par défaut sera choisit."
+            : "Choisissez votre image pour la campagne."}
         </span>
       </label>
       <ErrorMessage component={"p"} className="error" name={name} />

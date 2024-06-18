@@ -1,6 +1,9 @@
+import { pageFields } from "../../../assets/ts/page";
 import AddButton from "../../../components/AddButton/AddButton";
 import Card from "../../../components/Card/Card";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
+import { TypeInitialValues } from "../../../context/AddFormProvider";
+import useForm from "../../../hooks/useForm";
 import "./pageCampagne.scss";
 
 const pageCampagnes = [
@@ -22,10 +25,24 @@ const pageCampagnes = [
   },
 ];
 
+const initialValues: TypeInitialValues = {
+  titleColor: "",
+  titleBackgroundColor: "",
+  sloganCampagne: "",
+  imgCampagne: null,
+};
+
 const PageCampagne = () => {
+  const formContext = useForm();
+
   const handleCLick = () => {
-    console.log("");
+    formContext?.setSlug("Page");
+    formContext?.setOpenForm(true);
+    formContext?.setFormFields(pageFields);
+    formContext?.setTitle("page");
+    formContext?.setInitialValues(initialValues);
   };
+  
   return (
     <MediaCompanyContainer>
       <div className="page-cards-container">

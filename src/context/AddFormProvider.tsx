@@ -4,7 +4,7 @@ import { TypeValidateForm, validateCampagne } from "../utils/validationSchema";
 
 export type TypeSlug = "Campagne" | "Page" | "" | "QR-Code";
 
-export type TypeTitleModal = "add" | "delete" | "qr-code";
+export type TypeTitleModal = "add" | "delete" | "qr-code" | "page";
 
 type TypeAddFormContext = {
   slug: TypeSlug;
@@ -24,7 +24,16 @@ type TypeAddFormContext = {
 };
 
 export type TypeAddFormFields = {
-  name: "name" | "dateDebut" | "dateFin" | "description" | "logo";
+  name:
+    | "name"
+    | "dateDebut"
+    | "dateFin"
+    | "description"
+    | "logo"
+    | "titleColor"
+    | "titleBackgroundColor"
+    | "sloganCampagne"
+    | "imgCampagne";
   header: string;
   type: string;
   placeholder: string;
@@ -37,6 +46,10 @@ export type TypeInitialValues = {
   description?: string;
   user?: string;
   logo?: File | null;
+  titleColor?: string;
+  titleBackgroundColor?: string;
+  sloganCampagne?: string;
+  imgCampagne?: File | null;
 };
 
 const AddFormContext = createContext<TypeAddFormContext | null>(null);
