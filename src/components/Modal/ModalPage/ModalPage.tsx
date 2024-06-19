@@ -1,6 +1,5 @@
 import WebSVG from "../../../assets/svg/WebSVG";
 import FormFields, { TypeHandleSubmit } from "../../Form/Form";
-import "./modalPage.scss";
 
 type ModalPagePropsType = {
   handleClick: TypeHandleSubmit;

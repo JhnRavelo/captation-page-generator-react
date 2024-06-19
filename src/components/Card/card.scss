@@ -56,12 +56,11 @@
       opacity: 0;
       transition: 0.2s ease-in;
       display: flex;
-      gap: 120px;
+      gap: 20px;
 
       .title-scan-nbr {
         color: $orange;
         
-
         svg {
           margin-right: 5px;
           color: $orange;
@@ -69,9 +68,19 @@
       }
     }
 
-    .delete-icon {
-      color: red;
+    .icon {
       cursor: pointer;
+      transition: 0.2s ease-in-out;
+      
+      &.delete {
+        color: red;
+      }
+      &.edit {
+        color: yellowgreen;
+      }
+      &.view {
+        color: $light-blue;
+      }
 
       &:active {
         transform: scale(0.96);
