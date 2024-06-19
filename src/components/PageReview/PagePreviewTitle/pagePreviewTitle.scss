@@ -7,8 +7,10 @@
   flex-direction: column;
   gap: 30px;
   @include sm {
-    gap: 30px;
-    padding: 20px 10px;
+    padding: 20px 10px !important;
+  }
+  @include lg {
+    padding: 20px;
   }
 
   .title-container {
@@ -16,11 +18,17 @@
     align-items: center;
     gap: 350px;
     @include sm {
-      gap: 40px;
+      gap: 20px !important;
+    }
+    @include md-l {
+      gap: 180px;
+    }
+    @include md-x {
+      gap: 260px;
     }
     img {
       @include sm {
-        width: 170px;
+        width: 140px;
       }
       width: 250px;
     }
@@ -37,14 +45,20 @@
   .slogan-image-container {
     display: flex;
     justify-content: space-between;
-    @include sm {
+    @include md-l{
       flex-direction: column-reverse;
       align-items: center;
     }
-
     img {
-      @include sm {
-        width: 100%;
+      @include lg {
+        width: 500px;
+        height: 100%;
+      }
+      @include md-l {
+        width: 100% !important;
+      }
+      @include md-x {
+        width: 440px;
       }
       width: 600px;
     }
@@ -55,17 +69,29 @@
       justify-content: center;
       gap: 70px;
       @include sm {
-        gap: 15px;
+        gap: 15px !important;
+      }
+      @include md-l {
+        gap: 50px;
       }
 
       .slogan-content {
         display: flex;
         @include sm {
-          padding: 15px;
+          padding: 15px !important;
+        }
+        @include lg {
+          padding-right: 10px;
         }
         span {
           @include sm {
-            font-size: 24px;
+            font-size: 28px !important;
+          }
+          @include md-l {
+            font-size: 46px;
+          }
+          @include md-x {
+            font-size: 54px;
           }
           font-size: 56px;
           font-weight: 800;

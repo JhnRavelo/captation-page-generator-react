@@ -24,5 +24,8 @@
 
   img {
     width: 160px;
+    @include lg {
+      width: 120px;
+    }
   }
 }
