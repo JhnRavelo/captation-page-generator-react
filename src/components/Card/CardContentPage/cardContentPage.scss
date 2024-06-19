@@ -24,7 +24,7 @@
         background-color: aliceblue;
 
         .ordi-title {
-          height: 90px;
+          height: 105px;
           display: flex;
           flex-direction: column;
           gap: 7px;
@@ -44,22 +44,22 @@
 
           .ordi-campagne {
             display: flex;
-            gap: 10px;
+            gap: 5px;
             padding: 0px 10px;
             img {
-              width: 80px;
+              width: 100px;
             }
             .left {
               margin-top: 10px;
               display: flex;
               flex-direction: column;
-              gap: 8px;
+              gap: 10px;
 
               .input-ordi {
                 display: flex;
                 align-items: center;
                 border-radius: 0 3px 3px 0px;
-                width: 145px;
+                width: 133px;
                 height: 20px;
                 background-color: aliceblue;
                 justify-content: space-between;
@@ -69,9 +69,9 @@
                   font-size: 7px;
                 }
                 button {
-                  width: 40px;
+                  width: 30px;
                   height: 16px;
-                  font-size: 9px;
+                  font-size: 7px;
                   border-radius: 0 3px 3px 0px;
                   background-color: $light-blue-color;
                   border: none;
@@ -80,6 +80,7 @@
               }
               span {
                 font-size: 14px;
+                text-align: center;
               }
             }
           }
@@ -103,20 +104,22 @@
         bottom: 212px;
         left: 53px;
         display: flex;
-        gap: 10px;
+        gap: 6px;
         flex-direction: column;
         align-items: center;
 
         .phone-title {
           display: flex;
-          justify-content: space-evenly;
-          padding-top: 3px;
+          padding: 3px;
           width: 100%;
+          gap: 5px;
+          align-items: center;
           img {
-            width: 30px;
+            width: 40px;
           }
           h4 {
             font-size: 10px;
+            text-align: center;
           }
         }
         .phone-img-campagne {
