@@ -1,10 +1,10 @@
-@import "../../../responsives.scss";
-@import "../../../variables.scss";
+@import "../../responsives.scss";
+@import "../../variables.scss";
 
 .page-preview {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 100px;
   background-color: #fff;
 
   .page-preview-avantage-container {

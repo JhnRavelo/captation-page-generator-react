@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Landing from "../pages/Landing/Landing";
 import EditProfile from "../pages/EditProfile/EditProfile";
-import PagePreview from "../pages/Landing/PagePreview/PagePreview";
+import PagePreview from "../pages/PagePreview/PagePreview";
 
 const AppRouter = () => {
   return (

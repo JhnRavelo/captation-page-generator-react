@@ -1,10 +1,10 @@
 import "./pagePreview.scss";
-import logoEuro from "../../../assets/png/Logo_aluhd.png";
-import imgCampagne from "../../../../public/img/paroi_pvb_blanc.jpg";
-import PagePreviewTitle from "../../../components/PageReview/PagePreviewTitle/PagePreviewTitle";
-import { agences, avantages } from "../../../assets/ts/page";
-import PagePreviewCard from "../../../components/PageReview/PagePreviewCard/PagePreviewCard";
-import PagePreviewFooter from "../../../components/PageReview/PagePreviewFooter/PagePreviewFooter";
+import logoEuro from "../../assets/png/Logo_aluhd.png";
+import imgCampagne from "../../../public/img/paroi_pvb_blanc.jpg";
+import PagePreviewTitle from "../../components/PageReview/PagePreviewTitle/PagePreviewTitle";
+import { agences, avantages } from "../../assets/ts/page";
+import PagePreviewCard from "../../components/PageReview/PagePreviewCard/PagePreviewCard";
+import PagePreviewFooter from "../../components/PageReview/PagePreviewFooter/PagePreviewFooter";
 
 const PagePreview = () => {
   return (
