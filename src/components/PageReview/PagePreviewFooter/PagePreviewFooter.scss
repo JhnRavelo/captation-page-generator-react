@@ -1,0 +1,18 @@
+.page-preview-footer-card {
+  padding: 20px;
+  border: 2px solid aliceblue;
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  span:first-child {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  span:last-child {
+    font-size: 18px;
+    font-weight: 800;
+  }
+}
