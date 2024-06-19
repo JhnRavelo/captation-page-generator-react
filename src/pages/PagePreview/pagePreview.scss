@@ -6,21 +6,31 @@
   flex-direction: column;
   gap: 100px;
   background-color: #fff;
+  @include sm {
+    overflow: hidden;
+    gap: 20px;
+  }
 
   .page-preview-avantage-container {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    
+    @include sm {
+      flex-direction: column;
+    }
   }
 
   .page-preview-footer {
-    background-color: #4B4B4B;
+    background-color: #4b4b4b;
     padding: 30px 50px;
     display: flex;
     flex-direction: column;
     gap: 40px;
     color: aliceblue;
+    @include sm {
+      gap: 20px;
+      padding: 20px 30px;
+    }
 
     h3 {
       font-size: 40px;

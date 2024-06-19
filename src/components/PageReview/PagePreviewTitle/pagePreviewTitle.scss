@@ -1,87 +1,134 @@
 @import "../../../variables.scss";
+@import "../../../responsives.scss";
 
 .page-preview-title-container {
-    padding: 20px 60px;
-    display: flex;
-    flex-direction: column;
+  padding: 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  @include sm {
     gap: 30px;
+    padding: 20px 10px;
+  }
 
-    .title-container {
-      display: flex;
+  .title-container {
+    display: flex;
+    align-items: center;
+    gap: 350px;
+    @include sm {
+      gap: 40px;
+    }
+    img {
+      @include sm {
+        width: 170px;
+      }
+      width: 250px;
+    }
+    h1 {
+      @include sm {
+        font-size: 30px;
+        text-align: center;
+      }
+      font-size: 50px;
+      font-weight: 900;
+    }
+  }
+
+  .slogan-image-container {
+    display: flex;
+    justify-content: space-between;
+    @include sm {
+      flex-direction: column-reverse;
       align-items: center;
-      gap: 350px;
-      img {
-        width: 250px;
-      }
-      h1 {
-        font-size: 50px;
-        font-weight: 900;
-      }
     }
 
-    .slogan-image-container {
-      display: flex;
-      justify-content: space-between;
-
-      img {
-        width: 600px;
+    img {
+      @include sm {
+        width: 100%;
       }
-      .slogan-container {
+      width: 600px;
+    }
+    .slogan-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 70px;
+      @include sm {
+        gap: 15px;
+      }
+
+      .slogan-content {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 70px;
-
-        .slogan-content {
-            display: flex;
-            span {
-                font-size: 56px;
-                font-weight: 800;
-                text-align: center;
-                color: aliceblue;
-            }
+        @include sm {
+          padding: 15px;
         }
-        .input-email {
-            width: 420px;
-            background-color: #fff;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            border-radius: 0 12px 12px 0px;
-            gap: 10px;
-            input {
-                padding-left: 10px;
-                width: 315px;
-                height: 40px;
-                font-size: 18px;
-                border: none;
-                display: block;
-                background-color: #fff;
-                outline: none;
-                color: $gris-color;
-            }
-            button {
-                color: #fff;
-                background: $light-blue-color;
-                border: none;
-                font-size: 18px;
-                padding: 10px;
-                border-radius: 0 10px 10px 0px;
-                cursor: pointer;
-                transition: 0.2s ease;
-                font-weight: 600;
+        span {
+          @include sm {
+            font-size: 24px;
+          }
+          font-size: 56px;
+          font-weight: 800;
+          text-align: center;
+          color: aliceblue;
+        }
+      }
+      .input-email {
+        width: 420px;
+        background-color: #fff;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        border-radius: 0 12px 12px 0px;
+        gap: 10px;
+        @include sm {
+          width: 100%;
+          flex-direction: column;
+          height: 90px;
+          gap: 0px;
+          border-radius: 0px 0px 10px 10px;
+        }
+        input {
+          padding-left: 10px;
+          width: 315px;
+          height: 40px;
+          font-size: 18px;
+          border: none;
+          display: block;
+          background-color: #fff;
+          outline: none;
+          color: $gris-color;
+          @include sm {
+            width: 100%;
+            font-size: 20px;
+          }
+        }
+        button {
+          color: #fff;
+          background: $light-blue-color;
+          border: none;
+          font-size: 18px;
+          padding: 10px;
+          border-radius: 0 10px 10px 0px;
+          cursor: pointer;
+          transition: 0.2s ease;
+          font-weight: 600;
+          @include sm {
+            font-size: 20px;
+            width: 95%;
+            border-radius: 0px 0px 9px 9px;
+          }
 
-                &:active {
-                    transform: scale(0.986);
-                }
-                &:hover {
-                    border: 1px solid $light-blue-color;
-                    background: #fff;
-                    color: $light-blue-color;
-                }
-            }
+          &:active {
+            transform: scale(0.986);
+          }
+          &:hover {
+            border: 1px solid $light-blue-color;
+            background: #fff;
+            color: $light-blue-color;
+          }
         }
       }
     }
   }
+}
