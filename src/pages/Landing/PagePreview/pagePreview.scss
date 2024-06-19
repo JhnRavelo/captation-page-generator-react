@@ -1,0 +1,38 @@
+@import "../../../responsives.scss";
+@import "../../../variables.scss";
+
+.page-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  background-color: #fff;
+
+  .page-preview-avantage-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+  }
+
+  .page-preview-footer {
+    background-color: #4B4B4B;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: aliceblue;
+
+    h3 {
+      font-size: 40px;
+      font-weight: 800;
+    }
+    .page-preview-footer-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      
+    }
+  }
+}
