@@ -28,7 +28,7 @@ export type TypeValidateForm = Yup.ObjectSchema<
     description: undefined;
   },
   ""
->;
+> | null;
 
 export const validateLogin = Yup.object({
   email: Yup.string()

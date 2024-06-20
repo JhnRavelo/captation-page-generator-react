@@ -2,6 +2,7 @@ import { TypeInitialValues } from "../../context/AddFormProvider";
 import useForm from "../../hooks/useForm";
 import { Field, Form, Formik } from "formik";
 import InputFile from "./InputFile/InputFile";
+import MailForm from "./MailForm/MailForm";
 
 export type TypeHandleSubmit = (value: TypeInitialValues) => void;
 
@@ -15,7 +16,7 @@ const FormFields = ({ handleSubmit, error }: FormFieldsPropsTypes) => {
   return (
     <Formik
       initialValues={
-        formContext?.initialValues ? formContext.initialValues : { name: "" }
+        formContext?.initialValues ? formContext.initialValues : {}
       }
       onSubmit={(value) => handleSubmit(value)}
       validationSchema={formContext?.validate}
@@ -31,6 +32,15 @@ const FormFields = ({ handleSubmit, error }: FormFieldsPropsTypes) => {
                     name={form.name}
                     setFieldValue={setFieldValue}
                     value={values[form.name]?.name}
+                    key={index}
+                  />
+                );
+              } else if (form.name == "mailText") {
+                return (
+                  <MailForm
+                    setFieldValue={setFieldValue}
+                    name={form.name}
+                    key={index}
                   />
                 );
               } else
@@ -52,7 +62,12 @@ const FormFields = ({ handleSubmit, error }: FormFieldsPropsTypes) => {
                 );
             })}
           <div className="button-container">
-            <button type="submit">Enregistrer</button>
+            <button
+              type="submit"
+              onClick={() => console.log("VALUES", values)}
+            >
+              Enregistrer
+            </button>
           </div>
         </Form>
       )}

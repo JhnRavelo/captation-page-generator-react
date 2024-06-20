@@ -17,7 +17,7 @@ const CampagneEdit = () => {
 
   useEffect(() => {
     formContext?.setFormFields(campagneFields);
-    formContext?.setValidate(validateCampagne)
+    formContext?.setValidate(validateCampagne);
   }, []);
 
   return (

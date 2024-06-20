@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
-import { TypeValidateForm, validateCampagne } from "../utils/validationSchema";
+import { TypeValidateForm } from "../utils/validationSchema";
 
 export type TypeSlug = "Campagne" | "Page" | "" | "QR-Code";
 
@@ -33,7 +33,9 @@ export type TypeAddFormFields = {
     | "titleColor"
     | "titleBackgroundColor"
     | "sloganCampagne"
-    | "imgCampagne";
+    | "imgCampagne"
+    | "object"
+    | "mailText";
   header: string;
   type: string;
   placeholder: string;
@@ -50,17 +52,17 @@ export type TypeInitialValues = {
   titleBackgroundColor?: string;
   sloganCampagne?: string;
   imgCampagne?: File | null;
-};
+  object?: string;
+  mailText?: string;
+} | null;
 
 const AddFormContext = createContext<TypeAddFormContext | null>(null);
 
 const AddFormProvider = ({ children }: ContextPropsType) => {
   const [slug, setSlug] = useState<TypeSlug>("");
   const [openForm, setOpenForm] = useState(false);
-  const [initialValues, setInitialValues] = useState<TypeInitialValues>({
-    name: "",
-  });
-  const [validate, setValidate] = useState<TypeValidateForm>(validateCampagne);
+  const [initialValues, setInitialValues] = useState<TypeInitialValues>(null);
+  const [validate, setValidate] = useState<TypeValidateForm>(null);
   const [formFields, setFormFields] = useState<TypeAddFormFields>([]);
   const [title, setTitle] = useState<TypeTitleModal>("add");
   const [idDelete, setIdDelete] = useState<string>("");

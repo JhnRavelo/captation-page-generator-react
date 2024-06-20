@@ -17,6 +17,10 @@ const SingleCampagne = () => {
       title: "Charte graphique",
       url: pathname.split("23")[0] + "23" + "/chart",
     },
+    {
+      title: "Mail",
+      url: pathname.split("23")[0] + "23" + "/mail",
+    },
   ];
 
   return (
