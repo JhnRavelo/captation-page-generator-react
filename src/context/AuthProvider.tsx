@@ -9,7 +9,7 @@ type TypeAuthUser = {
   name: string;
   email: string;
   accessToken: string;
-  role: string;
+  avatar: string;
 };
 
 type TypeAuthContextValue = {

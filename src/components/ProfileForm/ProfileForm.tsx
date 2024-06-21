@@ -35,15 +35,15 @@ const ProfileForm = ({
   const handleSubmit = async (values: TypeInitialProfile) => {
     const formData = new FormData();
     const valuesEntries = Object.entries(values);
-    valuesEntries.forEach(([value, key]) => {
+    valuesEntries.forEach(([key, value]) => {
       formData.append(`${key}`, value);
     });
     try {
       let res;
       if (title == "Connexion") {
-        res = await axiosDefault.post("/login", formData);
+        res = await axiosDefault.post("/auth/login", formData);
       } else {
-        res = await axiosPrivate.post("/edit", formData);
+        res = await axiosPrivate.post("/auth/edit", formData);
       }
       if (res.data.success) {
         authContext?.setAuth(res.data.user);
