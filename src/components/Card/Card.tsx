@@ -32,8 +32,8 @@ const Card = ({ card, slug, isClickable }: CampagnePropsType) => {
     const list = e.target;
     if (list instanceof Element && list.parentNode instanceof Element) {
       if (
-        list.parentNode.classList.contains("delete-icon") ||
-        list.classList.contains("delete-icon")
+        list.parentNode.classList.contains("delete") ||
+        list.classList.contains("delete")
       )
         return;
     }
