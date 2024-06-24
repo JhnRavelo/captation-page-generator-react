@@ -2,7 +2,12 @@ import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
 
 export type TypeCompany = "Europ'Alu" | "Smart" | "Vertec" | "Alu" | "";
-export type TypeMedia = "journaux" | "reseau" | "cinema" | "pancarte" | "";
+export type TypeMedia =
+  | "Journaux"
+  | "Sociaux Media"
+  | "Cinema"
+  | "Pancarte"
+  | "";
 
 type TypeMediaEntrepriseContextValue = {
   media: TypeMedia;

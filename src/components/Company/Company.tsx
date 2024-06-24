@@ -21,6 +21,7 @@ const Company = () => {
               active(e, listCompanyRef);
               companyContext?.setEntreprise(company.company);
             }}
+            key={index}
           >
             <img src={company.img} alt={"logo " + company.company} />
           </div>
