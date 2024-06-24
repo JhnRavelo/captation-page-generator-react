@@ -6,15 +6,17 @@ import QRcodeSVG from "../../assets/svg/QRcodeSVG";
 import BellSVG from "../../assets/svg/BellSVG";
 import PageSVG from "../../assets/svg/PageSVG";
 import InfoAccount from "../InfoAccount/InfoAccount";
-import imgAvatar from "../../../public/avatar/jeune-belle-femme-pull-chaud-rose-aspect-naturel-souriant-portrait-isole-cheveux-longs_285396-896.avif";
+import imgAvatar from "../../assets/png/reglages.png";
 import NoteBookSVG from "../../assets/svg/NoteBookSVG";
 import MarketingSVG from "../../assets/svg/MarketingSVG";
 import useActive from "../../hooks/useActive";
 import { useRef } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const Menu = () => {
   const active = useActive();
   const menuRef = useRef<HTMLDivElement>(null);
+  const authContext = useAuth();
 
   return (
     <menu className="menu-content content">
@@ -41,7 +43,7 @@ const Menu = () => {
             <PageSVG height="24" width="30" />
             <span>Page de captation</span>
           </Link>
-          <Link to="" onClick={(e) => active(e, menuRef)}>
+          <Link to="/" onClick={(e) => active(e, menuRef)}>
             <NoteBookSVG width="30" height="23" />
             <span>Journals des événements</span>
           </Link>
@@ -50,7 +52,10 @@ const Menu = () => {
             <span>Notifications</span>
           </Link>
         </div>
-        <InfoAccount img={imgAvatar} name="Cedric R." />
+        <InfoAccount
+          img={authContext?.auth?.avatar ? authContext.auth.avatar : imgAvatar}
+          name={authContext?.auth?.name ? authContext.auth.name : "Cedric R."}
+        />
       </div>
     </menu>
   );

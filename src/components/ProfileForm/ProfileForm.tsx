@@ -1,9 +1,5 @@
 import { Field, Form, Formik } from "formik";
 import { TypeValidateLogin } from "../../utils/validationSchema";
-import {
-  TypeInitialProfile,
-  TypeProfileFormFields,
-} from "../../pages/EditProfile/EditProfile";
 import "./profileForm.scss";
 import useAuth from "../../hooks/useAuth";
 import { axiosDefault } from "../../api/axios";
@@ -18,6 +14,20 @@ type ProfileFormPropsType = {
   title: "Connexion" | "Modifier Profile";
   btnTitle: "Se connecter" | "Envoyer";
   forms: TypeProfileFormFields;
+};
+
+export type TypeProfileFormFields = {
+  name: "email" | "password" | "confirmPassword" | "name";
+  header: string;
+  placeholder: string;
+  type: string;
+}[];
+
+export type TypeInitialProfile = {
+  email?: string;
+  password: string;
+  confirmPassword?: string;
+  name?: string;
 };
 
 const ProfileForm = ({

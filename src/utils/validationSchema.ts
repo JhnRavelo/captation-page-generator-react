@@ -61,8 +61,7 @@ export const validateLogin = Yup.object({
 
 export const validateProfile = Yup.object({
   name: Yup.string()
-    .required("Vous devez mettre votre nom")
-    .matches(/^[A-Za-z]+$/, "Votre nom doit seulement contenir des lettres"),
+    .required("Vous devez mettre votre nom"),
   password: Yup.string()
     .min(8, "Le mot de passe doit avoir au moins 8 caractères")
     .matches(
