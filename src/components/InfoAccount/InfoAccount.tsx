@@ -5,6 +5,9 @@ import ThreeDotSVG from "../../assets/svg/ThreeDotSVG";
 import "./infoAccount.scss";
 import { useNavigate } from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 type InfoAccountPropsType = {
   img: string;
@@ -15,6 +18,34 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
   const logout = useLogout();
   const optionsRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
+  const authContext = useAuth();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleChangePicture = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (e.target.files && e.target.files?.length > 0) {
+      const formData = new FormData();
+      formData.append("avatar", e.target.files[0]);
+      console.log("FILE", e.target.files[0]);
+      try {
+        const res = await axiosPrivate.put("auth/edit/avatar", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+
+        if (res.data.success) {
+          authContext?.setAuth(res.data.user);
+          toast.success("Image de Profile Modifier");
+        } else {
+          toast.error(res.data.message);
+        }
+      } catch (error) {
+        toast.error("Erreur serveur");
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <>
@@ -32,8 +63,22 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
         <div className="account-info-picture">
           <span>
             <img src={img} alt="Account" />
-            <input type="file" id="img-profile" style={{ display: "none" }} />
-            <label className="image-overlay" htmlFor="img-profile">
+            <input
+              type="file"
+              id="img-profile"
+              style={{ display: "none" }}
+              ref={inputRef}
+              onChange={(e) => handleChangePicture(e)}
+            />
+            <label
+              className="image-overlay"
+              htmlFor="img-profile"
+              onClick={() => {
+                if (inputRef.current) {
+                  inputRef.current.value = "";
+                }
+              }}
+            >
               <EditSVG width="23" height="23" />
             </label>
           </span>
