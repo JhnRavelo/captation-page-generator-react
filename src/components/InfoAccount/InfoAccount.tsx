@@ -4,6 +4,7 @@ import LogoutSVG from "../../assets/svg/LogoutSVG";
 import ThreeDotSVG from "../../assets/svg/ThreeDotSVG";
 import "./infoAccount.scss";
 import { useNavigate } from "react-router-dom";
+import useLogout from "../../hooks/useLogout";
 
 type InfoAccountPropsType = {
   img: string;
@@ -11,8 +12,10 @@ type InfoAccountPropsType = {
 };
 
 const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
+  const logout = useLogout();
   const optionsRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
   return (
     <>
       <div className="options" ref={optionsRef}>
@@ -20,7 +23,7 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
           <span>Modifier Profile</span>
           <EditSVG width="30" height="20" />
         </div>
-        <div className="option">
+        <div className="option" onClick={() => logout()}>
           <span>Déconnexion</span>
           <LogoutSVG width="30" height="20" />
         </div>
@@ -35,8 +38,17 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
             </label>
           </span>
         </div>
-        <span>{name}</span>
-        <span className="more-options" onClick={() => optionsRef.current?.classList.toggle("visible")}>
+        <span>
+          {name.split(" ")[0][0].toUpperCase() +
+            "." +
+            " " +
+            name.split(" ")[1][0].toUpperCase() +
+            name.split(" ")[1].slice(1).toLowerCase()}
+        </span>
+        <span
+          className="more-options"
+          onClick={() => optionsRef.current?.classList.toggle("visible")}
+        >
           <ThreeDotSVG width="35" height="35" />
         </span>
       </div>

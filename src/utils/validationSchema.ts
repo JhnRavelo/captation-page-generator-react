@@ -16,8 +16,8 @@ export type TypeValidateLogin =
   | Yup.ObjectSchema<
       {
         name: string;
-        password: string;
-        confirmPassword: string;
+        password: string | undefined;
+        confirmPassword: string | undefined;
       },
       Yup.AnyObject,
       {
@@ -60,19 +60,18 @@ export const validateLogin = Yup.object({
 });
 
 export const validateProfile = Yup.object({
-  name: Yup.string()
-    .required("Vous devez mettre votre nom"),
+  name: Yup.string().required("Vous devez mettre votre nom"),
   password: Yup.string()
     .min(8, "Le mot de passe doit avoir au moins 8 caractères")
     .matches(
       /[A-Z]/,
       "Le mot de passe doit contenir au moins une lettre majuscule"
     )
-    .matches(/[0-9]/, "Le mot de passe doit contenir au moins un chiffre")
-    .required("Le mot de passe est requis"),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), ""], "Le mot de passe doit être le même")
-    .required("Le mot de passe doit être confirmer"),
+    .matches(/[0-9]/, "Le mot de passe doit contenir au moins un chiffre"),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("password"), ""],
+    "Le mot de passe doit être le même"
+  ),
 });
 
 export const validateCampagne = Yup.object({
