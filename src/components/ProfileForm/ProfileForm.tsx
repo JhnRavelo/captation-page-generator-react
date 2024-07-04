@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import LeftArrow from "../../assets/svg/LeftArrow";
+import { toast } from "react-toastify";
 
 type ProfileFormPropsType = {
   initialValues: TypeInitialProfile;
@@ -56,12 +57,15 @@ const ProfileForm = ({
         res = await axiosPrivate.post("/auth/edit", formData);
       }
       if (res.data.success) {
+        toast.success(res.data.message);
         authContext?.setAuth(res.data.user);
         navigate("/marketing");
       } else {
+        toast.error(res.data.message);
         setError(res.data.message);
       }
     } catch (error) {
+      toast.error("Erreur du serveur");
       setError("Erreur du serveur");
       console.log(error);
     }

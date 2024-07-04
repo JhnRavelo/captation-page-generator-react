@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import useAuth from "./useAuth";
 import useAxiosPrivate from "./useAxiosPrivate";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +15,7 @@ const useLogout = () => {
       console.log(error);
     }
     document.cookie = `link_generator_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    toast.info("Déconnexion");
     authContext?.setAuth(null);
     navigate("/");
   };

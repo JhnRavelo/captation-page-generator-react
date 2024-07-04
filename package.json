@@ -19,6 +19,7 @@
     "react-froala-wysiwyg": "^4.2.1",
     "react-qrcode-logo": "^3.0.0",
     "react-router-dom": "^6.23.0",
+    "react-toastify": "^10.0.5",
     "recharts": "^2.12.7",
     "sass": "^1.77.0",
     "scss": "^0.2.4",
