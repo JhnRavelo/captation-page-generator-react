@@ -1,17 +1,12 @@
 import { QRCode } from "react-qrcode-logo";
 import EntrepriseSVG from "../../../assets/svg/EntrepriseSVG";
 import WebSVG from "../../../assets/svg/WebSVG";
-import FormFields, { TypeHandleSubmit } from "../../Form/Form";
+import FormFields from "../../Form/Form";
 import logoEuro from "../../../assets/png/Logo_Euro.png";
 import "./modalQRCode.scss";
 import ApercuSVG from "../../../assets/svg/ApercuSVG";
 
-type ModalQRCodePropsTypes = {
-  error: string;
-  handleSubmit: TypeHandleSubmit;
-};
-
-const ModalQRCode = ({ error, handleSubmit }: ModalQRCodePropsTypes) => {
+const ModalQRCode = () => {
   return (
     <div className="modal-qr-container">
       <div className="modal-qr-content left">
@@ -27,7 +22,7 @@ const ModalQRCode = ({ error, handleSubmit }: ModalQRCodePropsTypes) => {
           <WebSVG height="22" width="25" />
           <span className="modal-qr-content-value">URL campagne</span>
         </span>
-        <FormFields error={error} handleSubmit={handleSubmit} />
+        <FormFields />
       </div>
       <div className="modal-qr-content right">
         <div className="labelInput apercu">

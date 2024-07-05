@@ -90,6 +90,7 @@ const Campagne = () => {
     formContext?.setInitialValues(initialValues);
     formContext?.setFormFields(campagneFields);
     formContext?.setTitle("add");
+    formContext?.setUrl("/campagne");
   };
 
   return (

@@ -3,16 +3,61 @@ import useForm from "../../hooks/useForm";
 import { Field, Form, Formik } from "formik";
 import InputFile from "./InputFile/InputFile";
 import MailForm from "./MailForm/MailForm";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import useMediaEntreprise from "../../hooks/useMediaEntreprise";
+import { TypeSetState } from "../../context/CampagneProvider";
 
-export type TypeHandleSubmit = (value: TypeInitialValues) => void;
-
-type FormFieldsPropsTypes = {
-  handleSubmit: TypeHandleSubmit;
-  error: string;
+type FormFieldsPropsType = {
+  setState: TypeSetState | undefined;
 };
 
-const FormFields = ({ handleSubmit, error }: FormFieldsPropsTypes) => {
+const FormFields = ({ setState }: FormFieldsPropsType) => {
   const formContext = useForm();
+  const axiosPrivate = useAxiosPrivate();
+  const [error, setError] = useState("");
+  const entrepriseContext = useMediaEntreprise();
+
+  const handleSubmit = async (values: TypeInitialValues) => {
+    
+    if (!values || !entrepriseContext?.entreprise) {
+      toast.error("Erreur valeur nulle ou entreprise nulle");
+      return;
+    }
+    const formData = new FormData();
+    const valuesEntries = Object.entries(values);
+    formData.append("entreprise", entrepriseContext?.entreprise);
+    valuesEntries.forEach(([key, value]) => {
+
+      if (value instanceof File) {
+        formData.append(`${key}`, value);
+      } else if (value) formData.append(`${key}`, value.toString());
+    });
+    try {
+      let res;
+
+      if (formContext?.title == "add") {
+        res = await axiosPrivate.post(formContext.url, formData);
+      } else if (formContext?.title == "update") {
+        res = await axiosPrivate.put(formContext.url, formData);
+      }
+
+      if (res?.data.success && formContext?.setOpenForm && setState) {
+        setState(res.data.datas);
+        toast.success(res.data.message);
+        formContext.setOpenForm(false);
+      } else {
+        toast.error(res?.data.message);
+        setError(res?.data.message);
+      }
+    } catch (error) {
+      toast.error("Erreur serveur");
+      setError("Erreur serveur");
+      console.log(error);
+    }
+  };
+
   return (
     <Formik
       initialValues={
@@ -62,12 +107,7 @@ const FormFields = ({ handleSubmit, error }: FormFieldsPropsTypes) => {
                 );
             })}
           <div className="button-container">
-            <button
-              type="submit"
-              onClick={() => console.log("VALUES", values)}
-            >
-              Enregistrer
-            </button>
+            <button type="submit">Enregistrer</button>
           </div>
         </Form>
       )}

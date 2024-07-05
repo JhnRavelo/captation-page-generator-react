@@ -20,7 +20,7 @@ export type Card = {
   dateDebut?: string;
   dateFin?: string;
   url?: string;
-  img?: string;
+  img?: string | File;
   scanNbr?: number;
 };
 

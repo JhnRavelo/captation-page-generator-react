@@ -15,14 +15,14 @@ const MediaCompanyContainer = ({
   const { pathname } = useLocation();
   return (
     <div className="main-stat">
-      {pathname == "/campagne" ? null : <MediaOptions />}
+      {pathname == "/marketing/campagne" ? null : <MediaOptions />}
       <div className="year-container">
         <InputYear />
       </div>
       <div
         className="infos-container"
         style={
-          pathname == "/campagne" ? { height: "458px" } : { height: "410px" }
+          pathname == "/marketing/campagne" ? { height: "458px" } : { height: "410px" }
         }
       >
         {children}

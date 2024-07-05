@@ -2,7 +2,7 @@ import { TypeAddFormFields } from "../../context/AddFormProvider";
 
 export const campagneFields: TypeAddFormFields = [
   {
-    name: "name",
+    name: "title",
     type: "text",
     header: "Titre de la campagne",
     placeholder: "Titre de la campagne",

@@ -1,19 +1,14 @@
-import { TypeInitialValues } from "../../context/AddFormProvider";
 import useForm from "../../hooks/useForm";
 import "./modal.scss";
-import { useState } from "react";
 import FormFields from "../Form/Form";
 import Delete from "./Delete/Delete";
 import ModalQRCode from "./ModalQRCode/ModalQRCode";
 import ModalPage from "./ModalPage/ModalPage";
+import useCampagne from "../../hooks/useCampagne";
 
 const Modal = () => {
   const formContext = useForm();
-  const [error, setError] = useState("");
-
-  const handleSubmit = (value: TypeInitialValues) => {
-    console.log(value);
-  };
+  const campagneContext = useCampagne();
 
   return (
     <div className="add">
@@ -32,11 +27,11 @@ const Modal = () => {
           <>
             <h3>Ajouter un nouveau {formContext && formContext?.slug}</h3>
             {formContext?.title == "qr-code" ? (
-              <ModalQRCode handleSubmit={handleSubmit} error={error} />
+              <ModalQRCode />
             ) : formContext?.title == "page" ? (
-              <ModalPage handleClick={handleSubmit} error={error} />
+              <ModalPage />
             ) : (
-              <FormFields handleSubmit={handleSubmit} error={error} />
+              <FormFields setState={campagneContext?.setCampagnes} />
             )}
           </>
         ) : (

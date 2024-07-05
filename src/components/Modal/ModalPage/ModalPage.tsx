@@ -1,19 +1,14 @@
 import WebSVG from "../../../assets/svg/WebSVG";
-import FormFields, { TypeHandleSubmit } from "../../Form/Form";
+import FormFields from "../../Form/Form";
 
-type ModalPagePropsType = {
-  handleClick: TypeHandleSubmit;
-  error: string;
-};
-
-const ModalPage = ({ handleClick, error }: ModalPagePropsType) => {
+const ModalPage = () => {
   return (
     <>
       <div className="modal-qr-url">
         <WebSVG width="22" height="25" />
         <span>URL Campagne</span>
       </div>
-      <FormFields handleSubmit={handleClick} error={error} />
+      <FormFields />
     </>
   );
 };

@@ -1,13 +1,8 @@
 import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
 
-export type TypeCompany = "Europ'Alu" | "Smart" | "Vertec" | "Alu" | "";
-export type TypeMedia =
-  | "Journaux"
-  | "Sociaux Media"
-  | "Cinema"
-  | "Pancarte"
-  | "";
+export type TypeCompany = "Europ'Alu" | "Smart" | "Vertec" | "Alu";
+export type TypeMedia = "Journaux" | "Sociaux Media" | "Cinema" | "Pancarte";
 
 type TypeMediaEntrepriseContextValue = {
   media: TypeMedia;
@@ -20,8 +15,8 @@ const MediaEntrepriseContext =
   createContext<TypeMediaEntrepriseContextValue | null>(null);
 
 const MediaEntrepriseProvider = ({ children }: ContextPropsType) => {
-  const [media, setMedia] = useState<TypeMedia>("");
-  const [entreprise, setEntreprise] = useState<TypeCompany>("");
+  const [media, setMedia] = useState<TypeMedia>("Journaux");
+  const [entreprise, setEntreprise] = useState<TypeCompany>("Europ'Alu");
 
   return (
     <MediaEntrepriseContext.Provider
