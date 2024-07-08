@@ -1,11 +1,32 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import AddForm from "../../components/Modal/Modal";
 import Menu from "../../components/Menu/Menu";
 import useForm from "../../hooks/useForm";
 import AdminRouter from "../../routers/AdminRouter";
 import "./landing.scss";
+import { useEffect } from "react";
+import useCampagne from "../../hooks/useCampagne";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const Landing = () => {
   const formContext = useForm();
+  const campagneContext = useCampagne();
+  const axiosPrivate = useAxiosPrivate();
+
+useEffect(() => {
+  (async () => {
+    try {
+      const res = await axiosPrivate.get("/campagne");
+      
+      if(res.data.success) {
+        campagneContext?.setCampagnes(res.data.datas);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  })()
+}, [])
+
   return (
     <div
       className="main"

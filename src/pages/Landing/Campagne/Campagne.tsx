@@ -1,77 +1,14 @@
 import { Fragment } from "react/jsx-runtime";
 import AddButton from "../../../components/AddButton/AddButton";
-import CampagneCard from "../../../components/Card/Card";
+import CampagneCard, { Card } from "../../../components/Card/Card";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
 import { TypeInitialValues } from "../../../context/AddFormProvider";
 import useForm from "../../../hooks/useForm";
 import "./campagne.scss";
 import { campagneFields } from "../../../assets/ts/campagne";
-
-const campagnes = [
-  {
-    id: "ID Campagne",
-    title: "Title Campagne",
-    user: "Name Owner",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi ver dolorum voluptatibus amet. Recusandae perferendis repellat sed.Ducimus alias ullam consequatur eveniet ratione at nemo explicabonatus asperiores dicta",
-    dateDebut: "12-05-2024",
-    dateFin: "17-05-2024",
-  },
-  {
-    id: "ID Campagne",
-    title: "Title Campagne",
-    user: "Name Owner",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi ver dolorum voluptatibus amet. Recusandae perferendis repellat sed.Ducimus alias ullam consequatur eveniet ratione at nemo explicabonatus asperiores dicta",
-    dateDebut: "12-05-2024",
-    dateFin: "17-05-2024",
-  },
-  {
-    id: "ID Campagne",
-    title: "Title Campagne",
-    user: "Name Owner",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi ver dolorum voluptatibus amet. Recusandae perferendis repellat sed.Ducimus alias ullam consequatur eveniet ratione at nemo explicabonatus asperiores dicta",
-    dateDebut: "12-05-2024",
-    dateFin: "17-05-2024",
-  },
-  {
-    id: "ID Campagne",
-    title: "Title Campagne",
-    user: "Name Owner",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi ver dolorum voluptatibus amet. Recusandae perferendis repellat sed.Ducimus alias ullam consequatur eveniet ratione at nemo explicabonatus asperiores dicta",
-    dateDebut: "12-05-2024",
-    dateFin: "17-05-2024",
-  },
-  {
-    id: "ID Campagne",
-    title: "Title Campagne",
-    user: "Name Owner",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi ver dolorum voluptatibus amet. Recusandae perferendis repellat sed.Ducimus alias ullam consequatur eveniet ratione at nemo explicabonatus asperiores dicta",
-    dateDebut: "12-05-2024",
-    dateFin: "17-05-2024",
-  },
-  {
-    id: "ID Campagne",
-    title: "Title Campagne",
-    user: "Name Owner",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi ver dolorum voluptatibus amet. Recusandae perferendis repellat sed.Ducimus alias ullam consequatur eveniet ratione at nemo explicabonatus asperiores dicta",
-    dateDebut: "12-05-2024",
-    dateFin: "17-05-2024",
-  },
-  {
-    id: "ID Campagne",
-    title: "Title Campagne",
-    user: "Name Owner",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi ver dolorum voluptatibus amet. Recusandae perferendis repellat sed.Ducimus alias ullam consequatur eveniet ratione at nemo explicabonatus asperiores dicta",
-    dateDebut: "12-05-2024",
-    dateFin: "17-05-2024",
-  },
-];
+import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
+import { useEffect, useState } from "react";
+import useCampagne from "../../../hooks/useCampagne";
 
 const initialValues: TypeInitialValues = {
   name: "",
@@ -83,6 +20,18 @@ const initialValues: TypeInitialValues = {
 
 const Campagne = () => {
   const formContext = useForm();
+  const entrepriseContext = useMediaEntreprise();
+  const campagneContext = useCampagne();
+  const [campagnes, setCampagnes] = useState<Card[]>([]);
+
+  useEffect(() => {
+    const filterCampagnes = campagneContext?.campagnes.filter(
+      (campagne) => campagne.entreprise == entrepriseContext?.entreprise
+    );
+    if (filterCampagnes) {
+      setCampagnes(filterCampagnes);
+    }
+  }, [entrepriseContext?.entreprise, campagneContext?.campagnes]);
 
   const handleClick = () => {
     formContext?.setOpenForm(true);
