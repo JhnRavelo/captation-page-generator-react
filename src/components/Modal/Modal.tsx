@@ -5,6 +5,7 @@ import Delete from "./Delete/Delete";
 import ModalQRCode from "./ModalQRCode/ModalQRCode";
 import ModalPage from "./ModalPage/ModalPage";
 import useCampagne from "../../hooks/useCampagne";
+import { campagneInitialValues } from "../../assets/ts/campagne";
 
 const Modal = () => {
   const formContext = useForm();
@@ -31,7 +32,10 @@ const Modal = () => {
             ) : formContext?.title == "page" ? (
               <ModalPage />
             ) : (
-              <FormFields setState={campagneContext?.setCampagnes} />
+              <FormFields
+                setState={campagneContext?.setCampagnes}
+                initialValues={campagneInitialValues}
+              />
             )}
           </>
         ) : (

@@ -13,8 +13,6 @@ type TypeAddFormContext = {
   setSlug: React.Dispatch<React.SetStateAction<TypeSlug>>;
   openForm: boolean;
   setOpenForm: React.Dispatch<React.SetStateAction<boolean>>;
-  initialValues: TypeInitialValues;
-  setInitialValues: React.Dispatch<React.SetStateAction<TypeInitialValues>>;
   validate: TypeValidateForm;
   setValidate: React.Dispatch<React.SetStateAction<TypeValidateForm>>;
   formFields: TypeAddFormFields;
@@ -67,7 +65,6 @@ const AddFormContext = createContext<TypeAddFormContext | null>(null);
 const AddFormProvider = ({ children }: ContextPropsType) => {
   const [slug, setSlug] = useState<TypeSlug>("");
   const [openForm, setOpenForm] = useState(false);
-  const [initialValues, setInitialValues] = useState<TypeInitialValues>(null);
   const [validate, setValidate] = useState<TypeValidateForm>(null);
   const [formFields, setFormFields] = useState<TypeAddFormFields>([]);
   const [title, setTitle] = useState<TypeTitleModal>("add");
@@ -81,8 +78,6 @@ const AddFormProvider = ({ children }: ContextPropsType) => {
         setSlug,
         openForm,
         setOpenForm,
-        initialValues,
-        setInitialValues,
         validate,
         setValidate,
         formFields,

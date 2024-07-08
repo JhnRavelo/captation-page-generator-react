@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./company.scss";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import useActive from "../../hooks/useActive";
 import { companies } from "../../assets/ts/company";
 import useMediaEntreprise from "../../hooks/useMediaEntreprise";
@@ -8,6 +9,10 @@ const Company = () => {
   const listCompanyRef = useRef<HTMLDivElement>(null);
   const active = useActive();
   const companyContext = useMediaEntreprise();
+
+  useEffect(() => {
+    companyContext?.setEntreprise("Europ'Alu");
+  }, [])
 
   return (
     <div className="company-container">

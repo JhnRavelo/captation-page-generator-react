@@ -14,7 +14,7 @@ type CampagnePropsType = {
 
 export type Card = {
   id: string;
-  title: string;
+  title?: string;
   user?: string;
   description?: string;
   dateDebut?: string;
@@ -38,7 +38,7 @@ const Card = ({ card, slug, isClickable }: CampagnePropsType) => {
       )
         return;
     }
-    navigate("/marketing/campagne/23/edit");
+    navigate("/marketing/campagne/" + card.id + "/edit");
   };
 
   return (

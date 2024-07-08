@@ -1,22 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Fragment } from "react/jsx-runtime";
 import AddButton from "../../../components/AddButton/AddButton";
 import CampagneCard, { Card } from "../../../components/Card/Card";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
-import { TypeInitialValues } from "../../../context/AddFormProvider";
 import useForm from "../../../hooks/useForm";
 import "./campagne.scss";
 import { campagneFields } from "../../../assets/ts/campagne";
 import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
 import { useEffect, useState } from "react";
 import useCampagne from "../../../hooks/useCampagne";
-
-const initialValues: TypeInitialValues = {
-  name: "",
-  dateDebut: "",
-  dateFin: "",
-  description: "",
-  user: "",
-};
 
 const Campagne = () => {
   const formContext = useForm();
@@ -36,7 +28,6 @@ const Campagne = () => {
   const handleClick = () => {
     formContext?.setOpenForm(true);
     formContext?.setSlug("Campagne");
-    formContext?.setInitialValues(initialValues);
     formContext?.setFormFields(campagneFields);
     formContext?.setTitle("add");
     formContext?.setUrl("/campagne");

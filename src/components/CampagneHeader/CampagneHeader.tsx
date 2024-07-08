@@ -7,9 +7,10 @@ import "./campagneHeader.scss";
 type CampagneHeaderPropsTypes = {
   scanNbr: number;
   mailNbr: number;
+  idCampagne: string;
 };
 
-const CampagneHeader = ({ scanNbr, mailNbr }: CampagneHeaderPropsTypes) => {
+const CampagneHeader = ({ scanNbr, mailNbr, idCampagne }: CampagneHeaderPropsTypes) => {
   const scanRef = useRef<HTMLSpanElement>(null);
   const mailRef = useRef<HTMLSpanElement>(null);
 
@@ -19,7 +20,7 @@ const CampagneHeader = ({ scanNbr, mailNbr }: CampagneHeaderPropsTypes) => {
     <div className="id-single-campagne-container">
       <div className="id-single-campagne">
         <div className="circle-green circle"></div>
-        <span>ID Campagne</span>
+        <span>{idCampagne}</span>
       </div>
       <div className="icon-campagne-container">
         <div className="icon-campagne">

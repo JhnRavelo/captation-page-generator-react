@@ -30,14 +30,14 @@ export type TypeValidateLogin =
 
 export type TypeValidateForm = Yup.ObjectSchema<
   {
-    name: string;
+    title: string;
     dateDebut: Date;
     dateFin: Date;
     description: string;
   },
   Yup.AnyObject,
   {
-    name: undefined;
+    title: undefined;
     dateDebut: undefined;
     dateFin: undefined;
     description: undefined;
@@ -75,7 +75,7 @@ export const validateProfile = Yup.object({
 });
 
 export const validateCampagne = Yup.object({
-  name: Yup.string().required("Vous devez mettre le titre du campagne"),
+  title: Yup.string().required("Vous devez mettre le titre du campagne"),
   dateDebut: Yup.date().required("Vous devez mettre le debut de la campagne"),
   dateFin: Yup.date().required("Vous devez mettre la fin de la campagne"),
   description: Yup.string().required("Vous devez mettre un description"),

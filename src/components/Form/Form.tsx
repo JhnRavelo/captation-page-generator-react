@@ -11,9 +11,10 @@ import { TypeSetState } from "../../context/CampagneProvider";
 
 type FormFieldsPropsType = {
   setState: TypeSetState | undefined;
+  initialValues: TypeInitialValues;
 };
 
-const FormFields = ({ setState }: FormFieldsPropsType) => {
+const FormFields = ({ setState, initialValues }: FormFieldsPropsType) => {
   const formContext = useForm();
   const axiosPrivate = useAxiosPrivate();
   const [error, setError] = useState("");
@@ -29,7 +30,6 @@ const FormFields = ({ setState }: FormFieldsPropsType) => {
     const valuesEntries = Object.entries(values);
     formData.append("entreprise", entrepriseContext?.entreprise);
     valuesEntries.forEach(([key, value]) => {
-
       if (value instanceof File) {
         formData.append(`${key}`, value);
       } else if (value) formData.append(`${key}`, value.toString());
@@ -60,9 +60,7 @@ const FormFields = ({ setState }: FormFieldsPropsType) => {
 
   return (
     <Formik
-      initialValues={
-        formContext?.initialValues ? formContext.initialValues : {}
-      }
+      initialValues={initialValues ? initialValues : {}}
       onSubmit={(value) => handleSubmit(value)}
       validationSchema={formContext?.validate}
     >

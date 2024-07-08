@@ -1,4 +1,7 @@
-import { TypeAddFormFields } from "../../context/AddFormProvider";
+import {
+  TypeAddFormFields,
+  TypeInitialValues,
+} from "../../context/AddFormProvider";
 
 export const campagneFields: TypeAddFormFields = [
   {
@@ -41,3 +44,10 @@ export const campagneMail: TypeAddFormFields = [
     placeholder: "Contenu de l'email",
   },
 ];
+
+export const campagneInitialValues: TypeInitialValues = {
+  title: "",
+  dateDebut: "",
+  dateFin: "",
+  description: "",
+};
