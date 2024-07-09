@@ -1,29 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Fragment } from "react/jsx-runtime";
 import AddButton from "../../../components/AddButton/AddButton";
-import CampagneCard, { Card } from "../../../components/Card/Card";
+import CampagneCard from "../../../components/Card/Card";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
 import useForm from "../../../hooks/useForm";
 import "./campagne.scss";
 import { campagneFields } from "../../../assets/ts/campagne";
-import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
-import { useEffect, useState } from "react";
 import useCampagne from "../../../hooks/useCampagne";
+import useFilterDatas from "../../../hooks/useFilterDatas";
 
 const Campagne = () => {
   const formContext = useForm();
-  const entrepriseContext = useMediaEntreprise();
   const campagneContext = useCampagne();
-  const [campagnes, setCampagnes] = useState<Card[]>([]);
-
-  useEffect(() => {
-    const filterCampagnes = campagneContext?.campagnes.filter(
-      (campagne) => campagne.entreprise == entrepriseContext?.entreprise
-    );
-    if (filterCampagnes) {
-      setCampagnes(filterCampagnes);
-    }
-  }, [entrepriseContext?.entreprise, campagneContext?.campagnes]);
+  const campagnes = useFilterDatas(campagneContext?.campagnes);
 
   const handleClick = () => {
     formContext?.setOpenForm(true);

@@ -7,25 +7,30 @@ import "./landing.scss";
 import { useEffect } from "react";
 import useCampagne from "../../hooks/useCampagne";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { toast } from "react-toastify";
 
 const Landing = () => {
   const formContext = useForm();
   const campagneContext = useCampagne();
   const axiosPrivate = useAxiosPrivate();
 
-useEffect(() => {
-  (async () => {
-    try {
-      const res = await axiosPrivate.get("/campagne");
-      
-      if(res.data.success) {
-        campagneContext?.setCampagnes(res.data.datas);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axiosPrivate.get("/campagne");
+
+        if (res.data.success) {
+          campagneContext?.setCampagnes(res.data.datas);
+          formContext?.setYears(res.data.years);
+        } else {
+          toast.error(res.data.message);
+        }
+      } catch (error) {
+        toast.error("Erreur serveur");
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error)
-    }
-  })()
-}, [])
+    })();
+  }, []);
 
   return (
     <div

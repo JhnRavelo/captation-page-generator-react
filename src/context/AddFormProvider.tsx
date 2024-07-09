@@ -6,7 +6,16 @@ export type TypeSlug = "Campagne" | "Page" | "" | "QR-Code";
 
 export type TypeTitleModal = "add" | "delete" | "update";
 
-export type TypeUrl = "/campagne" | "/qr-code" | "/page" | "" | "/campagne/mail";
+export type TypeUrl =
+  | "/campagne"
+  | "/qr-code"
+  | "/page"
+  | ""
+  | "/campagne/mail";
+
+export type StrNb = number | string;
+
+export type StrNbs = StrNb[];
 
 type TypeAddFormContext = {
   slug: TypeSlug;
@@ -25,6 +34,10 @@ type TypeAddFormContext = {
   setUrl: React.Dispatch<React.SetStateAction<TypeUrl>>;
   idUpdate: string;
   setIdUpdate: React.Dispatch<React.SetStateAction<string>>;
+  years: StrNbs;
+  setYears: React.Dispatch<React.SetStateAction<StrNbs>>;
+  year: StrNb;
+  setYear: React.Dispatch<React.SetStateAction<StrNb>>;
 };
 
 export type TypeAddFormFields = {
@@ -74,6 +87,11 @@ const AddFormProvider = ({ children }: ContextPropsType) => {
   const [idDelete, setIdDelete] = useState("");
   const [idUpdate, setIdUpdate] = useState("");
   const [url, setUrl] = useState<TypeUrl>("");
+  const [years, setYears] = useState<StrNbs>([]);
+  const [year, setYear] = useState<StrNb>(() => {
+    const date = new Date();
+    return date.getFullYear();
+  });
 
   return (
     <AddFormContext.Provider
@@ -94,6 +112,10 @@ const AddFormProvider = ({ children }: ContextPropsType) => {
         setUrl,
         idUpdate,
         setIdUpdate,
+        years,
+        setYears,
+        year,
+        setYear,
       }}
     >
       {children}
