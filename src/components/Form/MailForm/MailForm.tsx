@@ -20,11 +20,12 @@ type MailFromPropsTypes = {
     shouldValidate?: boolean
   ) => Promise<void | FormikErrors<TypeInitialValues>>;
   name: "mailText";
+  mail: string | null;
 };
 
-const MailForm = ({ setFieldValue, name }: MailFromPropsTypes) => {
+const MailForm = ({ setFieldValue, name, mail }: MailFromPropsTypes) => {
   const [model, setModel] = useState(() => {
-    return localStorage.getItem("savedText") || "";
+    return mail ? mail : localStorage.getItem("savedText") || "";
   });
 
   return (

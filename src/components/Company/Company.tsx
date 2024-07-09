@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./company.scss";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import useActive from "../../hooks/useActive";
 import { companies } from "../../assets/ts/company";
 import useMediaEntreprise from "../../hooks/useMediaEntreprise";
@@ -10,17 +10,13 @@ const Company = () => {
   const active = useActive();
   const companyContext = useMediaEntreprise();
 
-  useEffect(() => {
-    companyContext?.setEntreprise("Europ'Alu");
-  }, [])
-
   return (
     <div className="company-container">
       <div className="company-list" ref={listCompanyRef}>
         {companies.map((company, index) => (
           <div
             className={
-              index == 0 ? "company-content active" : "company-content"
+              companyContext?.entreprise == company.company ? "company-content active" : "company-content"
             }
             onClick={(e) => {
               active(e, listCompanyRef);

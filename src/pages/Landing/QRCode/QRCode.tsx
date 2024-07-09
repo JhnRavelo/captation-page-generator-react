@@ -48,8 +48,7 @@ const QRCode = () => {
   const handleClick = () => {
     formContext?.setOpenForm(true);
     formContext?.setFormFields(qrcodeFields);
-    formContext?.setInitialValues(initialValues);
-    formContext?.setTitle("qr-code");
+    formContext?.setTitle("add");
     formContext?.setSlug("QR-Code");
   };
 

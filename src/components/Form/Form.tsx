@@ -4,10 +4,12 @@ import { Field, Form, Formik } from "formik";
 import InputFile from "./InputFile/InputFile";
 import MailForm from "./MailForm/MailForm";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { toast } from "react-toastify";
 import useMediaEntreprise from "../../hooks/useMediaEntreprise";
 import { TypeSetState } from "../../context/CampagneProvider";
+import "./form.scss";
+import ErrorForm from "./ErrorForm/ErrorForm";
 
 type FormFieldsPropsType = {
   setState: TypeSetState | undefined;
@@ -21,7 +23,6 @@ const FormFields = ({ setState, initialValues }: FormFieldsPropsType) => {
   const entrepriseContext = useMediaEntreprise();
 
   const handleSubmit = async (values: TypeInitialValues) => {
-    
     if (!values || !entrepriseContext?.entreprise) {
       toast.error("Erreur valeur nulle ou entreprise nulle");
       return;
@@ -29,6 +30,7 @@ const FormFields = ({ setState, initialValues }: FormFieldsPropsType) => {
     const formData = new FormData();
     const valuesEntries = Object.entries(values);
     formData.append("entreprise", entrepriseContext?.entreprise);
+    formData.append("id", `${formContext?.idUpdate}`);
     valuesEntries.forEach(([key, value]) => {
       if (value instanceof File) {
         formData.append(`${key}`, value);
@@ -47,6 +49,7 @@ const FormFields = ({ setState, initialValues }: FormFieldsPropsType) => {
         setState(res.data.datas);
         toast.success(res.data.message);
         formContext.setOpenForm(false);
+        setError("");
       } else {
         toast.error(res?.data.message);
         setError(res?.data.message);
@@ -59,57 +62,70 @@ const FormFields = ({ setState, initialValues }: FormFieldsPropsType) => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues ? initialValues : {}}
-      onSubmit={(value) => handleSubmit(value)}
-      validationSchema={formContext?.validate}
-    >
-      {({ errors, setFieldValue, values }) => (
-        <Form>
-          {formContext?.formFields &&
-            formContext?.formFields.length > 0 &&
-            formContext?.formFields.map((form, index) => {
-              if (form.name == "logo" || form.name == "imgCampagne") {
-                return (
-                  <InputFile
-                    name={form.name}
-                    setFieldValue={setFieldValue}
-                    value={values[form.name]?.name}
-                    key={index}
-                  />
-                );
-              } else if (form.name == "mailText") {
-                return (
-                  <MailForm
-                    setFieldValue={setFieldValue}
-                    name={form.name}
-                    key={index}
-                  />
-                );
-              } else
-                return (
-                  <div className="input-container" key={index}>
-                    <label htmlFor={form.name}>{form.header}</label>
-                    <Field
-                      type={form.type}
-                      placeholder={form.placeholder}
-                      name={form.name}
-                      id={form.name}
-                    />
-                    {error ? (
-                      <p className="error">{error}</p>
-                    ) : errors[form.name] ? (
-                      <p className="error">{errors[form.name]}</p>
-                    ) : null}
-                  </div>
-                );
-            })}
-          <div className="button-container">
-            <button type="submit">Enregistrer</button>
-          </div>
-        </Form>
-      )}
-    </Formik>
+    <>
+      {initialValues ? <Formik
+        initialValues={initialValues}
+        onSubmit={(value) => handleSubmit(value)}
+        validationSchema={formContext?.validate}
+      >
+        {({ errors, setFieldValue, values }) => (
+          <Form>
+            <div
+              className={
+                formContext?.url == "/campagne" ? "campagne-input-update" : ""
+              }
+            >
+              {formContext?.formFields &&
+                formContext?.formFields.length > 0 &&
+                formContext?.formFields.map((form, index) => {
+                  if (form.name == "logo" || form.name == "imgCampagne") {
+                    return (
+                      <Fragment key={index}>
+                        <InputFile
+                          name={form.name}
+                          setFieldValue={setFieldValue}
+                          value={values[form.name]?.name}
+                        />
+                        <ErrorForm error={error} errors={errors[form.name]} />
+                      </Fragment>
+                    );
+                  } else if (form.name == "mailText") {
+                    return (
+                      <Fragment key={index}>
+                        <MailForm
+                          setFieldValue={setFieldValue}
+                          name={form.name}
+                          mail={
+                            initialValues?.mailText
+                              ? initialValues.mailText
+                              : null
+                          }
+                        />
+                        <ErrorForm error={error} errors={errors[form.name]} />
+                      </Fragment>
+                    );
+                  } else
+                    return (
+                      <div className="input-container" key={index}>
+                        <label htmlFor={form.name}>{form.header}</label>
+                        <Field
+                          type={form.type}
+                          placeholder={form.placeholder}
+                          name={form.name}
+                          id={form.name}
+                        />
+                        <ErrorForm error={error} errors={errors[form.name]} />
+                      </div>
+                    );
+                })}
+            </div>
+            <div className="button-container">
+              <button type="submit">Enregistrer</button>
+            </div>
+          </Form>
+        )}
+      </Formik> : null}
+    </>
   );
 };
 

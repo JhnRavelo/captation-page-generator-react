@@ -27,9 +27,9 @@ const Modal = () => {
         {formContext?.title != "delete" ? (
           <>
             <h3>Ajouter un nouveau {formContext && formContext?.slug}</h3>
-            {formContext?.title == "qr-code" ? (
+            {formContext?.slug == "QR-Code" ? (
               <ModalQRCode />
-            ) : formContext?.title == "page" ? (
+            ) : formContext?.slug == "Page" ? (
               <ModalPage />
             ) : (
               <FormFields

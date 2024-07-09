@@ -23,6 +23,8 @@ export type Card = {
   img?: string | File;
   scanNbr?: number;
   entreprise?: string;
+  mailText?: string;
+  object?: string;
 };
 
 const Card = ({ card, slug, isClickable }: CampagnePropsType) => {

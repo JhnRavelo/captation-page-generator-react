@@ -9,6 +9,7 @@ import useCampagne from "../../../../hooks/useCampagne";
 import { TypeInitialValues } from "../../../../context/AddFormProvider";
 import useFilterCampagne from "../../../../hooks/useFilterCampagne";
 import { useParams } from "react-router-dom";
+import Company from "../../../../components/Company/Company";
 
 const CampagneEdit = () => {
   const formContext = useForm();
@@ -18,9 +19,13 @@ const CampagneEdit = () => {
   const filterCampagne = useFilterCampagne();
 
   useEffect(() => {
-    console.log("INITIAL", initialValues);
     formContext?.setFormFields(campagneFields);
     formContext?.setValidate(validateCampagne);
+    formContext?.setTitle("update");
+    formContext?.setUrl("/campagne");
+    formContext?.setSlug("Campagne");
+    formContext?.setIdUpdate(id ? id : "");
+    
     const currentCampagne = filterCampagne(campagneContext?.campagnes, id);
     if (currentCampagne) {
       const initialValues: TypeInitialValues = {
@@ -29,22 +34,21 @@ const CampagneEdit = () => {
         dateFin: currentCampagne?.dateFin,
         description: currentCampagne?.description,
       };
-      console.log("EDIT", currentCampagne, initialValues);
       setInitialValues(initialValues);
     }
+
     return () => {
       setInitialValues(null);
     };
-  }, [campagneContext?.campagne]);
+  }, [campagneContext?.campagne, id]);
 
   return (
     <div className="edit-campagne-container">
-      {initialValues ? (
-        <FormFields
-          setState={campagneContext?.setCampagnes}
-          initialValues={initialValues}
-        />
-      ) : null}
+      <FormFields
+        setState={campagneContext?.setCampagnes}
+        initialValues={initialValues}
+      />
+      <Company />
     </div>
   );
 };

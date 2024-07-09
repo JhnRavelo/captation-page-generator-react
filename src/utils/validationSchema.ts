@@ -28,22 +28,36 @@ export type TypeValidateLogin =
       ""
     >;
 
-export type TypeValidateForm = Yup.ObjectSchema<
-  {
-    title: string;
-    dateDebut: Date;
-    dateFin: Date;
-    description: string;
-  },
-  Yup.AnyObject,
-  {
-    title: undefined;
-    dateDebut: undefined;
-    dateFin: undefined;
-    description: undefined;
-  },
-  ""
-> | null;
+export type TypeValidateForm =
+  | Yup.ObjectSchema<
+      {
+        title: string;
+        dateDebut: Date;
+        dateFin: Date;
+        description: string;
+      },
+      Yup.AnyObject,
+      {
+        title: undefined;
+        dateDebut: undefined;
+        dateFin: undefined;
+        description: undefined;
+      },
+      ""
+    >
+  | null
+  | Yup.ObjectSchema<
+      {
+        mailText: string;
+        object: string;
+      },
+      Yup.AnyObject,
+      {
+        mailText: undefined;
+        object: undefined;
+      },
+      ""
+    >;
 
 export const validateLogin = Yup.object({
   email: Yup.string()
@@ -76,7 +90,18 @@ export const validateProfile = Yup.object({
 
 export const validateCampagne = Yup.object({
   title: Yup.string().required("Vous devez mettre le titre du campagne"),
-  dateDebut: Yup.date().required("Vous devez mettre le debut de la campagne"),
-  dateFin: Yup.date().required("Vous devez mettre la fin de la campagne"),
+  dateDebut: Yup.date().required(
+    "Vous devez mettre la date de debut de la campagne"
+  ),
+  dateFin: Yup.date().required(
+    "Vous devez mettre la date de la fin de la campagne"
+  ),
   description: Yup.string().required("Vous devez mettre un description"),
+});
+
+export const validateCampagneMail = Yup.object({
+  mailText: Yup.string().required(
+    "Le contenu de l'email ne doit pas être vide"
+  ),
+  object: Yup.string().required("L'objet de l'email ne doit pas être vide"),
 });

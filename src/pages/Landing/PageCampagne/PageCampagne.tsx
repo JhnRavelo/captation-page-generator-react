@@ -39,8 +39,7 @@ const PageCampagne = () => {
     formContext?.setSlug("Page");
     formContext?.setOpenForm(true);
     formContext?.setFormFields(pageFields);
-    formContext?.setTitle("page");
-    formContext?.setInitialValues(initialValues);
+    formContext?.setTitle("add");
   };
   
   return (

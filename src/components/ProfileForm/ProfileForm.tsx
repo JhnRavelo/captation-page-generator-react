@@ -57,6 +57,7 @@ const ProfileForm = ({
         res = await axiosPrivate.post("/auth/edit", formData);
       }
       if (res.data.success) {
+        setError("");
         toast.success(res.data.message);
         authContext?.setAuth(res.data.user);
         navigate("/marketing");

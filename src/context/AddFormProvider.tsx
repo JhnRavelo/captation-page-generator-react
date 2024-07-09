@@ -4,9 +4,9 @@ import { TypeValidateForm } from "../utils/validationSchema";
 
 export type TypeSlug = "Campagne" | "Page" | "" | "QR-Code";
 
-export type TypeTitleModal = "add" | "delete" | "qr-code" | "page" | "update";
+export type TypeTitleModal = "add" | "delete" | "update";
 
-export type TypeUrl = "/campagne" | "/qr-code" | "/page" | "";
+export type TypeUrl = "/campagne" | "/qr-code" | "/page" | "" | "/campagne/mail";
 
 type TypeAddFormContext = {
   slug: TypeSlug;
@@ -23,6 +23,8 @@ type TypeAddFormContext = {
   setIdDelete: React.Dispatch<React.SetStateAction<string>>;
   url: TypeUrl;
   setUrl: React.Dispatch<React.SetStateAction<TypeUrl>>;
+  idUpdate: string;
+  setIdUpdate: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type TypeAddFormFields = {
@@ -45,6 +47,7 @@ export type TypeAddFormFields = {
 }[];
 
 export type TypeInitialValues = {
+  id?: number | string;
   name?: string;
   dateDebut?: string;
   dateFin?: string;
@@ -68,7 +71,8 @@ const AddFormProvider = ({ children }: ContextPropsType) => {
   const [validate, setValidate] = useState<TypeValidateForm>(null);
   const [formFields, setFormFields] = useState<TypeAddFormFields>([]);
   const [title, setTitle] = useState<TypeTitleModal>("add");
-  const [idDelete, setIdDelete] = useState<string>("");
+  const [idDelete, setIdDelete] = useState("");
+  const [idUpdate, setIdUpdate] = useState("");
   const [url, setUrl] = useState<TypeUrl>("");
 
   return (
@@ -88,6 +92,8 @@ const AddFormProvider = ({ children }: ContextPropsType) => {
         setIdDelete,
         url,
         setUrl,
+        idUpdate,
+        setIdUpdate,
       }}
     >
       {children}
