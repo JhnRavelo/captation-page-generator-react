@@ -49,9 +49,12 @@ body {
 }
 
 .circle-green {
-  border-radius: 50%;
   background-color: green;
   border: greenyellow 2px solid;
+}
+.circle-red {
+  background-color: red;
+  border: rgb(143, 26, 26) 2px solid;
 }
 .infos-container {
   display: flex;

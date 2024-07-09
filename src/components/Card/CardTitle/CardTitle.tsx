@@ -7,6 +7,7 @@ import { Card } from "../Card";
 import EditSVG from "../../../assets/svg/EditSVG";
 import ViewSVG from "../../../assets/svg/ViewSVG";
 import { useNavigate } from "react-router-dom";
+import useColorCampagne from "../../../hooks/useColorCampagne";
 
 type CardTitlePropsType = {
   card: Card;
@@ -17,6 +18,7 @@ const CardTitle = ({ card, slug }: CardTitlePropsType) => {
   const formContext = useForm();
   const scanRef = useRef<HTMLSpanElement>(null);
   const navigate = useNavigate();
+  const color = useColorCampagne(card.id);
 
   const handleDelete = () => {
     formContext?.setTitle("delete");
@@ -28,7 +30,11 @@ const CardTitle = ({ card, slug }: CardTitlePropsType) => {
   return (
     <div className="title">
       <div className="title-left">
-        <div className="circle circle-green"></div>
+        <div
+          className={
+            color == "red" ? "circle circle-red" : "circle circle-green"
+          }
+        ></div>
         <h3>{card.id}</h3>
       </div>
       <div className="title-right">

@@ -3,6 +3,7 @@ import useAnimationNbr from "../../hooks/useAnimationNbr";
 import ScanSVG from "../../assets/svg/ScanSVG";
 import MailSVG from "../../assets/svg/MailSVG";
 import "./campagneHeader.scss";
+import useColorCampagne from "../../hooks/useColorCampagne";
 
 type CampagneHeaderPropsTypes = {
   scanNbr: number;
@@ -10,16 +11,25 @@ type CampagneHeaderPropsTypes = {
   idCampagne: string;
 };
 
-const CampagneHeader = ({ scanNbr, mailNbr, idCampagne }: CampagneHeaderPropsTypes) => {
+const CampagneHeader = ({
+  scanNbr,
+  mailNbr,
+  idCampagne,
+}: CampagneHeaderPropsTypes) => {
   const scanRef = useRef<HTMLSpanElement>(null);
   const mailRef = useRef<HTMLSpanElement>(null);
+  const color = useColorCampagne(idCampagne);
 
   useAnimationNbr(scanNbr, scanRef);
   useAnimationNbr(mailNbr, mailRef);
   return (
     <div className="id-single-campagne-container">
       <div className="id-single-campagne">
-        <div className="circle-green circle"></div>
+        <div
+          className={
+            color == "red" ? "circle circle-red" : "circle circle-green"
+          }
+        ></div>
         <span>{idCampagne}</span>
       </div>
       <div className="icon-campagne-container">
