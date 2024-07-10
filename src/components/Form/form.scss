@@ -4,3 +4,11 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+.campagne-input-add {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 800px;
+  gap: 15px;
+}

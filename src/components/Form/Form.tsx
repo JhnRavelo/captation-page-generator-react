@@ -10,6 +10,7 @@ import useMediaEntreprise from "../../hooks/useMediaEntreprise";
 import { TypeSetState } from "../../context/CampagneProvider";
 import "./form.scss";
 import ErrorForm from "./ErrorForm/ErrorForm";
+import InputCHeckBox from "./InputCheckBox/InputCheckBox";
 
 type FormFieldsPropsType = {
   setState: TypeSetState | undefined;
@@ -63,68 +64,92 @@ const FormFields = ({ setState, initialValues }: FormFieldsPropsType) => {
 
   return (
     <>
-      {initialValues ? <Formik
-        initialValues={initialValues}
-        onSubmit={(value) => handleSubmit(value)}
-        validationSchema={formContext?.validate}
-      >
-        {({ errors, setFieldValue, values }) => (
-          <Form>
-            <div
-              className={
-                formContext?.url == "/campagne" ? "campagne-input-update" : ""
-              }
-            >
-              {formContext?.formFields &&
-                formContext?.formFields.length > 0 &&
-                formContext?.formFields.map((form, index) => {
-                  if (form.name == "logo" || form.name == "imgCampagne") {
-                    return (
-                      <Fragment key={index}>
-                        <InputFile
-                          name={form.name}
-                          setFieldValue={setFieldValue}
-                          value={values[form.name]?.name}
-                        />
-                        <ErrorForm error={error} errors={errors[form.name]} />
-                      </Fragment>
-                    );
-                  } else if (form.name == "mailText") {
-                    return (
-                      <Fragment key={index}>
-                        <MailForm
-                          setFieldValue={setFieldValue}
-                          name={form.name}
-                          mail={
-                            initialValues?.mailText
-                              ? initialValues.mailText
-                              : null
-                          }
-                        />
-                        <ErrorForm error={error} errors={errors[form.name]} />
-                      </Fragment>
-                    );
-                  } else
-                    return (
-                      <div className="input-container" key={index}>
-                        <label htmlFor={form.name}>{form.header}</label>
-                        <Field
-                          type={form.type}
-                          placeholder={form.placeholder}
-                          name={form.name}
-                          id={form.name}
-                        />
-                        <ErrorForm error={error} errors={errors[form.name]} />
-                      </div>
-                    );
-                })}
-            </div>
-            <div className="button-container">
-              <button type="submit">Enregistrer</button>
-            </div>
-          </Form>
-        )}
-      </Formik> : null}
+      {initialValues ? (
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(value) => handleSubmit(value)}
+          validationSchema={formContext?.validate}
+        >
+          {({ errors, setFieldValue, values }) => (
+            <Form>
+              <div
+                className={
+                  formContext?.url == "/campagne" &&
+                  formContext.title == "update"
+                    ? "campagne-input-update"
+                    : formContext?.url == "/campagne" &&
+                      formContext.title == "add"
+                    ? "campagne-input-add"
+                    : ""
+                }
+              >
+                {formContext?.formFields &&
+                  formContext?.formFields.length > 0 &&
+                  formContext?.formFields.map((form, index) => {
+                    if (form.name == "campagnes") {
+                      return (
+                        <Fragment key={index}>
+                          <InputCHeckBox
+                            title={form.placeholder}
+                            name={form.name}
+                            arrays={["PRESTIGE1", "VERREMEN1"]}
+                            type={
+                              values.campagnes ? values.campagnes : undefined
+                            }
+                          />
+                        </Fragment>
+                      );
+                    } else if (
+                      form.name == "logo" ||
+                      form.name == "imgCampagne"
+                    ) {
+                      return (
+                        <Fragment key={index}>
+                          <InputFile
+                            name={form.name}
+                            setFieldValue={setFieldValue}
+                            value={values[form.name]?.name}
+                          />
+                          <ErrorForm error={error} errors={errors[form.name]} />
+                        </Fragment>
+                      );
+                    } else if (form.name == "mailText") {
+                      return (
+                        <Fragment key={index}>
+                          <MailForm
+                            setFieldValue={setFieldValue}
+                            name={form.name}
+                            mail={
+                              initialValues?.mailText
+                                ? initialValues.mailText
+                                : null
+                            }
+                          />
+                          <ErrorForm error={error} errors={errors[form.name]} />
+                        </Fragment>
+                      );
+                    } else
+                      return (
+                        <div className="input-container" key={index}>
+                          <label htmlFor={form.name}>{form.header}</label>
+                          <Field
+                            type={form.type}
+                            placeholder={form.placeholder}
+                            name={form.name}
+                            id={form.name}
+                          />
+                          <ErrorForm error={error} errors={errors[form.name]} />
+                        </div>
+                      );
+                  })}
+              </div>
+              <div className="button-container">
+                <button type="submit">Enregistrer</button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      ) : null}
     </>
   );
 };

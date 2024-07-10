@@ -1,6 +1,15 @@
-import { TypeAddFormFields } from "../../context/AddFormProvider";
+import {
+  TypeAddFormFields,
+  TypeInitialValues,
+} from "../../context/AddFormProvider";
 
 export const qrcodeFields: TypeAddFormFields = [
+  {
+    name: "campagnes",
+    placeholder: "Liste des campagnes",
+    type: "text",
+    header: "Liste des campagnes",
+  },
   {
     name: "logo",
     placeholder: "place",
@@ -8,3 +17,7 @@ export const qrcodeFields: TypeAddFormFields = [
     header: "Logo du QR Code",
   },
 ];
+
+export const qrCodeInitialValue: TypeInitialValues = {
+  logo: null,
+};
