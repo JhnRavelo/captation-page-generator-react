@@ -17,6 +17,7 @@ const MediaOptions = () => {
           onClick={(e) => {
             active(e, mediaRef);
             mediaContext?.setMedia(media.media);
+            mediaContext?.setUrlMedia(media.url);
           }}
           key={index}
         >

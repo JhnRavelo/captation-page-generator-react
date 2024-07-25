@@ -1,28 +1,40 @@
-import LogoEuro from "../png/Logo_aluhd.png";
-import LogoVertec from "../png/vertec.png";
-import LogoAlu from "../png/alu.png";
-import LogoSmart from "../png/EA_smart.png";
+import ImgEuro from "../png/Logo_aluhd.png";
+import ImgVertec from "../png/vertec.png";
+import ImgAlu from "../png/alu.png";
+import ImgSmart from "../png/EA_smart.png";
+import LogoEuro from "../logo/logo_europ-alu.png";
+import LogoSmart from "../logo/logo_smart.png";
+import LogoAlu from "../logo/logo_alu.jpg";
+import LogoVertec from "../logo/logo_vertec.jpg";
 import { TypeCompany } from "../../context/MediaEntrepriseProvider";
 
-export type TypeCompaniesObject = { company: TypeCompany; img: string };
+export type TypeCompaniesObject = {
+  company: TypeCompany;
+  img: string;
+  logo: string;
+};
 
 type TypeCompaniesArray = TypeCompaniesObject[];
 
 export const companies: TypeCompaniesArray = [
   {
     company: "Europ'Alu",
-    img: LogoEuro,
+    img: ImgEuro,
+    logo: LogoEuro,
   },
   {
     company: "Alu",
-    img: LogoAlu,
+    img: ImgAlu,
+    logo: LogoAlu,
   },
   {
     company: "Vertec",
-    img: LogoVertec,
+    img: ImgVertec,
+    logo: LogoVertec,
   },
   {
     company: "Smart",
-    img: LogoSmart,
+    img: ImgSmart,
+    logo: LogoSmart,
   },
 ];
