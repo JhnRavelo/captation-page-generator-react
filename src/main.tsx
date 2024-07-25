@@ -6,6 +6,7 @@ import { AddFormProvider } from "./context/AddFormProvider.tsx";
 import { MediaEntrepriseProvider } from "./context/MediaEntrepriseProvider.tsx";
 import { CampagneProvider } from "./context/CampagneProvider.tsx";
 import { QRCodeProvider } from "./context/QRCodeProvider.tsx";
+import EntrepriseProvider from "./context/EntrepriseProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <MediaEntrepriseProvider>
           <CampagneProvider>
             <QRCodeProvider>
-              <App />
+              <EntrepriseProvider>
+                <App />
+              </EntrepriseProvider>
             </QRCodeProvider>
           </CampagneProvider>
         </MediaEntrepriseProvider>

@@ -8,22 +8,32 @@ import { useEffect } from "react";
 import useCampagne from "../../hooks/useCampagne";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
+import useEntreprise from "../../hooks/useEntreprise";
 
 const Landing = () => {
   const formContext = useForm();
   const campagneContext = useCampagne();
+  const entrepriseContext = useEntreprise();
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     (async () => {
       try {
-        const res = await axiosPrivate.get("/campagne");
+        const fetchCampagnes = await axiosPrivate.get("/campagne");
 
-        if (res.data.success) {
-          campagneContext?.setCampagnes(res.data.datas);
-          formContext?.setYears(res.data.years);
+        if (fetchCampagnes.data.success) {
+          campagneContext?.setCampagnes(fetchCampagnes.data.datas);
+          formContext?.setYears(fetchCampagnes.data.years);
         } else {
-          toast.error(res.data.message);
+          toast.error(fetchCampagnes.data.message);
+        }
+
+        const fetchEntreprises = await axiosPrivate.get("/entreprise");
+
+        if (fetchEntreprises.data.success) {
+          entrepriseContext?.setEntreprises(fetchEntreprises.data.datas);
+        } else {
+          toast.error(fetchEntreprises.data.message);
         }
       } catch (error) {
         toast.error("Erreur serveur");
