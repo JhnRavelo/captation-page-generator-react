@@ -36,7 +36,7 @@ const CampagneMail = () => {
     return () => {
       setInitialValues(null);
     };
-  }, [campagneContext?.campagne, id]);
+  }, [id]);
 
   return (
     <div className="edit-campagne-container">

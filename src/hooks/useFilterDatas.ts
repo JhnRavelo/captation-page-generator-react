@@ -10,17 +10,12 @@ const useFilterDatas = (datas?: Card[]) => {
 
   useEffect(() => {
     if (datas || entrepriseContext?.entreprise || formContext?.year) {
-      console.log(
-        "Filter",
-        entrepriseContext?.entreprise,
-        formContext?.year,
-        datas
-      );
       const filterCampagnes = datas?.filter(
         (campagne) =>
           campagne.entreprise == entrepriseContext?.entreprise &&
           campagne.dateDebut?.split("-")[0] == formContext?.year
       );
+      
       if (filterCampagnes) {
         setFilterDatas(filterCampagnes);
       }

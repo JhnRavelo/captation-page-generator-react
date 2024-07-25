@@ -25,7 +25,7 @@ const CampagneEdit = () => {
     formContext?.setUrl("/campagne");
     formContext?.setSlug("Campagne");
     formContext?.setIdUpdate(id ? id : "");
-    
+
     const currentCampagne = filterCampagne(campagneContext?.campagnes, id);
     if (currentCampagne) {
       const initialValues: TypeInitialValues = {
@@ -40,7 +40,7 @@ const CampagneEdit = () => {
     return () => {
       setInitialValues(null);
     };
-  }, [campagneContext?.campagne, id]);
+  }, [id]);
 
   return (
     <div className="edit-campagne-container">
