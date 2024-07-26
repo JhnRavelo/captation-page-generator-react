@@ -16,11 +16,11 @@ const Company = () => {
         {companies.map((company, index) => (
           <div
             className={
-              companyContext?.entreprise == company.company ? "company-content active" : "company-content"
+              companyContext?.entreprise.company == company.company ? "company-content active" : "company-content"
             }
             onClick={(e) => {
               active(e, listCompanyRef);
-              companyContext?.setEntreprise(company.company);
+              companyContext?.setEntreprise(company);
             }}
             key={index}
           >

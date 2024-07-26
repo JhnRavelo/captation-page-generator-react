@@ -1,26 +1,23 @@
 import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
-
-export type TypeCompany = "Europ'Alu" | "Smart" | "Vertec" | "Alu";
-export type TypeMedia = "Journaux" | "Sociaux Media" | "Cinema" | "Pancarte";
-export type TypeUrlMedia = "jn" | "sc" | "cn" | "pc";
+import { medias, TypeMediasObject } from "../assets/ts/media";
+import { companies, TypeCompaniesObject } from "../assets/ts/company";
 
 type TypeMediaEntrepriseContextValue = {
-  media: TypeMedia;
-  setMedia: React.Dispatch<React.SetStateAction<TypeMedia>>;
-  entreprise: TypeCompany;
-  setEntreprise: React.Dispatch<React.SetStateAction<TypeCompany>>;
-  urlMedia: TypeUrlMedia;
-  setUrlMedia: React.Dispatch<React.SetStateAction<TypeUrlMedia>>;
+  media: TypeMediasObject;
+  setMedia: React.Dispatch<React.SetStateAction<TypeMediasObject>>;
+  entreprise: TypeCompaniesObject;
+  setEntreprise: React.Dispatch<React.SetStateAction<TypeCompaniesObject>>;
 };
 
 const MediaEntrepriseContext =
   createContext<TypeMediaEntrepriseContextValue | null>(null);
 
 const MediaEntrepriseProvider = ({ children }: ContextPropsType) => {
-  const [media, setMedia] = useState<TypeMedia>("Journaux");
-  const [entreprise, setEntreprise] = useState<TypeCompany>("Europ'Alu");
-  const [urlMedia, setUrlMedia] = useState<TypeUrlMedia>("jn");
+  const [media, setMedia] = useState<TypeMediasObject>(medias[0]);
+  const [entreprise, setEntreprise] = useState<TypeCompaniesObject>(
+    companies[0]
+  );
 
   return (
     <MediaEntrepriseContext.Provider
@@ -29,8 +26,6 @@ const MediaEntrepriseProvider = ({ children }: ContextPropsType) => {
         setMedia,
         entreprise,
         setEntreprise,
-        urlMedia,
-        setUrlMedia,
       }}
     >
       {children}

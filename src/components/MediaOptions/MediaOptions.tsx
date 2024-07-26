@@ -16,8 +16,7 @@ const MediaOptions = () => {
           className={index == 0 ? "media-content active" : "media-content"}
           onClick={(e) => {
             active(e, mediaRef);
-            mediaContext?.setMedia(media.media);
-            mediaContext?.setUrlMedia(media.url);
+            mediaContext?.setMedia(media);
           }}
           key={index}
         >

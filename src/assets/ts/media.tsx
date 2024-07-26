@@ -1,10 +1,11 @@
 import React from "react";
-import { TypeMedia, TypeUrlMedia } from "../../context/MediaEntrepriseProvider";
 import JournalSVG from "../svg/JournalSVG";
 import FacebookSVG from "../svg/FacebookSVG";
 import CinemaSVG from "../svg/CinemaSVG";
 import PancarteSVG from "../svg/PancarteSVG";
 
+export type TypeMedia = "Journaux" | "Sociaux Media" | "Cinema" | "Pancarte";
+export type TypeUrlMedia = "jn" | "sc" | "cn" | "pc";
 export type TypeMediasObject = {
   media: TypeMedia;
   SVG: React.ReactNode;

@@ -6,8 +6,8 @@ import LogoEuro from "../logo/logo_europ-alu.png";
 import LogoSmart from "../logo/logo_smart.png";
 import LogoAlu from "../logo/logo_alu.jpg";
 import LogoVertec from "../logo/logo_vertec.jpg";
-import { TypeCompany } from "../../context/MediaEntrepriseProvider";
 
+export type TypeCompany = "Europ'Alu" | "Smart" | "Vertec" | "Alu";
 export type TypeCompaniesObject = {
   company: TypeCompany;
   img: string;
