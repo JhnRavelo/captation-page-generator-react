@@ -9,12 +9,14 @@ import useCampagne from "../../hooks/useCampagne";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
 import useEntreprise from "../../hooks/useEntreprise";
+import useQRCode from "../../hooks/useQRCode";
 
 const Landing = () => {
   const formContext = useForm();
   const campagneContext = useCampagne();
   const entrepriseContext = useEntreprise();
   const axiosPrivate = useAxiosPrivate();
+  const qrCodeContext = useQRCode();
 
   useEffect(() => {
     (async () => {
@@ -34,6 +36,14 @@ const Landing = () => {
           entrepriseContext?.setEntreprises(fetchEntreprises.data.datas);
         } else {
           toast.error(fetchEntreprises.data.message);
+        }
+
+        const fetchQRCodes = await axiosPrivate.get("/qr-code");
+
+        if (fetchQRCodes.data.success) {
+          qrCodeContext?.setQrCodes(fetchQRCodes.data.datas);
+        } else {
+          toast.error(fetchQRCodes.data.message);
         }
       } catch (error) {
         toast.error("Erreur serveur");

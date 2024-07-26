@@ -57,6 +57,16 @@ export type TypeValidateForm =
         object: undefined;
       },
       ""
+    >
+  | Yup.ObjectSchema<
+      {
+        campagnes: (string | undefined)[] | undefined;
+      },
+      Yup.AnyObject,
+      {
+        campagnes: "";
+      },
+      ""
     >;
 
 export const validateLogin = Yup.object({
@@ -104,4 +114,11 @@ export const validateCampagneMail = Yup.object({
     "Le contenu de l'email ne doit pas être vide"
   ),
   object: Yup.string().required("L'objet de l'email ne doit pas être vide"),
+});
+
+export const validateQRCode = Yup.object({
+  campagnes: Yup.array()
+    .of(Yup.string())
+    .min(1, "Sélectionnez une campagne")
+    .max(1, "Sélectionnez seulement un campagne"),
 });
