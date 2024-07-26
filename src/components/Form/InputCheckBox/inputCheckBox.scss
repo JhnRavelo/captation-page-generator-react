@@ -1,7 +1,7 @@
 @import "../../../variables.scss";
 
 .item-inputCheckBox {
-  width: 50%;
+  width: 190px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -33,7 +33,6 @@
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 
       .btn-text {
-        /* height: 40px; */
         width: 100%;
         font-size: 16px;
         font-weight: 400;
@@ -69,10 +68,8 @@
       max-height: 180px;
       overflow: auto;
       border-radius: 8px;
-      // padding: 14px;
       background-color: #fff;
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      /* display: none; */
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s ease;

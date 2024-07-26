@@ -5,6 +5,8 @@ import CampagneCardContent from "./CardContentCampagne/CardContentCampagne";
 import "./card.scss";
 import CardContentQRCode from "./CardContentQRCode/CardContentQRCode";
 import CardContentPage from "./CardContentPage/CardContentPage";
+import { TypeCompany } from "../../assets/ts/company";
+import { TypeMedia } from "../../assets/ts/media";
 
 type CampagnePropsType = {
   card: Card;
@@ -20,11 +22,15 @@ export type Card = {
   dateDebut?: string;
   dateFin?: string;
   url?: string;
-  img?: string | File;
+  img?: string;
   scanNbr?: number;
-  entreprise?: string;
+  entreprise?: TypeCompany;
   mailText?: string;
   object?: string;
+  logo?: string | File;
+  qrcode?: string | File;
+  campagnes?: string[];
+  media?: TypeMedia;
 };
 
 const Card = ({ card, slug, isClickable }: CampagnePropsType) => {

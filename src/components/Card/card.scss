@@ -110,6 +110,17 @@
       width: 95%;
       height: auto;
 
+      &.url {
+        gap: 5px;
+        align-items: center;
+        width: 250px;
+        margin-left: -30px;
+
+        span {
+          font-size: 10px;
+        }
+      }
+
       span {
         font-size: 16px;
         font-weight: 300;

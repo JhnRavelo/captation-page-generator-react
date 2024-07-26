@@ -10,14 +10,19 @@ import useMediaEntreprise from "../../hooks/useMediaEntreprise";
 import { TypeSetState } from "../../context/CampagneProvider";
 import "./form.scss";
 import ErrorForm from "./ErrorForm/ErrorForm";
-import InputCHeckBox from "./InputCheckBox/InputCheckBox";
+import InputCheckBox from "./InputCheckBox/InputCheckBox";
 
 type FormFieldsPropsType = {
   setState: TypeSetState | undefined;
   initialValues: TypeInitialValues;
+  checkboxes?: string[];
 };
 
-const FormFields = ({ setState, initialValues }: FormFieldsPropsType) => {
+const FormFields = ({
+  setState,
+  initialValues,
+  checkboxes,
+}: FormFieldsPropsType) => {
   const formContext = useForm();
   const axiosPrivate = useAxiosPrivate();
   const [error, setError] = useState("");
@@ -30,20 +35,40 @@ const FormFields = ({ setState, initialValues }: FormFieldsPropsType) => {
     }
     const formData = new FormData();
     const valuesEntries = Object.entries(values);
-    formData.append("entreprise", entrepriseContext?.entreprise);
+    formData.append("entreprise", entrepriseContext?.entreprise.company);
+    formData.append("media", entrepriseContext.media.media);
     formData.append("id", `${formContext?.idUpdate}`);
+    
     valuesEntries.forEach(([key, value]) => {
       if (value instanceof File) {
         formData.append(`${key}`, value);
       } else if (value) formData.append(`${key}`, value.toString());
     });
+
     try {
       let res;
 
-      if (formContext?.title == "add") {
+      if (formContext?.title === "add" && formContext.slug === "Campagne") {
         res = await axiosPrivate.post(formContext.url, formData);
-      } else if (formContext?.title == "update") {
+      } else if (
+        formContext?.title === "update" &&
+        formContext.slug === "Campagne"
+      ) {
         res = await axiosPrivate.put(formContext.url, formData);
+      } else if (
+        formContext?.title === "add" &&
+        formContext.slug !== "Campagne"
+      ) {
+        res = await axiosPrivate.post(formContext.url, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      } else if (
+        formContext?.title === "update" &&
+        formContext.slug !== "Campagne"
+      ) {
+        res = await axiosPrivate.put(formContext.url, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
       }
 
       if (res?.data.success && formContext?.setOpenForm && setState) {
@@ -89,10 +114,10 @@ const FormFields = ({ setState, initialValues }: FormFieldsPropsType) => {
                     if (form.name == "campagnes") {
                       return (
                         <Fragment key={index}>
-                          <InputCHeckBox
+                          <InputCheckBox
                             title={form.placeholder}
                             name={form.name}
-                            arrays={["PRESTIGE1", "VERREMEN1"]}
+                            arrays={checkboxes}
                             type={
                               values.campagnes ? values.campagnes : undefined
                             }

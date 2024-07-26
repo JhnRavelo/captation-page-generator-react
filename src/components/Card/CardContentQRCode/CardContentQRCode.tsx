@@ -12,11 +12,11 @@ const CardContentQRCode = ({ qrcode }: QRCodePropsType) => {
   const imgRef = useRef<HTMLImageElement>(null);
 
   const handleDownload = () => {
-    const imageUrl = imgRef.current?.src;
+    const imageUrl = qrcode.img;
     if (!imageUrl) return;
     const link = document.createElement("a");
     link.href = imageUrl;
-    link.download = "qr-code " + qrcode.title + ".png";
+    link.download = "qr-code-" + qrcode.id + ".png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -33,7 +33,7 @@ const CardContentQRCode = ({ qrcode }: QRCodePropsType) => {
         />
         <DownloadSVG width="40" height="40" onClick={handleDownload} />
       </div>
-      <div className="campagne-description">
+      <div className="campagne-description url">
         <WebSVG width="20" height="20" />
         <span>{qrcode.url}</span>
       </div>

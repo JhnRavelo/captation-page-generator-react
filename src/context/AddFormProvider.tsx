@@ -53,7 +53,8 @@ export type TypeAddFormFields = {
     | "imgCampagne"
     | "object"
     | "mailText"
-    | "title";
+    | "title"
+    | "campagnes";
   header: string;
   type: string;
   placeholder: string;
@@ -74,6 +75,7 @@ export type TypeInitialValues = {
   imgCampagne?: File | null;
   object?: string;
   mailText?: string;
+  campagnes?: string[];
 } | null;
 
 const AddFormContext = createContext<TypeAddFormContext | null>(null);
