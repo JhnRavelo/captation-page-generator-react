@@ -34,6 +34,7 @@ const Campagne = () => {
                   card={campagne}
                   slug="Campagne"
                   isClickable={true}
+                  url="/campagne/delete"
                 />
               </Fragment>
             ))}

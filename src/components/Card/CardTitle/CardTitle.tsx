@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import DeleteSVG from "../../../assets/svg/DeleteSVG";
 import ScanSVG from "../../../assets/svg/ScanSVG";
-import { TypeSlug } from "../../../context/AddFormProvider";
+import { TypeSlug, TypeUrl } from "../../../context/AddFormProvider";
 import useForm from "../../../hooks/useForm";
 import { Card } from "../Card";
 import EditSVG from "../../../assets/svg/EditSVG";
@@ -12,9 +12,10 @@ import useColorCampagne from "../../../hooks/useColorCampagne";
 type CardTitlePropsType = {
   card: Card;
   slug: TypeSlug;
+  url: TypeUrl;
 };
 
-const CardTitle = ({ card, slug }: CardTitlePropsType) => {
+const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
   const formContext = useForm();
   const scanRef = useRef<HTMLSpanElement>(null);
   const navigate = useNavigate();
@@ -23,8 +24,10 @@ const CardTitle = ({ card, slug }: CardTitlePropsType) => {
   const handleDelete = () => {
     formContext?.setTitle("delete");
     formContext?.setOpenForm(true);
-    formContext?.setIdDelete(card.id);
+    formContext?.setIdDelete(card.idData ? card.idData : "");
+    formContext?.setId(card.id);
     formContext?.setSlug(slug);
+    formContext?.setUrl(url);
   };
 
   return (
@@ -50,7 +53,6 @@ const CardTitle = ({ card, slug }: CardTitlePropsType) => {
               height="30"
               className="icon view"
               onClick={() => {
-                console.log("click");
                 navigate("/campagne/25/rs");
               }}
             />

@@ -11,7 +11,9 @@ export type TypeUrl =
   | "/qr-code"
   | "/page"
   | ""
-  | "/campagne/mail";
+  | "/campagne/mail"
+  | "/qr-code/delete"
+  | "/campagne/delete";
 
 export type StrNb = number | string;
 
@@ -38,6 +40,8 @@ type TypeAddFormContext = {
   setYears: React.Dispatch<React.SetStateAction<StrNbs>>;
   year: StrNb;
   setYear: React.Dispatch<React.SetStateAction<StrNb>>;
+  id: string;
+  setId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type TypeAddFormFields = {
@@ -88,6 +92,7 @@ const AddFormProvider = ({ children }: ContextPropsType) => {
   const [title, setTitle] = useState<TypeTitleModal>("add");
   const [idDelete, setIdDelete] = useState("");
   const [idUpdate, setIdUpdate] = useState("");
+  const [id, setId] = useState("");
   const [url, setUrl] = useState<TypeUrl>("");
   const [years, setYears] = useState<StrNbs>([]);
   const [year, setYear] = useState<StrNb>(() => {
@@ -118,6 +123,8 @@ const AddFormProvider = ({ children }: ContextPropsType) => {
         setYears,
         year,
         setYear,
+        id,
+        setId,
       }}
     >
       {children}

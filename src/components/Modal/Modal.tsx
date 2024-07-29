@@ -6,10 +6,12 @@ import ModalQRCode from "./ModalQRCode/ModalQRCode";
 import ModalPage from "./ModalPage/ModalPage";
 import useCampagne from "../../hooks/useCampagne";
 import { campagneInitialValues } from "../../assets/ts/campagne";
+import useQRCode from "../../hooks/useQRCode";
 
 const Modal = () => {
   const formContext = useForm();
   const campagneContext = useCampagne();
+  const qrCodeContext = useQRCode();
 
   return (
     <div className="add">
@@ -39,7 +41,13 @@ const Modal = () => {
             )}
           </>
         ) : (
-          <Delete />
+          <Delete
+            setState={
+              formContext.slug == "Campagne"
+                ? campagneContext?.setCampagnes
+                : qrCodeContext?.setQrCodes
+            }
+          />
         )}
       </div>
     </div>

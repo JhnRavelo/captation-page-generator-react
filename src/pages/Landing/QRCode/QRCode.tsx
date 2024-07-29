@@ -32,7 +32,12 @@ const QRCode = () => {
             qrCodes.length > 0 &&
             qrCodes.map((qrCode, index) => (
               <Fragment key={index}>
-                <Card card={qrCode} slug="QR-Code" isClickable={false} />
+                <Card
+                  card={qrCode}
+                  slug="QR-Code"
+                  isClickable={false}
+                  url="/qr-code/delete"
+                />
               </Fragment>
             ))}
         </div>

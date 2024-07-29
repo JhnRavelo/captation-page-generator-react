@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./mediaOptions.scss";
 import useActive from "../../hooks/useActive";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { medias } from "../../assets/ts/media";
 import useMediaEntreprise from "../../hooks/useMediaEntreprise";
 
@@ -8,6 +9,10 @@ const MediaOptions = () => {
   const active = useActive();
   const mediaRef = useRef<HTMLDivElement>(null);
   const mediaContext = useMediaEntreprise();
+
+  useEffect(() => {
+    mediaContext?.setMedia(medias[0]);
+  }, []);
 
   return (
     <div className="media-container" ref={mediaRef}>

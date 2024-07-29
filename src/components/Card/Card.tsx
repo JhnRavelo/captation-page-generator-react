@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { TypeSlug } from "../../context/AddFormProvider";
+import { TypeSlug, TypeUrl } from "../../context/AddFormProvider";
 import CardTitle from "./CardTitle/CardTitle";
 import CampagneCardContent from "./CardContentCampagne/CardContentCampagne";
 import "./card.scss";
@@ -12,6 +12,7 @@ type CampagnePropsType = {
   card: Card;
   slug: TypeSlug;
   isClickable: boolean;
+  url: TypeUrl;
 };
 
 export type Card = {
@@ -31,9 +32,10 @@ export type Card = {
   qrcode?: string | File;
   campagnes?: string[];
   media?: TypeMedia;
+  idData?: string;
 };
 
-const Card = ({ card, slug, isClickable }: CampagnePropsType) => {
+const Card = ({ card, slug, isClickable, url }: CampagnePropsType) => {
   const navigate = useNavigate();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -54,7 +56,7 @@ const Card = ({ card, slug, isClickable }: CampagnePropsType) => {
       className={"cards-content " + `${slug}`}
       onClick={(e) => handleClick(e)}
     >
-      <CardTitle card={card} slug={slug} />
+      <CardTitle card={card} slug={slug} url={url} />
       <div className="description">
         {slug != "Page" && <h4>{card.title}</h4>}
         {slug == "Campagne" ? (
