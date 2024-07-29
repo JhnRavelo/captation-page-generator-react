@@ -1,14 +1,41 @@
 import WebSVG from "../../../assets/svg/WebSVG";
+import { TypeInitialValues } from "../../../context/AddFormProvider";
+import useCurrentCampagne from "../../../hooks/useCurrentCampagne";
+import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
+import usePage from "../../../hooks/usePage";
 import FormFields from "../../Form/Form";
 
+const url = import.meta.env.VITE_FRONT_PATH;
+
+const initialValues: TypeInitialValues = {
+  titleColor: "",
+  titleBackgroundColor: "",
+  sloganCampagne: "",
+  imgCampagne: null,
+};
+
 const ModalPage = () => {
+  const pageContext = usePage();
+  const currentCampagne = useCurrentCampagne();
+  const mediaContext = useMediaEntreprise();
+
   return (
     <>
       <div className="modal-qr-url">
         <WebSVG width="22" height="25" />
-        <span>URL Campagne</span>
+        <span>
+          {url +
+            "/campagne/" +
+            currentCampagne.campagneCheckbox[0] +
+            "/" +
+            mediaContext?.media.url}
+        </span>
       </div>
-      <FormFields />
+      <FormFields
+        initialValues={initialValues}
+        setState={pageContext?.setPages}
+        checkboxes={currentCampagne.campagneCheckbox}
+      />
     </>
   );
 };

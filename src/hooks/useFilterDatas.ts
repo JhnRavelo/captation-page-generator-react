@@ -16,7 +16,7 @@ const useFilterDatas = (datas?: Card[]) => {
           campagne.dateDebut?.split("-")[0] == formContext?.year
       );
 
-      if (datas[0]?.img && entrepriseContext.media) {
+      if (datas[0]?.media && entrepriseContext.media) {
         filterCampagnes = datas.filter(
           (campagne) =>
             campagne.entreprise == entrepriseContext?.entreprise.company &&

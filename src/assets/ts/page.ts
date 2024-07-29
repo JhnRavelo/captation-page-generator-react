@@ -30,6 +30,12 @@ export const pageFields: TypeAddFormFields = [
     header: "Couleur du fond du titre du campagne",
     placeholder: "Couleur du fond du titre du campagne",
   },
+  {
+    name: "campagnes",
+    placeholder: "Liste des campagnes",
+    type: "text",
+    header: "Liste des campagnes",
+  },
 ];
 
 export const avantages: TypePageCard[] = [

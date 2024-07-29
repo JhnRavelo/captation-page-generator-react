@@ -2,7 +2,6 @@ import { pageFields } from "../../../assets/ts/page";
 import AddButton from "../../../components/AddButton/AddButton";
 import Card from "../../../components/Card/Card";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
-import { TypeInitialValues } from "../../../context/AddFormProvider";
 import useForm from "../../../hooks/useForm";
 import "./pageCampagne.scss";
 
@@ -25,13 +24,6 @@ const pageCampagnes = [
   },
 ];
 
-const initialValues: TypeInitialValues = {
-  titleColor: "",
-  titleBackgroundColor: "",
-  sloganCampagne: "",
-  imgCampagne: null,
-};
-
 const PageCampagne = () => {
   const formContext = useForm();
 
@@ -40,8 +32,9 @@ const PageCampagne = () => {
     formContext?.setOpenForm(true);
     formContext?.setFormFields(pageFields);
     formContext?.setTitle("add");
+    formContext?.setUrl("/page");
   };
-  
+
   return (
     <MediaCompanyContainer>
       <div className="page-cards-container">
@@ -49,7 +42,12 @@ const PageCampagne = () => {
         <div className="cards-container Page">
           {pageCampagnes.length > 0 &&
             pageCampagnes.map((pageCampagne) => (
-              <Card slug="Page" card={pageCampagne} isClickable={false} />
+              <Card
+                slug="Page"
+                card={pageCampagne}
+                isClickable={false}
+                url="/page/delete"
+              />
             ))}
         </div>
       </div>

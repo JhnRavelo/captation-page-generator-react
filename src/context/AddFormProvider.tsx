@@ -13,7 +13,8 @@ export type TypeUrl =
   | ""
   | "/campagne/mail"
   | "/qr-code/delete"
-  | "/campagne/delete";
+  | "/campagne/delete"
+  | "/page/delete";
 
 export type StrNb = number | string;
 

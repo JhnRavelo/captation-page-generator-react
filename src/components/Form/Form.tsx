@@ -38,7 +38,7 @@ const FormFields = ({
     formData.append("entreprise", entrepriseContext?.entreprise.company);
     formData.append("media", entrepriseContext.media.media);
     formData.append("id", `${formContext?.idUpdate}`);
-    
+    console.log("VALUE", values)
     valuesEntries.forEach(([key, value]) => {
       if (value instanceof File) {
         formData.append(`${key}`, value);
@@ -102,8 +102,9 @@ const FormFields = ({
                   formContext?.url == "/campagne" &&
                   formContext.title == "update"
                     ? "campagne-input-update"
-                    : formContext?.url == "/campagne" &&
-                      formContext.title == "add"
+                    : (formContext?.url == "/campagne" &&
+                        formContext.title == "add") ||
+                      formContext?.url == "/page"
                     ? "campagne-input-add"
                     : ""
                 }
