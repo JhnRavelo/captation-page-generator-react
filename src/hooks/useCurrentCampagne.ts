@@ -24,7 +24,7 @@ const useCurrentCampagne = () => {
       })
       .filter((campagne) => campagne !== undefined)
       .filter(
-        (campagne) => campagne.entreprise === entrepriseContext?.entreprise
+        (campagne) => campagne.entreprise === entrepriseContext?.entreprise.company
       );
     setCurrentCampagnes(listCampagnes);
     const checkbox = listCampagnes.map((campagne) => campagne.id);
