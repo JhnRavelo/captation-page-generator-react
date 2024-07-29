@@ -3,6 +3,8 @@ import DownloadSVG from "../../../assets/svg/DownloadSVG";
 import WebSVG from "../../../assets/svg/WebSVG";
 import { Card } from "../../Card/Card";
 import "./cardContentQRCode.scss";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { toast } from "react-toastify";
 
 type QRCodePropsType = {
   qrcode: Card;
@@ -10,16 +12,38 @@ type QRCodePropsType = {
 
 const CardContentQRCode = ({ qrcode }: QRCodePropsType) => {
   const imgRef = useRef<HTMLImageElement>(null);
+  const axiosPrivate = useAxiosPrivate();
 
-  const handleDownload = () => {
-    const imageUrl = qrcode.img;
-    if (!imageUrl) return;
-    const link = document.createElement("a");
-    link.href = imageUrl;
-    link.download = "qr-code-" + qrcode.id + ".png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownload = async () => {
+    const img = qrcode.img;
+    if (!img) return;
+    try {
+      const res = await axiosPrivate.post(
+        "/qr-code/download/",
+        { img },
+        {
+          responseType: "blob",
+        }
+      );
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute(
+        "download",
+        "qr-code-" +
+          qrcode.id +
+          "-" +
+          qrcode.media +
+          "-" +
+          qrcode.entreprise +
+          ".png"
+      );
+      document.body.appendChild(link);
+      link.click();
+    } catch (error) {
+      toast.error("Erreur serveur");
+      console.log(error);
+    }
   };
 
   return (
