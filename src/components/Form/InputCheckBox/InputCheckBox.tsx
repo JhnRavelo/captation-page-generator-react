@@ -1,13 +1,16 @@
-import { ErrorMessage, Field } from "formik";
+import { Field } from "formik";
 import { useRef } from "react";
 import ChevronDownSVG from "../../../assets/svg/ChevronDownSVG";
 import "./inputCheckBox.scss";
+import ErrorForm from "../ErrorForm/ErrorForm";
 
 type InputCheckBoxPropsType = {
   type?: string[];
   title: string;
   name: string;
   arrays?: string[];
+  error: string;
+  errors: string | undefined;
 };
 
 const InputCHeckBox = ({
@@ -15,6 +18,8 @@ const InputCHeckBox = ({
   arrays,
   title,
   name,
+  error,
+  errors
 }: InputCheckBoxPropsType) => {
   const btnListRef = useRef<HTMLDivElement | null>(null);
   const typeRef = useRef<HTMLUListElement | null>(null);
@@ -59,7 +64,7 @@ const InputCHeckBox = ({
                 </label>
               ))}
           </ul>
-          <ErrorMessage name={name} component={"p"} className="error" />
+          <ErrorForm error={error} errors={errors} />
         </div>
       </div>
     </div>

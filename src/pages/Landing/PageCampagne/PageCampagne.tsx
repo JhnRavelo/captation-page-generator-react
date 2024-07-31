@@ -7,6 +7,7 @@ import useFilterDatas from "../../../hooks/useFilterDatas";
 import useForm from "../../../hooks/useForm";
 import usePage from "../../../hooks/usePage";
 import "./pageCampagne.scss";
+import { validatePage } from "../../../utils/validationSchema";
 
 const PageCampagne = () => {
   const formContext = useForm();
@@ -17,6 +18,7 @@ const PageCampagne = () => {
     formContext?.setSlug("Page");
     formContext?.setOpenForm(true);
     formContext?.setFormFields(pageFields);
+    formContext?.setValidate(validatePage);
     formContext?.setTitle("add");
     formContext?.setUrl("/page");
   };

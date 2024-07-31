@@ -121,6 +121,8 @@ const FormFields = ({
                             type={
                               values.campagnes ? values.campagnes : undefined
                             }
+                            error={error}
+                            errors={errors[form.name]}
                           />
                         </Fragment>
                       );
@@ -129,14 +131,19 @@ const FormFields = ({
                       form.name == "imgCampagne"
                     ) {
                       return (
-                        <Fragment key={index}>
+                        <div
+                          className={
+                            form.name == "imgCampagne" ? "input-container" : ""
+                          }
+                          key={index}
+                        >
                           <InputFile
                             name={form.name}
                             setFieldValue={setFieldValue}
                             value={values[form.name]?.name}
                           />
                           <ErrorForm error={error} errors={errors[form.name]} />
-                        </Fragment>
+                        </div>
                       );
                     } else if (form.name == "mailText") {
                       return (

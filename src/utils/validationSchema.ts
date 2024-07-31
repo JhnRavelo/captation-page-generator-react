@@ -120,5 +120,24 @@ export const validateQRCode = Yup.object({
   campagnes: Yup.array()
     .of(Yup.string())
     .min(1, "Sélectionnez une campagne")
-    .max(1, "Sélectionnez seulement un campagne"),
+    .max(1, "Sélectionnez seulement une campagne"),
+});
+
+export const validatePage = Yup.object({
+  campagnes: Yup.array()
+    .of(Yup.string())
+    .min(1, "Vous devez sélectionnez une campagne")
+    .max(1, "Vous devez choisir seulement une campagne"),
+  titleColor: Yup.string().required(
+    "Vous devez choisir une couleur pour le titre"
+  ),
+  sloganCampagne: Yup.string().required(
+    "Vous devez mettre le slogan du campagne"
+  ),
+  titleBackgroundColor: Yup.string().required(
+    "Vous devez choisir une couleur pour le fond"
+  ),
+  imgCampagne: Yup.mixed().required(
+    "Vous devez choisir l'image de la campagne"
+  ),
 });

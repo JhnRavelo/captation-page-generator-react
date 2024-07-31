@@ -1,4 +1,4 @@
-import { ErrorMessage, FormikErrors } from "formik";
+import { FormikErrors } from "formik";
 import imgGallery from "../../../assets/png/gallery.png";
 import { TypeInitialValues } from "../../../context/AddFormProvider";
 import "./inputFile.scss";
@@ -42,7 +42,6 @@ const InputFile = ({ name, setFieldValue, value }: InputFileProps) => {
             : "Choisissez votre image pour la campagne."}
         </span>
       </label>
-      <ErrorMessage component={"p"} className="error" name={name} />
     </>
   );
 };
