@@ -17,7 +17,7 @@ const AppRouter = () => {
           <Route path="/edit-profile" element={<EditProfile />} />
         </Route>
       </Route>
-      <Route path="/campagne/:idCampagne/*" element={<PagePreview />} />
+      <Route path="/campagne/:idCampagne/:media" element={<PagePreview />} />
       <Route path="/thank-you" element={<Thanks />} />
     </Routes>
   );

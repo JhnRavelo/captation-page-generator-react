@@ -2,7 +2,6 @@ import OrdinateurSVG from "../../../assets/svg/OrdinateurSVG";
 import WebSVG from "../../../assets/svg/WebSVG";
 import { Card } from "../Card";
 import "./cardContentPage.scss";
-// import logo from "../../../assets/png/Logo_aluhd.png";
 import imgDur from "../../../assets/png/durabilite.png";
 import imgTher from "../../../assets/png/thermique.png";
 import imgEco from "../../../assets/png/recycler.png";

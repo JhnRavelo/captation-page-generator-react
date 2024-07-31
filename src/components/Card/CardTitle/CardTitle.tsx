@@ -8,6 +8,7 @@ import EditSVG from "../../../assets/svg/EditSVG";
 import ViewSVG from "../../../assets/svg/ViewSVG";
 import { useNavigate } from "react-router-dom";
 import useColorCampagne from "../../../hooks/useColorCampagne";
+import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
 
 type CardTitlePropsType = {
   card: Card;
@@ -20,6 +21,7 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
   const scanRef = useRef<HTMLSpanElement>(null);
   const navigate = useNavigate();
   const color = useColorCampagne(card.id);
+  const entrepriseContext = useMediaEntreprise();
 
   const handleDelete = () => {
     formContext?.setTitle("delete");
@@ -53,7 +55,9 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
               height="30"
               className="icon view"
               onClick={() => {
-                navigate("/campagne/25/rs");
+                navigate(
+                  "/campagne/" + card.id + "/" + entrepriseContext?.media.url
+                );
               }}
             />
           </>

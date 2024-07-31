@@ -1,3 +1,4 @@
+import { Fragment } from "react/jsx-runtime";
 import { pageFields } from "../../../assets/ts/page";
 import AddButton from "../../../components/AddButton/AddButton";
 import Card from "../../../components/Card/Card";
@@ -27,13 +28,15 @@ const PageCampagne = () => {
         <div className="cards-container Page">
           {pages &&
             pages.length > 0 &&
-            pages.map((pageCampagne) => (
-              <Card
-                slug="Page"
-                card={pageCampagne}
-                isClickable={false}
-                url="/page/delete"
-              />
+            pages.map((pageCampagne, index) => (
+              <Fragment key={index}>
+                <Card
+                  slug="Page"
+                  card={pageCampagne}
+                  isClickable={false}
+                  url="/page/delete"
+                />
+              </Fragment>
             ))}
         </div>
       </div>
