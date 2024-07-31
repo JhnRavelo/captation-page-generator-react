@@ -13,7 +13,7 @@ type InputCheckBoxPropsType = {
   errors: string | undefined;
 };
 
-const InputCHeckBox = ({
+const InputCheckBox = ({
   type,
   arrays,
   title,
@@ -71,4 +71,4 @@ const InputCHeckBox = ({
   );
 };
 
-export default InputCHeckBox;
+export default InputCheckBox;

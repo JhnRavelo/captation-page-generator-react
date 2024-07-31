@@ -7,17 +7,24 @@ import FormFields from "../../Form/Form";
 
 const url = import.meta.env.VITE_FRONT_PATH;
 
-const initialValues: TypeInitialValues = {
-  titleColor: "",
-  titleBackgroundColor: "",
-  sloganCampagne: "",
-  imgCampagne: null,
-};
-
 const ModalPage = () => {
   const pageContext = usePage();
   const currentCampagne = useCurrentCampagne();
   const mediaContext = useMediaEntreprise();
+
+  const initialValues: TypeInitialValues = {
+    titleColor: pageContext?.page?.titleColor
+      ? pageContext.page.titleColor
+      : "",
+    titleBackgroundColor: pageContext?.page?.titleBackgroundColor
+      ? pageContext.page.titleBackgroundColor
+      : "",
+    sloganCampagne: pageContext?.page?.sloganCampagne
+      ? pageContext.page.sloganCampagne
+      : "",
+    imgCampagne: null,
+    campagnes: pageContext?.page?.id ? [pageContext.page.id] : [""],
+  };
 
   return (
     <>

@@ -141,3 +141,19 @@ export const validatePage = Yup.object({
     "Vous devez choisir l'image de la campagne"
   ),
 });
+
+export const validateUpdatePage = Yup.object({
+  campagnes: Yup.array()
+    .of(Yup.string())
+    .min(1, "Vous devez sélectionnez une campagne")
+    .max(1, "Vous devez choisir seulement une campagne"),
+  titleColor: Yup.string().required(
+    "Vous devez choisir une couleur pour le titre"
+  ),
+  sloganCampagne: Yup.string().required(
+    "Vous devez mettre le slogan du campagne"
+  ),
+  titleBackgroundColor: Yup.string().required(
+    "Vous devez choisir une couleur pour le fond"
+  ),
+});

@@ -9,6 +9,9 @@ import ViewSVG from "../../../assets/svg/ViewSVG";
 import { useNavigate } from "react-router-dom";
 import useColorCampagne from "../../../hooks/useColorCampagne";
 import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
+import usePage from "../../../hooks/usePage";
+import { pageFields } from "../../../assets/ts/page";
+import { validateUpdatePage } from "../../../utils/validationSchema";
 
 type CardTitlePropsType = {
   card: Card;
@@ -22,6 +25,7 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
   const navigate = useNavigate();
   const color = useColorCampagne(card.id);
   const entrepriseContext = useMediaEntreprise();
+  const pageContext = usePage();
 
   const handleDelete = () => {
     formContext?.setTitle("delete");
@@ -30,6 +34,17 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
     formContext?.setId(card.id);
     formContext?.setSlug(slug);
     formContext?.setUrl(url);
+  };
+
+  const handleEdit = () => {
+    pageContext?.setPage(card);
+    formContext?.setSlug("Page");
+    formContext?.setOpenForm(true);
+    formContext?.setIdUpdate(card.idData ? card.idData : "");
+    formContext?.setFormFields(pageFields);
+    formContext?.setValidate(validateUpdatePage);
+    formContext?.setTitle("update");
+    formContext?.setUrl("/page");
   };
 
   return (
@@ -49,7 +64,12 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
               <ScanSVG width="27" height="27" />
               <span ref={scanRef}>{card.scanNbr}</span>
             </div>
-            <EditSVG width="30" height="30" className="icon edit" />
+            <EditSVG
+              width="30"
+              height="30"
+              className="icon edit"
+              onClick={() => handleEdit()}
+            />
             <ViewSVG
               width="30"
               height="30"
