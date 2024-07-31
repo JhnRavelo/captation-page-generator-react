@@ -33,6 +33,10 @@ export type Card = {
   campagnes?: string[];
   media?: TypeMedia;
   idData?: string;
+  titleColor?: string;
+  titleBackgroundColor?: string;
+  sloganCampagne?: string;
+  imgCampagne?: string;
 };
 
 const Card = ({ card, slug, isClickable, url }: CampagnePropsType) => {

@@ -2,30 +2,15 @@ import { pageFields } from "../../../assets/ts/page";
 import AddButton from "../../../components/AddButton/AddButton";
 import Card from "../../../components/Card/Card";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
+import useFilterDatas from "../../../hooks/useFilterDatas";
 import useForm from "../../../hooks/useForm";
+import usePage from "../../../hooks/usePage";
 import "./pageCampagne.scss";
-
-const pageCampagnes = [
-  {
-    id: "ID campagne",
-    title: "titre campagne",
-    img: "../../../../public/img/paroi_pvb_blanc.jpg",
-    scanNbr: 23,
-    url: "URL page",
-    description: "Slogan de la campagne",
-  },
-  {
-    id: "ID campagne",
-    title: "titre campagne",
-    img: "../../../../public/img/paroi_pvb_blanc.jpg",
-    scanNbr: 23,
-    url: "URL page",
-    description: "Slogan de la campagne",
-  },
-];
 
 const PageCampagne = () => {
   const formContext = useForm();
+  const pageContext = usePage();
+  const pages = useFilterDatas(pageContext?.pages);
 
   const handleCLick = () => {
     formContext?.setSlug("Page");
@@ -40,8 +25,9 @@ const PageCampagne = () => {
       <div className="page-cards-container">
         <AddButton handleClick={handleCLick} />
         <div className="cards-container Page">
-          {pageCampagnes.length > 0 &&
-            pageCampagnes.map((pageCampagne) => (
+          {pages &&
+            pages.length > 0 &&
+            pages.map((pageCampagne) => (
               <Card
                 slug="Page"
                 card={pageCampagne}
