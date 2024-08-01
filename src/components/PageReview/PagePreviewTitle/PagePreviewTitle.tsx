@@ -49,12 +49,15 @@ const PagePreviewTitle = () => {
   const handleSubmit = async () => {
     const id = localStorage.getItem("idStatCampagne");
 
-    await axiosDefault.post("/stat/add-email", {
+    const res = await axiosDefault.post("/stat/add-email", {
       idCampagne,
       media,
       id,
       email,
     });
+    if (res.data.success) {
+      localStorage.removeItem("idStatCampagne");
+    }
     navigate("/thank-you");
   };
 
