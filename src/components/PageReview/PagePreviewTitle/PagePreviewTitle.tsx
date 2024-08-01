@@ -1,24 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import "./pagePreviewTitle.scss";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFilterCampagne from "../../../hooks/useFilterCampagne";
 import { Card } from "../../Card/Card";
-import { toast } from "react-toastify";
 import { companies, TypeCompaniesObject } from "../../../assets/ts/company";
 import { axiosDefault } from "../../../api/axios";
 
 const PagePreviewTitle = () => {
   const [page, setPage] = useState<Card>();
+  const [email, setEmail] = useState("");
   const [company, setCompany] = useState<TypeCompaniesObject>();
   const { idCampagne, media } = useParams();
   const filter = useFilterCampagne();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       try {
         if (idCampagne && media) {
           const pages = await axiosDefault.get("/page");
+
           if (pages.data.success) {
             const filterPage = filter(pages.data.datas, idCampagne);
             if (filterPage) {
@@ -28,8 +30,14 @@ const PagePreviewTitle = () => {
               setPage(filterPage);
               setCompany(filterCompany);
             }
-          } else {
-            toast.error(pages.data.message);
+          }
+          const id = localStorage.getItem("idStatCampagne");
+
+          if (id) return;
+          const stat = await axiosDefault.post("/stat", { idCampagne, media });
+
+          if (stat.data.success) {
+            localStorage.setItem("idStatCampagne", stat.data.statId);
           }
         }
       } catch (error) {
@@ -37,6 +45,18 @@ const PagePreviewTitle = () => {
       }
     })();
   }, [idCampagne, media]);
+
+  const handleSubmit = async () => {
+    const id = localStorage.getItem("idStatCampagne");
+
+    await axiosDefault.post("/stat/add-email", {
+      idCampagne,
+      media,
+      id,
+      email,
+    });
+    navigate("/thank-you");
+  };
 
   return (
     <div
@@ -57,8 +77,13 @@ const PagePreviewTitle = () => {
             <span>{page?.sloganCampagne}</span>
           </div>
           <div className="input-email">
-            <input type="text" placeholder="Veuillez mettre votre email!" />
-            <button>Envoyer</button>
+            <input
+              type="text"
+              placeholder="Veuillez mettre votre email!"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <button onClick={() => handleSubmit()}>Envoyer</button>
           </div>
         </div>
         <img src={page?.imgCampagne} alt="image de campagne" />

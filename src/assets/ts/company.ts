@@ -7,7 +7,7 @@ import LogoSmart from "../logo/logo_smart.png";
 import LogoAlu from "../logo/logo_alu.jpg";
 import LogoVertec from "../logo/logo_vertec.jpg";
 
-export type TypeCompany = "Europ'Alu" | "Smart" | "Vertec" | "Alu";
+export type TypeCompany = "Europ'Alu" | "Europ'Alu Smart" | "Vertec" | "Alu";
 export type TypeCompaniesObject = {
   company: TypeCompany;
   img: string;
@@ -33,7 +33,7 @@ export const companies: TypeCompaniesArray = [
     logo: LogoVertec,
   },
   {
-    company: "Smart",
+    company: "Europ'Alu Smart",
     img: ImgSmart,
     logo: LogoSmart,
   },
