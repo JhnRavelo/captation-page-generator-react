@@ -1,7 +1,7 @@
 import { TypeChartData } from "../components/ChartBox/ChartBox";
 import { Card } from "../components/Card/Card";
 
-function useGetChart() {
+const useGetChart = () => {
   return (data: TypeChartData, stats: Card[]) => {
     const newState = data.map((prev) => {
       const matchingNb = stats.find((nb) => nb.month == prev.number.toString());

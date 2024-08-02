@@ -16,7 +16,7 @@ const Dashboard = () => {
           dataKey="users"
           chartData={nbrSTat.nbrScanPerMonths}
           title="QR Code scannés"
-          percentage={14}
+          percentage={nbrSTat.scanPercentagePerMonth}
         />
       </div>
       <div className="info">
@@ -26,7 +26,7 @@ const Dashboard = () => {
           dataKey="users"
           chartData={nbrSTat.nbrMailPerMonths}
           title="Emails envoyés"
-          percentage={-56}
+          percentage={nbrSTat.mailPercentagePerMonth}
         />
       </div>
     </MediaCompanyContainer>

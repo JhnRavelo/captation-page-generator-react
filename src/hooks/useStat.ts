@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import StatContext from "../context/StatProvider";
 
-function useStat() {
+const useStat = () => {
   return useContext(StatContext);
 }
 

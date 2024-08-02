@@ -6,11 +6,13 @@ import { Card } from "../components/Card/Card";
 import useMediaEntreprise from "./useMediaEntreprise";
 import useGetChart from "./useGetChart";
 import { dataHome } from "../assets/ts/data";
+import usePercentagePerMonth from "./usePercentagePerMonth";
 
-function useFilterStatsNbr(id: string | undefined) {
+const useFilterStatsNbr = (id: string | undefined) => {
   const statContext = useStat();
   const mediaContext = useMediaEntreprise();
   const getChart = useGetChart();
+  const getPercentagePerMonth = usePercentagePerMonth();
   const nbrScans = useFilterDatas(statContext?.nbrScans);
   const nbrMails = useFilterDatas(statContext?.nbrMails);
   const nbrScanMonths = useFilterDatas(statContext?.nbrChartScans);
@@ -35,6 +37,8 @@ function useFilterStatsNbr(id: string | undefined) {
     useState(dataHome);
   const [nbrScanMonthPerCampagnes, setNbrScanMonthPerCampagnes] =
     useState(dataHome);
+  const [mailPercentagePerMonth, setMailPercentagePerMonth] = useState(0);
+  const [scanPercentagePerMonth, setScanPercentagePerMonth] = useState(0);
 
   useEffect(() => {
     if (id && mediaContext?.media) {
@@ -52,12 +56,16 @@ function useFilterStatsNbr(id: string | undefined) {
         setNbrStatScanPerCampagnes(nbrStatScanPerCampagnes);
       }
 
-      if (statContext?.nbrChartMails && nbrMailMonthPerCampagnes) {
+      if (statContext?.nbrChartMails && nbrMailChartPerCampagnes) {
         const nbrMailMonthPerCampagnes = getChart(
           dataHome,
           nbrMailChartPerCampagnes
         );
         setNbrMailMonthPerCampagnes(nbrMailMonthPerCampagnes);
+        const mailPercentagePerMonth = getPercentagePerMonth(
+          nbrMailChartPerCampagnes
+        );
+        setMailPercentagePerMonth(mailPercentagePerMonth);
       }
 
       if (statContext?.nbrChartScans && nbrScanChartPerCampagnes) {
@@ -66,17 +74,25 @@ function useFilterStatsNbr(id: string | undefined) {
           nbrScanChartPerCampagnes
         );
         setNbrScanMonthPerCampagnes(nbrScanMonthPerCampagnes);
+        const scanPercentagePerMonth = getPercentagePerMonth(
+          nbrScanChartPerCampagnes
+        );
+        setScanPercentagePerMonth(scanPercentagePerMonth);
       }
     }
 
     if (nbrMailMonths) {
       const nbrMailMonth = getChart(dataHome, nbrMailMonths);
       setNbrMailPerMonths(nbrMailMonth);
+      const mailPercentagePerMonth = getPercentagePerMonth(nbrMailMonths);
+      setMailPercentagePerMonth(mailPercentagePerMonth);
     }
 
     if (nbrScanMonths) {
       const nbrScanMonth = getChart(dataHome, nbrScanMonths);
       setNbrScanPerMonths(nbrScanMonth);
+      const scanPercentagePerMonth = getPercentagePerMonth(nbrScanMonths);
+      setScanPercentagePerMonth(scanPercentagePerMonth);
     }
   }, [
     statContext?.nbrMails,
@@ -98,6 +114,8 @@ function useFilterStatsNbr(id: string | undefined) {
     nbrScanPerMonths,
     nbrMailMonthPerCampagnes,
     nbrScanMonthPerCampagnes,
+    mailPercentagePerMonth,
+    scanPercentagePerMonth,
   };
 }
 

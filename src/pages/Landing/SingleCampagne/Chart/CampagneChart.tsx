@@ -20,7 +20,7 @@ const CampagneChart = () => {
             dataKey="users"
             chartData={nbrStat.nbrScanMonthPerCampagnes}
             title="QR Code scannés"
-            percentage={14}
+            percentage={nbrStat.scanPercentagePerMonth}
           />
         </div>
         <div className="info">
@@ -34,7 +34,7 @@ const CampagneChart = () => {
             dataKey="users"
             chartData={nbrStat.nbrMailMonthPerCampagnes}
             title="Emails envoyés"
-            percentage={-56}
+            percentage={nbrStat.mailPercentagePerMonth}
           />
         </div>
       </div>
