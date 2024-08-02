@@ -6,13 +6,12 @@ const useAnimationNbr = (
 ) => {
   useEffect(() => {
     if (totalRef.current) {
-      const interval = 4000;
+      const interval = Math.abs(nbrTotal) < 10 ? 1000 : Math.abs(nbrTotal) < 20 ? 2000 : 3000;
       let startValue = 0;
-      let endValue: number;
-      if (nbrTotal < 0) {
-        endValue = Math.abs(nbrTotal);
-      } else {
-        endValue = nbrTotal;
+      totalRef.current.textContent = String(startValue);
+      const endValue: number = Math.abs(nbrTotal);
+      if (startValue == nbrTotal) {
+        return;
       }
       const duration = Math.floor(interval / endValue);
       const counter = setInterval(function () {

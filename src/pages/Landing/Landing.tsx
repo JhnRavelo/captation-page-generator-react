@@ -12,6 +12,7 @@ import useEntreprise from "../../hooks/useEntreprise";
 import useQRCode from "../../hooks/useQRCode";
 import usePage from "../../hooks/usePage";
 import { axiosDefault } from "../../api/axios";
+import useStat from "../../hooks/useStat";
 
 const Landing = () => {
   const formContext = useForm();
@@ -20,6 +21,7 @@ const Landing = () => {
   const axiosPrivate = useAxiosPrivate();
   const qrCodeContext = useQRCode();
   const pageContext = usePage();
+  const statContext = useStat();
 
   useEffect(() => {
     (async () => {
@@ -55,6 +57,15 @@ const Landing = () => {
           pageContext?.setPages(fetchPages.data.datas);
         } else {
           toast.error(fetchPages.data.message);
+        }
+
+        const fetchStats = await axiosPrivate.get("/stat");
+
+        if (fetchStats.data.success) {
+          statContext?.setNbrMails(fetchStats.data.nbrMailPerYearStats);
+          statContext?.setNbrScans(fetchStats.data.nbrScanPerYearStats);
+        } else {
+          toast.error(fetchStats.data.message);
         }
       } catch (error) {
         toast.error("Erreur serveur");

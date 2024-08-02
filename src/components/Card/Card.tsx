@@ -37,6 +37,8 @@ export type Card = {
   titleBackgroundColor?: string;
   sloganCampagne?: string;
   imgCampagne?: string;
+  count?: number;
+  year?: string;
 };
 
 const Card = ({ card, slug, isClickable, url }: CampagnePropsType) => {

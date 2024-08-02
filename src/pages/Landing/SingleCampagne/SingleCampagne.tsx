@@ -5,10 +5,12 @@ import CampagneHeader from "../../../components/CampagneHeader/CampagneHeader";
 import Options, { TypeOptions } from "../../../components/Options/Options";
 import { useLocation, useParams } from "react-router-dom";
 import CampagneRouter from "../../../routers/CampagneRouter";
+import useFilterStatsNbr from "../../../hooks/useFilterStatsNbr";
 
 const SingleCampagne = () => {
   const { pathname } = useLocation();
   const { id } = useParams();
+  const nbrStat = useFilterStatsNbr(id);
 
   const options: TypeOptions = [
     {
@@ -29,7 +31,19 @@ const SingleCampagne = () => {
     <>
       <MediaOptions />
       <div className="single-campagne-container">
-        <CampagneHeader scanNbr={41} mailNbr={23} idCampagne={id ? id : ""} />
+        <CampagneHeader
+          scanNbr={
+            nbrStat.nbrStatScanPerCampagnes[0]?.count
+              ? nbrStat.nbrStatScanPerCampagnes[0].count
+              : 0
+          }
+          mailNbr={
+            nbrStat.nbrStatMailPerCampagnes[0]?.count
+              ? nbrStat.nbrStatMailPerCampagnes[0].count
+              : 0
+          }
+          idCampagne={id ? id : ""}
+        />
         <Options options={options} />
         <div className="single-campagne-page-container">
           <CampagneRouter />
