@@ -64,6 +64,8 @@ const Landing = () => {
         if (fetchStats.data.success) {
           statContext?.setNbrMails(fetchStats.data.nbrMailPerYearStats);
           statContext?.setNbrScans(fetchStats.data.nbrScanPerYearStats);
+          statContext?.setNbrChartMails(fetchStats.data.nbrMailPerMonthStats);
+          statContext?.setNbrChartScans(fetchStats.data.nbrScanPerMonthStats);
         } else {
           toast.error(fetchStats.data.message);
         }

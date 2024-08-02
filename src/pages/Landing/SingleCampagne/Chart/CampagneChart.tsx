@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { dataHome } from "../../../../assets/ts/data";
 import ChartBox from "../../../../components/ChartBox/ChartBox";
 import "./campagneChart.scss";
 import useFilterStatsNbr from "../../../../hooks/useFilterStatsNbr";
@@ -19,7 +18,7 @@ const CampagneChart = () => {
             }
             color="#FC7845"
             dataKey="users"
-            chartData={dataHome}
+            chartData={nbrStat.nbrScanMonthPerCampagnes}
             title="QR Code scannés"
             percentage={14}
           />
@@ -33,7 +32,7 @@ const CampagneChart = () => {
             }
             color="#3978CD"
             dataKey="users"
-            chartData={dataHome}
+            chartData={nbrStat.nbrMailMonthPerCampagnes}
             title="Emails envoyés"
             percentage={-56}
           />

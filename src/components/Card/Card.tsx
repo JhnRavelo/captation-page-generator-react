@@ -39,6 +39,7 @@ export type Card = {
   imgCampagne?: string;
   count?: number;
   year?: string;
+  month?: string;
 };
 
 const Card = ({ card, slug, isClickable, url }: CampagnePropsType) => {

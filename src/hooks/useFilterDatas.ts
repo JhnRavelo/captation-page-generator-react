@@ -3,7 +3,7 @@ import { Card } from "../components/Card/Card";
 import useMediaEntreprise from "./useMediaEntreprise";
 import useForm from "./useForm";
 
-const useFilterDatas = (datas?: Card[]) => {
+const useFilterDatas = (datas?: Card[], id?: string) => {
   const [filterDatas, setFilterDatas] = useState<Card[]>([]);
   const entrepriseContext = useMediaEntreprise();
   const formContext = useForm();
@@ -16,12 +16,19 @@ const useFilterDatas = (datas?: Card[]) => {
           campagne.dateDebut?.split("-")[0] == formContext?.year
       );
 
-      if (datas[0]?.media && entrepriseContext.media) {
+      if (datas[0]?.media && entrepriseContext?.media) {
         filterCampagnes = datas.filter(
           (campagne) =>
             campagne.entreprise == entrepriseContext?.entreprise.company &&
             campagne.dateDebut?.split("-")[0] == formContext?.year &&
             campagne.media == entrepriseContext.media.media
+        );
+      }
+
+      if (id && entrepriseContext?.media) {
+        filterCampagnes = datas.filter(
+          (campagne) =>
+            campagne.id == id && campagne.media == entrepriseContext.media.media
         );
       }
 
@@ -34,6 +41,7 @@ const useFilterDatas = (datas?: Card[]) => {
     datas,
     formContext?.year,
     entrepriseContext?.media,
+    id,
   ]);
 
   return filterDatas;
