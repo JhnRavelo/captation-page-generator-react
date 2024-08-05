@@ -11,8 +11,8 @@ const CampagneUser = () => {
   return (
     <div className="cards-container campagne-user">
       {userMails && userMails?.length > 0
-        ? userMails.map((user) => (
-            <div className="cards-content campagne-user">
+        ? userMails.map((user, index) => (
+            <div className="cards-content campagne-user" key={index}>
               <UserSVG height="20" width="20" />
               <span>{user.mail}</span>
             </div>

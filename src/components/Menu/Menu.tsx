@@ -43,7 +43,7 @@ const Menu = () => {
             <PageSVG height="24" width="30" />
             <span>Page de captation</span>
           </Link>
-          <Link to="/" onClick={(e) => active(e, menuRef)}>
+          <Link to="/marketing/log" onClick={(e) => active(e, menuRef)}>
             <NoteBookSVG width="30" height="23" />
             <span>Journals des événements</span>
           </Link>

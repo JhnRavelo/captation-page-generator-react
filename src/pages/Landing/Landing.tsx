@@ -79,6 +79,15 @@ const Landing = () => {
         } else {
           toast.error(fetchMailUsers.data.message);
         }
+
+        const fetchLogs = await axiosPrivate.get("/log");
+
+        if (fetchLogs.data.success) {
+          console.log(fetchLogs.data.datas)
+          logContext?.setLogs(fetchLogs.data.datas);
+        } else {
+          toast.error(fetchLogs.data.message);
+        }
       } catch (error) {
         toast.error("Erreur serveur");
         console.log(error);
