@@ -83,8 +83,9 @@ const Landing = () => {
         const fetchLogs = await axiosPrivate.get("/log");
 
         if (fetchLogs.data.success) {
-          console.log(fetchLogs.data.datas)
           logContext?.setLogs(fetchLogs.data.datas);
+          logContext?.setNotifs(fetchLogs.data.notifs);
+          console.log(fetchLogs.data.notifs)
         } else {
           toast.error(fetchLogs.data.message);
         }

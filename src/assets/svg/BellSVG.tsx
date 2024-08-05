@@ -1,12 +1,13 @@
 import { SVGPropsType } from "./DashboardSVG";
 
-const BellSVG = ({ width, height }: SVGPropsType) => {
+const BellSVG = ({ width, height, className }: SVGPropsType) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}
       viewBox="0 0 36 36"
+      className={className}
     >
       <path
         fill="currentColor"

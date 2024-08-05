@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Subscribe from "../../../components/Log/Subscribe";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
 import useFilterDatas from "../../../hooks/useFilterDatas";
@@ -12,7 +13,11 @@ const Log = () => {
     <MediaCompanyContainer>
       <div className="cards-container campagne-log">
         {logs && logs.length > 0
-          ? logs.map((log) => <Subscribe card={log} />)
+          ? logs.map((log, index) => (
+              <Fragment key={index}>
+                <Subscribe card={log} />
+              </Fragment>
+            ))
           : null}
       </div>
     </MediaCompanyContainer>

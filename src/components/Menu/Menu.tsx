@@ -10,13 +10,22 @@ import imgAvatar from "../../assets/png/reglages.png";
 import NoteBookSVG from "../../assets/svg/NoteBookSVG";
 import MarketingSVG from "../../assets/svg/MarketingSVG";
 import useActive from "../../hooks/useActive";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import useLog from "../../hooks/useLog";
 
 const Menu = () => {
   const active = useActive();
   const menuRef = useRef<HTMLDivElement>(null);
   const authContext = useAuth();
+  const logContext = useLog();
+  const [length, setLength] = useState(0);
+
+  useEffect(() => {
+    if (logContext?.notifs.length) {
+      setLength(logContext.notifs.length);
+    }
+  }, [logContext?.notifs.length]);
 
   return (
     <menu className="menu-content content">
@@ -47,9 +56,18 @@ const Menu = () => {
             <NoteBookSVG width="30" height="23" />
             <span>Journals des événements</span>
           </Link>
-          <Link to="/" onClick={(e) => active(e, menuRef)}>
-            <BellSVG height="24" width="30" />
+          <Link to="/marketing/notif" onClick={(e) => active(e, menuRef)}>
+            <BellSVG
+              height="24"
+              width="30"
+              className={length && length > 0 ? "shake" : ""}
+            />
             <span>Notifications</span>
+            {length && length > 0 ? (
+              <div className="notif">
+                <span className="span-notif">{length}</span>
+              </div>
+            ) : null}
           </Link>
         </div>
         <InfoAccount

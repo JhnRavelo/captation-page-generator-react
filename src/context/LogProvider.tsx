@@ -7,6 +7,8 @@ type TypeLogProvider = {
   setUserMails: React.Dispatch<React.SetStateAction<Card[]>>;
   logs: Card[];
   setLogs: React.Dispatch<React.SetStateAction<Card[]>>;
+  notifs: Card[];
+  setNotifs: React.Dispatch<React.SetStateAction<Card[]>>;
 } | null;
 
 const LogContext = createContext<TypeLogProvider>(null);
@@ -14,8 +16,11 @@ const LogContext = createContext<TypeLogProvider>(null);
 const LogProvider = ({ children }: ContextPropsType) => {
   const [userMails, setUserMails] = useState<Card[]>([]);
   const [logs, setLogs] = useState<Card[]>([]);
+  const [notifs, setNotifs] = useState<Card[]>([]);
   return (
-    <LogContext.Provider value={{ userMails, setUserMails, logs, setLogs }}>
+    <LogContext.Provider
+      value={{ userMails, setUserMails, logs, setLogs, notifs, setNotifs }}
+    >
       {children}
     </LogContext.Provider>
   );
