@@ -6,31 +6,24 @@ type SubscribePropsType = {
 
 const Subscribe = ({ card }: SubscribePropsType) => {
   return (
-    <>
+    <div className="cards-content campagne-log">
       {card.mail ? (
-        <div className="cards-content campagne-log">
-          <span>
-            <span className="span-bold span-orange">{card.mail}</span> s'est
-            inscrit sur le campagne {card.entreprise}{" "}
-            <span className="span-bold span-white">{card.id}</span>.
-          </span>
-          <span className="span-bold span-white">
-            {card.dateDebut?.slice(0, 10) + " " + card.dateDebut?.slice(11, 16)}
-          </span>
-        </div>
+        <span>
+          <span className="span-bold span-orange">{card.mail}</span> s'est
+          inscrit sur le campagne {card.entreprise}{" "}
+          <span className="span-bold span-white">{card.id}</span>.
+        </span>
       ) : (
-        <div className="cards-content campagne-log">
-          <span>
-            Création de la campagne{" "}
-            <span className="span-bold span-orange">{card.title}</span> pour
-            l'entreprise {card.entreprise}.
-          </span>
-          <span className="span-bold span-white">
-            {card.dateDebut?.slice(0, 10) + " " + card.dateDebut?.slice(11, 16)}
-          </span>
-        </div>
+        <span>
+          Création de la campagne{" "}
+          <span className="span-bold span-orange">{card.title}</span> pour
+          l'entreprise {card.entreprise}.
+        </span>
       )}
-    </>
+      <span className="span-bold span-white">
+        {card.dateDebut?.slice(0, 10) + " " + card.dateDebut?.slice(11, 16)}
+      </span>
+    </div>
   );
 };
 
