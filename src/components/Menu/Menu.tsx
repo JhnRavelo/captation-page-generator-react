@@ -13,6 +13,8 @@ import useActive from "../../hooks/useActive";
 import { useEffect, useRef, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useLog from "../../hooks/useLog";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { toast } from "react-toastify";
 
 const Menu = () => {
   const active = useActive();
@@ -20,6 +22,19 @@ const Menu = () => {
   const authContext = useAuth();
   const logContext = useLog();
   const [length, setLength] = useState(0);
+  const axiosPrivate = useAxiosPrivate();
+
+  const handleNotification = async (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    active(e, menuRef);
+    setLength(0);
+    const res = await axiosPrivate.get("/log/unread");
+
+    if (!res.data.success) {
+      toast.error(res.data.message);
+    }
+  };
 
   useEffect(() => {
     if (logContext?.notifs.length) {
@@ -56,7 +71,7 @@ const Menu = () => {
             <NoteBookSVG width="30" height="23" />
             <span>Journals des événements</span>
           </Link>
-          <Link to="/marketing/notif" onClick={(e) => active(e, menuRef)}>
+          <Link to="/marketing/notif" onClick={(e) => handleNotification(e)}>
             <BellSVG
               height="24"
               width="30"

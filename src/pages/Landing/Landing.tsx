@@ -85,7 +85,6 @@ const Landing = () => {
         if (fetchLogs.data.success) {
           logContext?.setLogs(fetchLogs.data.datas);
           logContext?.setNotifs(fetchLogs.data.notifs);
-          console.log(fetchLogs.data.notifs)
         } else {
           toast.error(fetchLogs.data.message);
         }
