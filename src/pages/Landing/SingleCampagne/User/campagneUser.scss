@@ -1,0 +1,11 @@
+.cards-container.campagne-user {
+    gap: 15px;
+    padding-top: 15px;
+    .cards-content.campagne-user {
+        display: flex;
+        gap: 10px;
+        height: 40px;
+        width: auto;
+        align-items: center;
+    }
+}

@@ -13,6 +13,7 @@ import useQRCode from "../../hooks/useQRCode";
 import usePage from "../../hooks/usePage";
 import { axiosDefault } from "../../api/axios";
 import useStat from "../../hooks/useStat";
+import useLog from "../../hooks/useLog";
 
 const Landing = () => {
   const formContext = useForm();
@@ -22,6 +23,7 @@ const Landing = () => {
   const qrCodeContext = useQRCode();
   const pageContext = usePage();
   const statContext = useStat();
+  const logContext = useLog();
 
   useEffect(() => {
     (async () => {
@@ -68,6 +70,14 @@ const Landing = () => {
           statContext?.setNbrChartScans(fetchStats.data.nbrScanPerMonthStats);
         } else {
           toast.error(fetchStats.data.message);
+        }
+
+        const fetchMailUsers = await axiosPrivate.get("/log/user");
+
+        if (fetchMailUsers.data.success) {
+          logContext?.setUserMails(fetchMailUsers.data.users);
+        } else {
+          toast.error(fetchMailUsers.data.message);
         }
       } catch (error) {
         toast.error("Erreur serveur");

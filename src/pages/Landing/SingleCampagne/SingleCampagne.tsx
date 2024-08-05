@@ -25,6 +25,10 @@ const SingleCampagne = () => {
       title: "Mail",
       url: pathname.split(id ? id : "")[0] + id + "/mail",
     },
+    {
+      title: "Utilisateur",
+      url: pathname.split(id ? id : "")[0] + id + "/user",
+    }
   ];
 
   return (
