@@ -80,7 +80,6 @@
           transform: scale(0.92);
         }
       }
-
     }
 
     h3 {
@@ -99,6 +98,19 @@
 
     ::placeholder {
       color: #e5e5e5;
+    }
+
+    .password-forget {
+      margin-top: 20px;
+      color: aliceblue;
+      display: flex;
+      justify-content: flex-end;
+      cursor: pointer;
+      text-decoration: underline;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
  

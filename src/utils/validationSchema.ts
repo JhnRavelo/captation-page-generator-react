@@ -26,6 +26,16 @@ export type TypeValidateLogin =
         confirmPassword: undefined;
       },
       ""
+    >
+  | Yup.ObjectSchema<
+      {
+        email: string;
+      },
+      Yup.AnyObject,
+      {
+        email: undefined;
+      },
+      ""
     >;
 
 export type TypeValidateForm =
@@ -81,6 +91,12 @@ export const validateLogin = Yup.object({
     )
     .matches(/[0-9]/, "Le mot de passe doit contenir au moins un chiffre")
     .required("Le mot de passe est requis"),
+});
+
+export const validateForgetPassword = Yup.object({
+  email: Yup.string()
+    .required("Vous devez mettre votre adresse email")
+    .email("L’adresse email est invalide"),
 });
 
 export const validateProfile = Yup.object({

@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 type ProfileFormPropsType = {
   initialValues: TypeInitialProfile;
   validate: TypeValidateLogin;
-  title: "Connexion" | "Modifier Profile";
+  title: "Connexion" | "Modifier Profile" | "Mot de passe oublié";
   btnTitle: "Se connecter" | "Envoyer";
   forms: TypeProfileFormFields;
 };
@@ -26,7 +26,7 @@ export type TypeProfileFormFields = {
 
 export type TypeInitialProfile = {
   email?: string;
-  password: string;
+  password?: string;
   confirmPassword?: string;
   name?: string;
 };
@@ -51,11 +51,27 @@ const ProfileForm = ({
     });
     try {
       let res;
+
+      if (title === "Mot de passe oublié") {
+        res = await axiosDefault.post("/auth/password-forget", formData);
+
+        if (res.data.success) {
+          setError("");
+          toast.success(res.data.message);
+          navigate("/");
+        } else {
+          toast.error(res.data.message);
+          setError(res.data.message);
+        }
+        return;
+      }
+
       if (title == "Connexion") {
         res = await axiosDefault.post("/auth/login", formData);
       } else {
         res = await axiosPrivate.post("/auth/edit", formData);
       }
+
       if (res.data.success) {
         setError("");
         toast.success(res.data.message);
@@ -71,6 +87,7 @@ const ProfileForm = ({
       console.log(error);
     }
   };
+  
   return (
     <div className="login-content">
       <div className="background login">
@@ -113,6 +130,14 @@ const ProfileForm = ({
                 </div>
               ))}
             <button type="submit">{btnTitle}</button>
+            {title == "Connexion" ? (
+              <div
+                className="password-forget"
+                onClick={() => navigate("/forget")}
+              >
+                <span>Mot de passe oublié ?</span>
+              </div>
+            ) : null}
           </Form>
         )}
       </Formik>

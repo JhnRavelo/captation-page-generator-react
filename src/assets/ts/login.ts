@@ -15,6 +15,15 @@ export const loginFields: TypeProfileFormFields = [
   },
 ];
 
+export const forgetPasswordFields: TypeProfileFormFields = [
+  {
+    type: "text",
+    name: "email",
+    placeholder: "Adresse Email",
+    header: "Email",
+  },
+];
+
 export const signupFields: TypeProfileFormFields = [
   {
     name: "name",
