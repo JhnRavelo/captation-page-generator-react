@@ -8,6 +8,8 @@ import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import LeftArrow from "../../assets/svg/LeftArrow";
 import { toast } from "react-toastify";
+import ViewSVG from "../../assets/svg/ViewSVG";
+import ViewOffSVG from "../../assets/svg/ViewOffSVG";
 
 type ProfileFormPropsType = {
   initialValues: TypeInitialProfile;
@@ -39,6 +41,7 @@ const ProfileForm = ({
   forms,
 }: ProfileFormPropsType) => {
   const [error, setError] = useState("");
+  const [visible, setVisible] = useState(false);
   const authContext = useAuth();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
@@ -87,7 +90,7 @@ const ProfileForm = ({
       console.log(error);
     }
   };
-  
+
   return (
     <div className="login-content">
       <div className="background login">
@@ -116,12 +119,37 @@ const ProfileForm = ({
               forms.map((form, index) => (
                 <div key={index} className="input-container">
                   <label htmlFor={form.name}>{form.header}</label>
-                  <Field
-                    type={form.type}
-                    placeholder={form.placeholder}
-                    id={form.name}
-                    name={form.name}
-                  />
+                  {form.name === "password" ||
+                  form.name === "confirmPassword" ? (
+                    <div className="password-container">
+                      <Field
+                        type={!visible ? form.type : "text"}
+                        placeholder={form.placeholder}
+                        id={form.name}
+                        name={form.name}
+                      />
+                      {visible ? (
+                        <ViewOffSVG
+                          height="20"
+                          width="20"
+                          onClick={() => setVisible((prev) => !prev)}
+                        />
+                      ) : (
+                        <ViewSVG
+                          height="20"
+                          width="20"
+                          onClick={() => setVisible((prev) => !prev)}
+                        />
+                      )}
+                    </div>
+                  ) : (
+                    <Field
+                      type={!visible ? form.type : "text"}
+                      placeholder={form.placeholder}
+                      id={form.name}
+                      name={form.name}
+                    />
+                  )}
                   {error ? (
                     <p className="error">{error}</p>
                   ) : errors[form.name] ? (

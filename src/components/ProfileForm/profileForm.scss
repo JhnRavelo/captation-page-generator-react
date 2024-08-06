@@ -112,8 +112,24 @@
         transform: scale(1.05);
       }
     }
+    .password-container {
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+
+      input {
+        margin-top: 0px;
+      }
+
+      svg {
+        position: absolute;
+        right: 50px;
+        color: aliceblue;
+        cursor: pointer;
+      }
+    }
   }
- 
+
   button {
     margin-top: 30px;
     width: 100%;
