@@ -9,29 +9,32 @@ const useFilterDatas = (datas?: Card[], id?: string) => {
   const formContext = useForm();
 
   useEffect(() => {
-    if (datas && entrepriseContext?.entreprise && formContext?.year) {
-      let filterCampagnes = datas?.filter(
-        (campagne) =>
-          campagne.entreprise == entrepriseContext?.entreprise.company &&
-          campagne.dateDebut?.split("-")[0] == formContext?.year
-      );
-
-      if (datas[0]?.media && entrepriseContext?.media) {
+    if (
+      datas &&
+      entrepriseContext?.entreprise &&
+      formContext?.year &&
+      datas.length > 0
+    ) {
+      let filterCampagnes;
+      if (id && entrepriseContext?.media) {
+        filterCampagnes = datas.filter(
+          (campagne) =>
+            campagne.id == id && campagne.media == entrepriseContext.media.media
+        );
+      } else if (datas[0]?.media && entrepriseContext?.media) {
         filterCampagnes = datas.filter(
           (campagne) =>
             campagne.entreprise == entrepriseContext?.entreprise.company &&
             campagne.dateDebut?.split("-")[0] == formContext?.year &&
             campagne.media == entrepriseContext.media.media
         );
-      }
-
-      if (id && entrepriseContext?.media) {
+      } else {
         filterCampagnes = datas.filter(
           (campagne) =>
-            campagne.id == id && campagne.media == entrepriseContext.media.media
+            campagne.entreprise == entrepriseContext.entreprise.company &&
+            campagne.dateDebut?.split("-")[0] == formContext.year
         );
       }
-
       if (filterCampagnes) {
         setFilterDatas(filterCampagnes);
       }
