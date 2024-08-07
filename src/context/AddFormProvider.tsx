@@ -80,7 +80,7 @@ export type TypeInitialValues = {
   imgCampagne?: File | null;
   object?: string;
   mailText?: string;
-  campagnes?: string[];
+  campagnes?: string[] | null;
 } | null;
 
 const AddFormContext = createContext<TypeAddFormContext | null>(null);

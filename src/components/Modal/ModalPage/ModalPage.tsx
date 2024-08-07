@@ -23,7 +23,7 @@ const ModalPage = () => {
       ? pageContext.page.sloganCampagne
       : "",
     imgCampagne: null,
-    campagnes: pageContext?.page?.id ? [pageContext.page.id] : [""],
+    campagnes: pageContext?.page?.id ? [pageContext.page.id] : null,
   };
 
   return (

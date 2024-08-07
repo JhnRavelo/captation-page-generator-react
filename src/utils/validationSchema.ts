@@ -36,6 +36,22 @@ export type TypeValidateLogin =
         email: undefined;
       },
       ""
+    >
+  | Yup.ObjectSchema<
+      {
+        title: string;
+        dateDebut: Date;
+        dateFin: Date;
+        description: string;
+      },
+      Yup.AnyObject,
+      {
+        title: undefined;
+        dateDebut: undefined;
+        dateFin: undefined;
+        description: undefined;
+      },
+      ""
     >;
 
 export type TypeValidateForm =

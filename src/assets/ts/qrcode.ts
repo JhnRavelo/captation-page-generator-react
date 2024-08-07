@@ -20,4 +20,5 @@ export const qrcodeFields: TypeAddFormFields = [
 
 export const qrCodeInitialValue: TypeInitialValues = {
   logo: null,
+  campagnes: null,
 };

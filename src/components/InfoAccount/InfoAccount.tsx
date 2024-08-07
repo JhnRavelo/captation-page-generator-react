@@ -28,7 +28,6 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
     if (e.target.files && e.target.files?.length > 0) {
       const formData = new FormData();
       formData.append("avatar", e.target.files[0]);
-      console.log("FILE", e.target.files[0]);
       try {
         const res = await axiosPrivate.put("auth/edit/avatar", formData, {
           headers: { "Content-Type": "multipart/form-data" },

@@ -8,6 +8,7 @@ import "./campagne.scss";
 import { campagneFields } from "../../../assets/ts/campagne";
 import useCampagne from "../../../hooks/useCampagne";
 import useFilterDatas from "../../../hooks/useFilterDatas";
+import { validateCampagne } from "../../../utils/validationSchema";
 
 const Campagne = () => {
   const formContext = useForm();
@@ -20,6 +21,7 @@ const Campagne = () => {
     formContext?.setFormFields(campagneFields);
     formContext?.setTitle("add");
     formContext?.setUrl("/campagne");
+    formContext?.setValidate(validateCampagne);
   };
 
   return (

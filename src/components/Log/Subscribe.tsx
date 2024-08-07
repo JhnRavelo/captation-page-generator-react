@@ -13,11 +13,19 @@ const Subscribe = ({ card }: SubscribePropsType) => {
           inscrit sur le campagne {card.entreprise}{" "}
           <span className="span-bold span-white">{card.id}</span>.
         </span>
+      ) : card.deleteId ? (
+        <span>
+          Suppression de la campagne{" "}
+          <span className="span-bold span-orange">{card.title}</span> pour
+          l'entreprise{" "}
+          <span className="span-bold span-white">{card.entreprise}</span>.
+        </span>
       ) : (
         <span>
           Création de la campagne{" "}
           <span className="span-bold span-orange">{card.title}</span> pour
-          l'entreprise {card.entreprise}.
+          l'entreprise{" "}
+          <span className="span-bold span-white">{card.entreprise}</span>.
         </span>
       )}
       <span className="span-bold span-white">

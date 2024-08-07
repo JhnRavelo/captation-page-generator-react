@@ -11,6 +11,7 @@ import { TypeSetState } from "../../context/CampagneProvider";
 import "./form.scss";
 import ErrorForm from "./ErrorForm/ErrorForm";
 import InputCheckBox from "./InputCheckBox/InputCheckBox";
+import useCampagne from "../../hooks/useCampagne";
 
 type FormFieldsPropsType = {
   setState: TypeSetState | undefined;
@@ -27,6 +28,7 @@ const FormFields = ({
   const axiosPrivate = useAxiosPrivate();
   const [error, setError] = useState("");
   const entrepriseContext = useMediaEntreprise();
+  const campagneContext = useCampagne();
 
   const handleSubmit = async (values: TypeInitialValues) => {
     if (!values || !entrepriseContext?.entreprise) {
@@ -69,11 +71,13 @@ const FormFields = ({
           headers: { "Content-Type": "multipart/form-data" },
         });
       }
-
-      if (res?.data.success && formContext?.setOpenForm && setState) {
+      if (res?.data.success && formContext?.slug == "Campagne") {
+        campagneContext?.setIsCampagne((prev) => !prev);
+      }
+      if (res?.data.success && setState) {
         setState(res.data.datas);
         toast.success(res.data.message);
-        formContext.setOpenForm(false);
+        formContext?.setOpenForm(false);
         setError("");
       } else {
         toast.error(res?.data.message);

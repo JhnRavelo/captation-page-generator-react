@@ -45,6 +45,7 @@
   .slogan-image-container {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     @include md-l{
       flex-direction: column-reverse;
       align-items: center;

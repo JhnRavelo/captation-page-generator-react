@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import DeleteSVG from "../../../assets/svg/DeleteSVG";
 import ScanSVG from "../../../assets/svg/ScanSVG";
 import { TypeSlug, TypeUrl } from "../../../context/AddFormProvider";
@@ -12,6 +11,7 @@ import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
 import usePage from "../../../hooks/usePage";
 import { pageFields } from "../../../assets/ts/page";
 import { validateUpdatePage } from "../../../utils/validationSchema";
+import useFilterStatsNbr from "../../../hooks/useFilterStatsNbr";
 
 type CardTitlePropsType = {
   card: Card;
@@ -21,11 +21,11 @@ type CardTitlePropsType = {
 
 const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
   const formContext = useForm();
-  const scanRef = useRef<HTMLSpanElement>(null);
   const navigate = useNavigate();
   const color = useColorCampagne(card.id);
   const entrepriseContext = useMediaEntreprise();
   const pageContext = usePage();
+  const nbrSTat = useFilterStatsNbr(card.id);
 
   const handleDelete = () => {
     formContext?.setTitle("delete");
@@ -62,7 +62,9 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
           <>
             <div className="title-scan-nbr">
               <ScanSVG width="27" height="27" />
-              <span ref={scanRef}>{card.scanNbr}</span>
+              <span>
+                {nbrSTat.nbrScans[0]?.count ? nbrSTat.nbrScans[0].count : 0}
+              </span>
             </div>
             <EditSVG
               width="30"

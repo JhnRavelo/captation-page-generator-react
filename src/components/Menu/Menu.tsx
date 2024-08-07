@@ -5,7 +5,6 @@ import DashboardSVG from "../../assets/svg/DashboardSVG";
 import QRcodeSVG from "../../assets/svg/QRcodeSVG";
 import BellSVG from "../../assets/svg/BellSVG";
 import PageSVG from "../../assets/svg/PageSVG";
-import InfoAccount from "../InfoAccount/InfoAccount";
 import imgAvatar from "../../assets/png/reglages.png";
 import NoteBookSVG from "../../assets/svg/NoteBookSVG";
 import MarketingSVG from "../../assets/svg/MarketingSVG";
@@ -15,6 +14,7 @@ import useAuth from "../../hooks/useAuth";
 import useLog from "../../hooks/useLog";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
+import InfoAccount from "../InfoAccount/InfoAccount";
 
 const Menu = () => {
   const active = useActive();

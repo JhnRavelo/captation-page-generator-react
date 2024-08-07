@@ -77,7 +77,7 @@ const PagePreviewTitle = () => {
       <div className="slogan-image-container">
         <div className="slogan-container">
           <div className="slogan-content">
-            <span>{page?.sloganCampagne}</span>
+            <span style={{ color: page?.titleColor }}>{page?.sloganCampagne}</span>
           </div>
           <div className="input-email">
             <input

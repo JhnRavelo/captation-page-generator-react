@@ -19,7 +19,7 @@ const InputCheckBox = ({
   title,
   name,
   error,
-  errors
+  errors,
 }: InputCheckBoxPropsType) => {
   const btnListRef = useRef<HTMLDivElement | null>(null);
   const typeRef = useRef<HTMLUListElement | null>(null);

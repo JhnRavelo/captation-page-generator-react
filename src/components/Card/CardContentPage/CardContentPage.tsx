@@ -40,7 +40,7 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
               </div>
               <div className="ordi-campagne">
                 <div className="left">
-                  <span style={{ color: page.titleColor }}>
+                  <span style={{ color: page.titleColor, fontWeight: 800 }}>
                     {page.sloganCampagne}
                   </span>
                   <div className="input-ordi">
