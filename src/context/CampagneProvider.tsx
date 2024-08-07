@@ -7,14 +7,19 @@ export type TypeSetState = React.Dispatch<React.SetStateAction<Card[]>>;
 type TypeCampagnesValues = {
   campagnes: Card[];
   setCampagnes: TypeSetState;
+  isCampagne: boolean;
+  setIsCampagne: React.Dispatch<React.SetStateAction<boolean>>;
 } | null;
 
 const CampagneContext = createContext<TypeCampagnesValues>(null);
 
 const CampagneProvider = ({ children }: ContextPropsType) => {
   const [campagnes, setCampagnes] = useState<Card[]>([]);
+  const [isCampagne, setIsCampagne] = useState(false);
   return (
-    <CampagneContext.Provider value={{ campagnes, setCampagnes }}>
+    <CampagneContext.Provider
+      value={{ campagnes, setCampagnes, isCampagne, setIsCampagne }}
+    >
       {children}
     </CampagneContext.Provider>
   );

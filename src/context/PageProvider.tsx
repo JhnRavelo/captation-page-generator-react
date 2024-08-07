@@ -1,10 +1,11 @@
 import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
 import { Card } from "../components/Card/Card";
+import { TypeSetState } from "./CampagneProvider";
 
 type TypePageContext = {
   pages: Card[];
-  setPages: React.Dispatch<React.SetStateAction<Card[]>>;
+  setPages: TypeSetState;
   page: Card | null;
   setPage: React.Dispatch<React.SetStateAction<Card | null>>;
 } | null;

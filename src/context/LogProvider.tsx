@@ -1,14 +1,15 @@
 import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
 import { Card } from "../components/Card/Card";
+import { TypeSetState } from "./CampagneProvider";
 
 type TypeLogProvider = {
   userMails: Card[];
-  setUserMails: React.Dispatch<React.SetStateAction<Card[]>>;
+  setUserMails: TypeSetState;
   logs: Card[];
-  setLogs: React.Dispatch<React.SetStateAction<Card[]>>;
+  setLogs: TypeSetState;
   notifs: Card[];
-  setNotifs: React.Dispatch<React.SetStateAction<Card[]>>;
+  setNotifs: TypeSetState;
 } | null;
 
 const LogContext = createContext<TypeLogProvider>(null);

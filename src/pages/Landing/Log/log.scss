@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 15px;
   padding: 0 5px;
+  animation: fade-up 1s ease;
   .cards-content.campagne-log {
     display: flex;
     justify-content: space-between;

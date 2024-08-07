@@ -93,7 +93,7 @@ const Landing = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [campagneContext?.isCampagne]);
 
   return (
     <div

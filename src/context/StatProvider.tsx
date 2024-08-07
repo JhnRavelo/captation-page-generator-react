@@ -1,16 +1,17 @@
 import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
 import { Card } from "../components/Card/Card";
+import { TypeSetState } from "./CampagneProvider";
 
 type TypeStatContext = {
   nbrScans: Card[];
-  setNbrScans: React.Dispatch<React.SetStateAction<Card[]>>;
+  setNbrScans: TypeSetState;
   nbrMails: Card[];
-  setNbrMails: React.Dispatch<React.SetStateAction<Card[]>>;
+  setNbrMails: TypeSetState;
   nbrChartMails: Card[];
-  setNbrChartMails: React.Dispatch<React.SetStateAction<Card[]>>;
+  setNbrChartMails: TypeSetState;
   nbrChartScans: Card[];
-  setNbrChartScans: React.Dispatch<React.SetStateAction<Card[]>>;
+  setNbrChartScans: TypeSetState;
 } | null;
 
 const StatContext = createContext<TypeStatContext>(null);

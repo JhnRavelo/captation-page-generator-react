@@ -3,6 +3,7 @@ import imgDelete from "../../../assets/png/poubelle.png";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { TypeSetState } from "../../../context/CampagneProvider";
 import { toast } from "react-toastify";
+import useCampagne from "../../../hooks/useCampagne";
 
 type DeletePropsType = {
   setState: TypeSetState | undefined;
@@ -11,6 +12,7 @@ type DeletePropsType = {
 const Delete = ({ setState }: DeletePropsType) => {
   const formContext = useForm();
   const axiosPrivate = useAxiosPrivate();
+  const campagneContext = useCampagne();
 
   const handleDelete = async () => {
     try {
@@ -18,8 +20,11 @@ const Delete = ({ setState }: DeletePropsType) => {
       const res = await axiosPrivate.delete(
         formContext.url + "/" + formContext.idDelete
       );
-
-      if (res.data.success && setState) {
+      if (res.data.success && formContext.slug == "Campagne") {
+        campagneContext?.setIsCampagne((prev) => !prev);
+        toast.success(res.data.message);
+        formContext.setOpenForm(false);
+      } else if (res.data.success && setState) {
         setState(res.data.datas);
         toast.success(res.data.message);
         formContext.setOpenForm(false);
@@ -40,7 +45,7 @@ const Delete = ({ setState }: DeletePropsType) => {
       </div>
       <div className="para-container">
         <p>
-          Vous êtes sûre de vouloir de supprimer le{" "}
+          Vous êtes sûre de vouloir supprimer le{" "}
           {formContext?.slug.toUpperCase()} pour {formContext?.id} ?
         </p>
       </div>
