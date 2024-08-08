@@ -27,6 +27,17 @@
       gap: 80px;
       .icon-campagne {
         &:first-child {
+          color: greenyellow;
+          cursor: pointer;
+          transition: 0.25s ease;
+          &:hover {
+            transform: scale(1.05);
+          }
+          &:active {
+            transform: scale(0.98);
+          }
+        }
+        &:nth-child(2) {
             color: #FC7845;
         }
         &:last-child {

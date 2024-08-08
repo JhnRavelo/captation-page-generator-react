@@ -4,6 +4,8 @@ import ScanSVG from "../../assets/svg/ScanSVG";
 import MailSVG from "../../assets/svg/MailSVG";
 import "./campagneHeader.scss";
 import useColorCampagne from "../../hooks/useColorCampagne";
+import MailExportSVG from "../../assets/svg/MailExportSVG";
+import useExportXLSX from "../../hooks/useExportXLSX";
 
 type CampagneHeaderPropsTypes = {
   scanNbr: number;
@@ -19,6 +21,7 @@ const CampagneHeader = ({
   const scanRef = useRef<HTMLSpanElement>(null);
   const mailRef = useRef<HTMLSpanElement>(null);
   const color = useColorCampagne(idCampagne);
+  const exportXLS = useExportXLSX();
 
   useAnimationNbr(scanNbr, scanRef);
   useAnimationNbr(mailNbr, mailRef);
@@ -33,6 +36,13 @@ const CampagneHeader = ({
         <span>{idCampagne}</span>
       </div>
       <div className="icon-campagne-container">
+        <div className="icon-campagne">
+          <MailExportSVG
+            width="30"
+            height="30"
+            onClick={() => exportXLS(idCampagne)}
+          />
+        </div>
         <div className="icon-campagne">
           <ScanSVG width="34" height="34" />
           <span ref={scanRef}>0</span>
