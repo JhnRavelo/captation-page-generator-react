@@ -8,6 +8,8 @@ import useLogout from "../../hooks/useLogout";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import MailExportSVG from "../../assets/svg/MailExportSVG";
+import useExportXLSX from "../../hooks/useExportXLSX";
 
 type InfoAccountPropsType = {
   img: string;
@@ -16,6 +18,7 @@ type InfoAccountPropsType = {
 
 const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
   const logout = useLogout();
+  const exportMail = useExportXLSX();
   const optionsRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
@@ -49,6 +52,10 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
   return (
     <>
       <div className="options" ref={optionsRef}>
+        <div className="option" onClick={() => exportMail()}>
+          <span>Exporter Email</span>
+          <MailExportSVG width="30" height="18" />
+        </div>
         <div className="option" onClick={() => navigate("/edit-profile")}>
           <span>Modifier Profile</span>
           <EditSVG width="30" height="20" />
