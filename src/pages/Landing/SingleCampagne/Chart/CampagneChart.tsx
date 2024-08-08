@@ -12,29 +12,29 @@ const CampagneChart = () => {
         <div className="info">
           <ChartBox
             nbrTotal={
-              nbrStat.nbrStatScanPerCampagnes[0]?.count
-                ? nbrStat.nbrStatScanPerCampagnes[0].count
+              nbrStat.nbrScanPerCampagnes[0]?.count
+                ? nbrStat.nbrScanPerCampagnes[0].count
                 : 0
             }
             color="#FC7845"
             dataKey="users"
             chartData={nbrStat.nbrScanMonthPerCampagnes}
             title="QR Code scannés"
-            percentage={nbrStat.scanPercentagePerMonth}
+            percentage={nbrStat.scanPercentagePerCampagne}
           />
         </div>
         <div className="info">
           <ChartBox
             nbrTotal={
-              nbrStat.nbrStatMailPerCampagnes[0]?.count
-                ? nbrStat.nbrStatMailPerCampagnes[0].count
+              nbrStat.nbrMailPerCampagnes[0]?.count
+                ? nbrStat.nbrMailPerCampagnes[0].count
                 : 0
             }
             color="#3978CD"
             dataKey="users"
             chartData={nbrStat.nbrMailMonthPerCampagnes}
             title="Emails envoyés"
-            percentage={nbrStat.mailPercentagePerMonth}
+            percentage={nbrStat.mailPercentagePerCampagne}
           />
         </div>
       </div>

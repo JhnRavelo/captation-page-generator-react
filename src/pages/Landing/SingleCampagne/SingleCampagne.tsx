@@ -37,13 +37,13 @@ const SingleCampagne = () => {
       <div className="single-campagne-container">
         <CampagneHeader
           scanNbr={
-            nbrStat.nbrStatScanPerCampagnes[0]?.count
-              ? nbrStat.nbrStatScanPerCampagnes[0].count
+            nbrStat.nbrScanPerCampagnes[0]?.count
+              ? nbrStat.nbrScanPerCampagnes[0].count
               : 0
           }
           mailNbr={
-            nbrStat.nbrStatMailPerCampagnes[0]?.count
-              ? nbrStat.nbrStatMailPerCampagnes[0].count
+            nbrStat.nbrMailPerCampagnes[0]?.count
+              ? nbrStat.nbrMailPerCampagnes[0].count
               : 0
           }
           idCampagne={id ? id : ""}

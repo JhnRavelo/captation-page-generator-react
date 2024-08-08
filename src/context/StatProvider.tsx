@@ -8,10 +8,18 @@ type TypeStatContext = {
   setNbrScans: TypeSetState;
   nbrMails: Card[];
   setNbrMails: TypeSetState;
+  nbrScanPerCampagnes: Card[];
+  setNbrScanPerCampagnes: TypeSetState;
+  nbrMailPerCampagnes: Card[];
+  setNbrMailPerCampagnes: TypeSetState;
   nbrChartMails: Card[];
   setNbrChartMails: TypeSetState;
   nbrChartScans: Card[];
   setNbrChartScans: TypeSetState;
+  nbrChartMailPerCampagnes: Card[];
+  setNbrChartMailPerCampagnes: TypeSetState;
+  nbrChartScanPerCampagnes: Card[];
+  setNbrChartScanPerCampagnes: TypeSetState;
 } | null;
 
 const StatContext = createContext<TypeStatContext>(null);
@@ -19,9 +27,17 @@ const StatContext = createContext<TypeStatContext>(null);
 const StatProvider = ({ children }: ContextPropsType) => {
   const [nbrScans, setNbrScans] = useState<Card[]>([]);
   const [nbrMails, setNbrMails] = useState<Card[]>([]);
+  const [nbrScanPerCampagnes, setNbrScanPerCampagnes] = useState<Card[]>([]);
+  const [nbrMailPerCampagnes, setNbrMailPerCampagnes] = useState<Card[]>([]);
   const [nbrChartMails, setNbrChartMails] = useState<Card[]>([]);
   const [nbrChartScans, setNbrChartScans] = useState<Card[]>([]);
-  
+  const [nbrChartMailPerCampagnes, setNbrChartMailPerCampagnes] = useState<
+    Card[]
+  >([]);
+  const [nbrChartScanPerCampagnes, setNbrChartScanPerCampagnes] = useState<
+    Card[]
+  >([]);
+
   return (
     <StatContext.Provider
       value={{
@@ -33,6 +49,14 @@ const StatProvider = ({ children }: ContextPropsType) => {
         setNbrChartMails,
         nbrChartScans,
         setNbrChartScans,
+        nbrChartMailPerCampagnes,
+        setNbrChartMailPerCampagnes,
+        nbrChartScanPerCampagnes,
+        setNbrChartScanPerCampagnes,
+        nbrScanPerCampagnes,
+        setNbrScanPerCampagnes,
+        nbrMailPerCampagnes,
+        setNbrMailPerCampagnes,
       }}
     >
       {children}

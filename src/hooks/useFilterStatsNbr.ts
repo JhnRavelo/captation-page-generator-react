@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import useFilterDatas from "./useFilterDatas";
 import useStat from "./useStat";
-import { Card } from "../components/Card/Card";
+// import { Card } from "../components/Card/Card";
 import useMediaEntreprise from "./useMediaEntreprise";
 import useGetChart from "./useGetChart";
 import { dataHome } from "../assets/ts/data";
@@ -15,22 +15,24 @@ const useFilterStatsNbr = (id: string | undefined) => {
   const getPercentagePerMonth = usePercentagePerMonth();
   const nbrScans = useFilterDatas(statContext?.nbrScans);
   const nbrMails = useFilterDatas(statContext?.nbrMails);
+  const nbrScanPerCampagnes = useFilterDatas(
+    statContext?.nbrScanPerCampagnes,
+    id
+  );
+  const nbrMailPerCampagnes = useFilterDatas(
+    statContext?.nbrMailPerCampagnes,
+    id
+  );
   const nbrScanMonths = useFilterDatas(statContext?.nbrChartScans);
   const nbrMailMonths = useFilterDatas(statContext?.nbrChartMails);
   const nbrMailChartPerCampagnes = useFilterDatas(
-    statContext?.nbrChartMails,
+    statContext?.nbrChartMailPerCampagnes,
     id
   );
   const nbrScanChartPerCampagnes = useFilterDatas(
-    statContext?.nbrChartScans,
+    statContext?.nbrChartScanPerCampagnes,
     id
   );
-  const [nbrStatScanPerCampagnes, setNbrStatScanPerCampagnes] = useState<
-    Card[]
-  >([]);
-  const [nbrStatMailPerCampagnes, setNbrStatMailPerCampagnes] = useState<
-    Card[]
-  >([]);
   const [nbrMailPerMonths, setNbrMailPerMonths] = useState(dataHome);
   const [nbrScanPerMonths, setNbrScanPerMonths] = useState(dataHome);
   const [nbrMailMonthPerCampagnes, setNbrMailMonthPerCampagnes] =
@@ -39,24 +41,13 @@ const useFilterStatsNbr = (id: string | undefined) => {
     useState(dataHome);
   const [mailPercentagePerMonth, setMailPercentagePerMonth] = useState(0);
   const [scanPercentagePerMonth, setScanPercentagePerMonth] = useState(0);
+  const [mailPercentagePerCampagne, setMailPercentagePerCampagne] = useState(0);
+  const [scanPercentagePerCampagne, setScanPercentagePerCampagne] = useState(0);
 
   useEffect(() => {
-    if (id && mediaContext?.media) {
-      if (statContext?.nbrMails) {
-        const nbrStatMailPerCampagnes = statContext.nbrMails.filter(
-          (mail) => mail.id == id && mail.media == mediaContext.media.media
-        );
-        setNbrStatMailPerCampagnes(nbrStatMailPerCampagnes);
-      }
+    if (id) {
 
-      if (statContext?.nbrScans) {
-        const nbrStatScanPerCampagnes = statContext.nbrScans.filter(
-          (scan) => scan.id == id && scan.media == mediaContext.media.media
-        );
-        setNbrStatScanPerCampagnes(nbrStatScanPerCampagnes);
-      }
-
-      if (statContext?.nbrChartMails && nbrMailChartPerCampagnes) {
+      if (nbrMailChartPerCampagnes) {
         const nbrMailMonthPerCampagnes = getChart(
           dataHome,
           nbrMailChartPerCampagnes
@@ -65,10 +56,10 @@ const useFilterStatsNbr = (id: string | undefined) => {
         const mailPercentagePerMonth = getPercentagePerMonth(
           nbrMailChartPerCampagnes
         );
-        setMailPercentagePerMonth(mailPercentagePerMonth);
+        setMailPercentagePerCampagne(mailPercentagePerMonth);
       }
 
-      if (statContext?.nbrChartScans && nbrScanChartPerCampagnes) {
+      if (nbrScanChartPerCampagnes) {
         const nbrScanMonthPerCampagnes = getChart(
           dataHome,
           nbrScanChartPerCampagnes
@@ -77,7 +68,7 @@ const useFilterStatsNbr = (id: string | undefined) => {
         const scanPercentagePerMonth = getPercentagePerMonth(
           nbrScanChartPerCampagnes
         );
-        setScanPercentagePerMonth(scanPercentagePerMonth);
+        setScanPercentagePerCampagne(scanPercentagePerMonth);
       }
     }
 
@@ -108,15 +99,17 @@ const useFilterStatsNbr = (id: string | undefined) => {
   return {
     nbrMails,
     nbrScans,
-    nbrStatMailPerCampagnes,
-    nbrStatScanPerCampagnes,
+    nbrMailPerCampagnes,
+    nbrScanPerCampagnes,
     nbrMailPerMonths,
     nbrScanPerMonths,
     nbrMailMonthPerCampagnes,
     nbrScanMonthPerCampagnes,
     mailPercentagePerMonth,
     scanPercentagePerMonth,
+    mailPercentagePerCampagne,
+    scanPercentagePerCampagne,
   };
-}
+};
 
 export default useFilterStatsNbr;

@@ -68,6 +68,18 @@ const Landing = () => {
           statContext?.setNbrScans(fetchStats.data.nbrScanPerYearStats);
           statContext?.setNbrChartMails(fetchStats.data.nbrMailPerMonthStats);
           statContext?.setNbrChartScans(fetchStats.data.nbrScanPerMonthStats);
+          statContext?.setNbrChartMailPerCampagnes(
+            fetchStats.data.nbrMailPerMonthPerCampagneStats
+          );
+          statContext?.setNbrChartScanPerCampagnes(
+            fetchStats.data.nbrScanPerMonthPerCampagneStats
+          );
+          statContext?.setNbrScanPerCampagnes(
+            fetchStats.data.nbrScanPerYearPerCampagneStats
+          );
+          statContext?.setNbrMailPerCampagnes(
+            fetchStats.data.nbrMailPerYearPerCampagneStats
+          );
         } else {
           toast.error(fetchStats.data.message);
         }

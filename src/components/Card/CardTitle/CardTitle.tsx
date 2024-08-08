@@ -63,7 +63,7 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
             <div className="title-scan-nbr">
               <ScanSVG width="27" height="27" />
               <span>
-                {nbrSTat.nbrScans[0]?.count ? nbrSTat.nbrScans[0].count : 0}
+                {nbrSTat.nbrScanPerCampagnes[0]?.count ? nbrSTat.nbrScanPerCampagnes[0].count : 0}
               </span>
             </div>
             <EditSVG
