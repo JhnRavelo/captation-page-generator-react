@@ -3,32 +3,31 @@ import MediaOptions from "../../../components/MediaOptions/MediaOptions";
 import "./singleCampagne.scss";
 import CampagneHeader from "../../../components/CampagneHeader/CampagneHeader";
 import Options, { TypeOptions } from "../../../components/Options/Options";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CampagneRouter from "../../../routers/CampagneRouter";
 import useFilterStatsNbr from "../../../hooks/useFilterStatsNbr";
 
 const SingleCampagne = () => {
-  const { pathname } = useLocation();
   const { id } = useParams();
   const nbrStat = useFilterStatsNbr(id);
 
   const options: TypeOptions = [
     {
       title: "Modifier",
-      url: pathname.split(id ? id : "")[0] + id + "/edit",
+      url: "/marketing/campagne/" + id + "/edit",
     },
     {
       title: "Charte graphique",
-      url: pathname.split(id ? id : "")[0] + id + "/chart",
+      url: "/marketing/campagne/" + id + "/chart",
     },
     {
       title: "Mail",
-      url: pathname.split(id ? id : "")[0] + id + "/mail",
+      url: "/marketing/campagne/" + id + "/mail",
     },
     {
       title: "Utilisateur",
-      url: pathname.split(id ? id : "")[0] + id + "/user",
-    }
+      url: "/marketing/campagne/" + id + "/user",
+    },
   ];
 
   return (
