@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import useLog from "./useLog";
 import { utils, writeFileXLSX } from "xlsx";
 
@@ -8,8 +9,12 @@ const useExportXLSX = () => {
     if (logContext?.userMails && logContext.userMails.length > 0) {
       let mails = logContext.userMails;
       if (id) {
-        const userMails = logContext.userMails.filter((user) => user.id == id);
-        mails = userMails;
+        mails = logContext.userMails.filter((user) => user.id == id);
+
+        if (mails.length === 0) {
+          toast.error("Aucun email enregistré pour ce campagne");
+          return;
+        }
       }
       const userMails = mails.map((mail) => {
         return {

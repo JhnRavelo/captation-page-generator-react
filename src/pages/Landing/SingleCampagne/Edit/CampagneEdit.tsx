@@ -40,7 +40,7 @@ const CampagneEdit = () => {
     return () => {
       setInitialValues(null);
     };
-  }, [id]);
+  }, [id, campagneContext?.campagnes]);
 
   return (
     <div className="edit-campagne-container">
