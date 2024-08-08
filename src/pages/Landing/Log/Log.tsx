@@ -11,7 +11,7 @@ const Log = () => {
 
   return (
     <MediaCompanyContainer>
-      <div className="cards-container campagne-log">
+      <div className="cards-container campagne-log" style={{ height: "450px" }}>
         {logs && logs.length > 0
           ? logs.map((log, index) => (
               <Fragment key={index}>
