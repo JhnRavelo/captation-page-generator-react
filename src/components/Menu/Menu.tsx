@@ -15,6 +15,7 @@ import useLog from "../../hooks/useLog";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
 import InfoAccount from "../InfoAccount/InfoAccount";
+import UserSVG from "../../assets/svg/UserSVG";
 
 const Menu = () => {
   const active = useActive();
@@ -66,6 +67,13 @@ const Menu = () => {
           >
             <PageSVG height="24" width="30" />
             <span>Page de captation</span>
+          </Link>
+          <Link
+            to="/marketing/user"
+            onClick={(e) => active(e, menuRef)}
+          >
+            <UserSVG height="20" width="30" />
+            <span>Utilisateur</span>
           </Link>
           <Link to="/marketing/log" onClick={(e) => active(e, menuRef)}>
             <NoteBookSVG width="30" height="23" />
