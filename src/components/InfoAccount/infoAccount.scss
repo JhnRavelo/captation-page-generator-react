@@ -90,13 +90,13 @@
 
 .options {
   position: absolute;
-  bottom: 80px;
+  bottom: 70px;
   left: 115px;
   width: auto;
   height: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   opacity: 0;
   pointer-events: none;
   transition: 0.3s ease;
@@ -119,9 +119,12 @@
       transform: scale(0.97);
     }
     &:first-child:hover {
-      background-color: rgb(28, 152, 177);
+      background-color: #cc1ebdd4;
     }
     &:nth-child(2):hover {
+      background-color: rgb(28, 152, 177);
+    }
+    &:nth-child(3):hover {
       background-color: green;
     }
     &:last-child:hover {

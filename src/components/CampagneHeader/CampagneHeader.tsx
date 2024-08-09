@@ -6,6 +6,7 @@ import "./campagneHeader.scss";
 import useColorCampagne from "../../hooks/useColorCampagne";
 import MailExportSVG from "../../assets/svg/MailExportSVG";
 import useExportXLSX from "../../hooks/useExportXLSX";
+import FileChartSVG from "../../assets/svg/FileChartSVG";
 
 type CampagneHeaderPropsTypes = {
   scanNbr: number;
@@ -37,10 +38,17 @@ const CampagneHeader = ({
       </div>
       <div className="icon-campagne-container">
         <div className="icon-campagne">
+          <FileChartSVG
+            width="30"
+            height="30"
+            onClick={() => exportXLS("chart", idCampagne)}
+          />
+        </div>
+        <div className="icon-campagne">
           <MailExportSVG
             width="30"
             height="30"
-            onClick={() => exportXLS(idCampagne)}
+            onClick={() => exportXLS("mail", idCampagne)}
           />
         </div>
         <div className="icon-campagne">

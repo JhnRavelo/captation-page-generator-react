@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import MailExportSVG from "../../assets/svg/MailExportSVG";
 import useExportXLSX from "../../hooks/useExportXLSX";
+import FileChartSVG from "../../assets/svg/FileChartSVG";
 
 type InfoAccountPropsType = {
   img: string;
@@ -18,7 +19,7 @@ type InfoAccountPropsType = {
 
 const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
   const logout = useLogout();
-  const exportMail = useExportXLSX();
+  const exportXLS = useExportXLSX();
   const optionsRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
@@ -52,7 +53,11 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
   return (
     <>
       <div className="options" ref={optionsRef}>
-        <div className="option" onClick={() => exportMail()}>
+        <div className="option" onClick={() => exportXLS("chart")}>
+          <span>Exporter Charte</span>
+          <FileChartSVG width="30" height="18" />
+        </div>
+        <div className="option" onClick={() => exportXLS("mail")}>
           <span>Exporter Email</span>
           <MailExportSVG width="30" height="18" />
         </div>
