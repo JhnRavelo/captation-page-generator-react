@@ -7,7 +7,7 @@ const Notif = () => {
   const logContext = useLog();
 
   return (
-    <div className="cards-container campagne-log" style={{ height: "630px" }}>
+    <div className="cards-container campagne-log" style={{ height: "600px" }}>
       {logContext?.notifs && logContext?.notifs.length > 0
         ? logContext?.notifs.map((log, index) => (
             <Fragment key={index}>

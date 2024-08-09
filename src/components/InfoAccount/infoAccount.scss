@@ -46,7 +46,7 @@
         transform: scale(0.9);
       }
     }
-    
+
     &:hover {
       img {
         filter: brightness(50%);
@@ -76,7 +76,7 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    transition: 0.25s ease;   
+    transition: 0.25s ease;
   }
 
   &:hover,
@@ -113,8 +113,10 @@
     gap: 5px;
     align-items: center;
     justify-content: space-between;
+    transition: 0.25s ease;
     &:hover {
       color: aliceblue;
+      transform: scale(0.97);
     }
     &:first-child:hover {
       background-color: rgb(28, 152, 177);

@@ -127,6 +127,7 @@ const ProfileForm = ({
                         placeholder={form.placeholder}
                         id={form.name}
                         name={form.name}
+                        autoComplete="current-password"
                       />
                       {visible ? (
                         <ViewOffSVG
