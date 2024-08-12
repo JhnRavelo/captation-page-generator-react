@@ -3,6 +3,10 @@
 .company-container {
   display: flex;
   justify-content: center;
+  position: absolute;
+  bottom: 3vh;
+  width: 97.5%;
+  cursor: pointer;
 
   .company-list {
     width: auto;

@@ -1,7 +1,11 @@
 @import "../../../variables.scss";
 @import "../../../animation.scss";
+@import "../../../responsives.scss";
 
 .campagne-container {
   column-gap: 60px;
   row-gap: 10px;
+  @include xl1440px {
+    column-gap: 20px;
+  }
 }

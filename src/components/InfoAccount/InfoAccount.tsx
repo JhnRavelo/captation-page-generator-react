@@ -54,7 +54,7 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
     <>
       <div className="options" ref={optionsRef}>
         <div className="option" onClick={() => exportXLS("chart")}>
-          <span>Exporter Charte</span>
+          <span>Exporter Chart</span>
           <FileChartSVG width="30" height="18" />
         </div>
         <div className="option" onClick={() => exportXLS("mail")}>
@@ -62,7 +62,7 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
           <MailExportSVG width="30" height="18" />
         </div>
         <div className="option" onClick={() => navigate("/edit-profile")}>
-          <span>Modifier Profile</span>
+          <span>Modifier Profil</span>
           <EditSVG width="30" height="20" />
         </div>
         <div className="option" onClick={() => logout()}>

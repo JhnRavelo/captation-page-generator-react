@@ -26,8 +26,8 @@ const MediaCompanyContainer = ({
         className="infos-container"
         style={
           pathname == "/marketing/campagne" || pathname == "/marketing/log"
-            ? { height: "458px" }
-            : { height: "410px" }
+            ? { height: "65.15vh" }
+            : { height: "58.32vh" }
         }
       >
         {children}

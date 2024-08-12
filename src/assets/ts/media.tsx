@@ -4,7 +4,7 @@ import FacebookSVG from "../svg/FacebookSVG";
 import CinemaSVG from "../svg/CinemaSVG";
 import PancarteSVG from "../svg/PancarteSVG";
 
-export type TypeMedia = "Journaux" | "Sociaux Media" | "Cinema" | "Pancarte";
+export type TypeMedia = "Journaux" | "Sociaux Media" | "Cinema" | "Affiche";
 export type TypeUrlMedia = "jn" | "sc" | "cn" | "pc";
 export type TypeMediasObject = {
   media: TypeMedia;
@@ -31,7 +31,7 @@ export const medias: TypeMediasArray = [
     url: "cn",
   },
   {
-    media: "Pancarte",
+    media: "Affiche",
     SVG: <PancarteSVG width="30" height="26" />,
     url: "pc",
   },
