@@ -27,6 +27,7 @@ const MailForm = ({ setFieldValue, name, mail }: MailFromPropsTypes) => {
   const [model, setModel] = useState(() => {
     return mail ? mail : localStorage.getItem("savedText") || "";
   });
+  const height = window.innerHeight;
 
   return (
     <div className="mail-input">
@@ -39,8 +40,8 @@ const MailForm = ({ setFieldValue, name, mail }: MailFromPropsTypes) => {
         }}
         config={{
           placeholderText: "Écrivez votre mail ici ...",
-          heightMax: 190,
-          height: 190,
+          heightMax: height > 800 ? 300 : height > 740 ? 240 : 190,
+          height: height > 800 ? 300 : height > 740 ? 240 : 190,
           saveInterval: 2000,
           fontFamily: {
             "Lato, sans-serif": "Lato",
