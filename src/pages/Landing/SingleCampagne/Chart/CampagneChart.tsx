@@ -37,6 +37,20 @@ const CampagneChart = () => {
             percentage={nbrStat.mailPercentagePerCampagne}
           />
         </div>
+        <div className="info">
+          <ChartBox
+            nbrTotal={
+              nbrStat.nbrOpenedPerCampagnes[0]?.count
+                ? nbrStat.nbrOpenedPerCampagnes[0].count
+                : 0
+            }
+            color="#388218"
+            dataKey="users"
+            chartData={nbrStat.nbrMailMonthPerCampagnes}
+            title="Emails ouverts"
+            percentage={nbrStat.mailPercentagePerCampagne}
+          />
+        </div>
       </div>
     </div>
   );

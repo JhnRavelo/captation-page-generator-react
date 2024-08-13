@@ -80,6 +80,10 @@ const Landing = () => {
           statContext?.setNbrMailPerCampagnes(
             fetchStats.data.nbrMailPerYearPerCampagneStats
           );
+          statContext?.setNbrOpened(fetchStats.data.nbrMailOpenedStats);
+          statContext?.setNbrOpenedPerCampagnes(
+            fetchStats.data.nbrMailOpenedPerCampagneStats
+          );
         } else {
           toast.error(fetchStats.data.message);
         }

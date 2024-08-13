@@ -45,6 +45,11 @@ const SingleCampagne = () => {
               ? nbrStat.nbrMailPerCampagnes[0].count
               : 0
           }
+          openedNbr={
+            nbrStat.nbrOpenedPerCampagnes[0]?.count
+              ? nbrStat.nbrOpenedPerCampagnes[0].count
+              : 0
+          }
           idCampagne={id ? id : ""}
         />
         <Options options={options} />

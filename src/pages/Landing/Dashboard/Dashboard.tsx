@@ -1,11 +1,9 @@
-import { useParams } from "react-router-dom";
 import ChartBox from "../../../components/ChartBox/ChartBox";
 import MediaCompanyContainer from "../../../components/MediaCompanyContainer/MediaCompanyContainer";
 import useFilterStatsNbr from "../../../hooks/useFilterStatsNbr";
 
 const Dashboard = () => {
-  const { id } = useParams();
-  const nbrSTat = useFilterStatsNbr(id);
+  const nbrSTat = useFilterStatsNbr();
 
   return (
     <MediaCompanyContainer>
@@ -26,6 +24,16 @@ const Dashboard = () => {
           dataKey="users"
           chartData={nbrSTat.nbrMailPerMonths}
           title="Emails envoyés"
+          percentage={nbrSTat.mailPercentagePerMonth}
+        />
+      </div>
+      <div className="info">
+        <ChartBox
+          nbrTotal={nbrSTat.nbrOpened[0]?.count ? nbrSTat.nbrOpened[0].count : 0}
+          color="#388218"
+          dataKey="users"
+          chartData={nbrSTat.nbrMailPerMonths}
+          title="Emails ouverts"
           percentage={nbrSTat.mailPercentagePerMonth}
         />
       </div>

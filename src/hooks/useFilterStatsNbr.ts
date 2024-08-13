@@ -8,7 +8,7 @@ import useGetChart from "./useGetChart";
 import { dataHome } from "../assets/ts/data";
 import usePercentagePerMonth from "./usePercentagePerMonth";
 
-const useFilterStatsNbr = (id: string | undefined) => {
+const useFilterStatsNbr = (id?: string) => {
   const statContext = useStat();
   const mediaContext = useMediaEntreprise();
   const getChart = useGetChart();
@@ -33,6 +33,8 @@ const useFilterStatsNbr = (id: string | undefined) => {
     statContext?.nbrChartScanPerCampagnes,
     id
   );
+  const nbrOpened = useFilterDatas(statContext?.nbrOpened);
+  const nbrOpenedPerCampagnes = useFilterDatas(statContext?.nbrOpenedPerCampagnes, id);
   const [nbrMailPerMonths, setNbrMailPerMonths] = useState(dataHome);
   const [nbrScanPerMonths, setNbrScanPerMonths] = useState(dataHome);
   const [nbrMailMonthPerCampagnes, setNbrMailMonthPerCampagnes] =
@@ -109,6 +111,8 @@ const useFilterStatsNbr = (id: string | undefined) => {
     scanPercentagePerMonth,
     mailPercentagePerCampagne,
     scanPercentagePerCampagne,
+    nbrOpened,
+    nbrOpenedPerCampagnes,
   };
 };
 

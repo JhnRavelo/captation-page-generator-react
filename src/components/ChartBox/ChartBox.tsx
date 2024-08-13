@@ -5,6 +5,7 @@ import ScanSVG from "../../assets/svg/ScanSVG";
 import CustomTooltip from "./CustomTooltip/CustomTooltip";
 import { useRef } from "react";
 import useAnimationNbr from "../../hooks/useAnimationNbr";
+import MailOpenSVG from "../../assets/svg/MailOpenSVG";
 
 export type TypeChartData = {
   name: string;
@@ -16,7 +17,7 @@ type ChartBoxPropsType = {
   color: string;
   chartData: TypeChartData;
   dataKey: string;
-  title: "Emails envoyés" | "QR Code scannés";
+  title: "Emails envoyés" | "QR Code scannés" | "Emails ouverts";
   nbrTotal: number;
   percentage: number;
 };
@@ -55,6 +56,10 @@ const ChartBox = ({
         {title == "Emails envoyés" ? (
           <div className="chart-image blue">
             <MailSVG width="25" height="25" />
+          </div>
+        ) : title == "Emails ouverts" ? (
+          <div className="chart-image green">
+            <MailOpenSVG width="25" height="25" />
           </div>
         ) : (
           <div className="chart-image orange">

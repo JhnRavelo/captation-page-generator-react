@@ -30,7 +30,7 @@
         color: #cc1ebdd4;
       }
       &:nth-child(2) {
-        color: greenyellow;
+        color: rgb(28, 152, 177);
       }
       &:first-child,
       &:nth-child(2) {
@@ -46,8 +46,11 @@
       &:nth-child(3) {
         color: #fc7845;
       }
-      &:last-child {
+      &:nth-child(4) {
         color: #3978cd;
+      }
+      &:last-child {
+        color: #388218;
       }
       svg {
         margin-right: 5px;

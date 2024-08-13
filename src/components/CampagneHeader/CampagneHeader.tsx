@@ -7,25 +7,30 @@ import useColorCampagne from "../../hooks/useColorCampagne";
 import MailExportSVG from "../../assets/svg/MailExportSVG";
 import useExportXLSX from "../../hooks/useExportXLSX";
 import FileChartSVG from "../../assets/svg/FileChartSVG";
+import MailOpenSVG from "../../assets/svg/MailOpenSVG";
 
 type CampagneHeaderPropsTypes = {
   scanNbr: number;
   mailNbr: number;
+  openedNbr: number;
   idCampagne: string;
 };
 
 const CampagneHeader = ({
   scanNbr,
   mailNbr,
+  openedNbr,
   idCampagne,
 }: CampagneHeaderPropsTypes) => {
   const scanRef = useRef<HTMLSpanElement>(null);
   const mailRef = useRef<HTMLSpanElement>(null);
+  const openRef = useRef<HTMLSpanElement>(null);
   const color = useColorCampagne(idCampagne);
   const exportXLS = useExportXLSX();
 
   useAnimationNbr(scanNbr, scanRef);
   useAnimationNbr(mailNbr, mailRef);
+  useAnimationNbr(openedNbr, openRef);
   return (
     <div className="id-single-campagne-container">
       <div className="id-single-campagne">
@@ -58,6 +63,10 @@ const CampagneHeader = ({
         <div className="icon-campagne">
           <MailSVG width="30" height="30" />
           <span ref={mailRef}>0</span>
+        </div>
+        <div className="icon-campagne">
+          <MailOpenSVG width="30" height="30" />
+          <span ref={openRef}>0</span>
         </div>
       </div>
     </div>

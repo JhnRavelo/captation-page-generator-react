@@ -20,6 +20,10 @@ type TypeStatContext = {
   setNbrChartMailPerCampagnes: TypeSetState;
   nbrChartScanPerCampagnes: Card[];
   setNbrChartScanPerCampagnes: TypeSetState;
+  nbrOpened: Card[];
+  setNbrOpened: TypeSetState;
+  nbrOpenedPerCampagnes: Card[];
+  setNbrOpenedPerCampagnes: TypeSetState;
 } | null;
 
 const StatContext = createContext<TypeStatContext>(null);
@@ -37,6 +41,10 @@ const StatProvider = ({ children }: ContextPropsType) => {
   const [nbrChartScanPerCampagnes, setNbrChartScanPerCampagnes] = useState<
     Card[]
   >([]);
+  const [nbrOpened, setNbrOpened] = useState<Card[]>([]);
+  const [nbrOpenedPerCampagnes, setNbrOpenedPerCampagnes] = useState<Card[]>(
+    []
+  );
 
   return (
     <StatContext.Provider
@@ -57,6 +65,10 @@ const StatProvider = ({ children }: ContextPropsType) => {
         setNbrScanPerCampagnes,
         nbrMailPerCampagnes,
         setNbrMailPerCampagnes,
+        nbrOpened,
+        setNbrOpened,
+        nbrOpenedPerCampagnes,
+        setNbrOpenedPerCampagnes,
       }}
     >
       {children}

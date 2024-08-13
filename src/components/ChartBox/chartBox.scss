@@ -58,6 +58,10 @@
       &.orange::before {
         background: linear-gradient(to top right, #f88781, #eb9721);
       }
+
+      &.green::before {
+        background: linear-gradient(to top right, #698406, #47e121);
+      }
     }
 
     .chart-desc {
