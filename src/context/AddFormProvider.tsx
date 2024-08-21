@@ -59,7 +59,8 @@ export type TypeAddFormFields = {
     | "object"
     | "mailText"
     | "title"
-    | "campagnes";
+    | "campagnes"
+    | "delay";
   header: string;
   type: string;
   placeholder: string;
@@ -81,6 +82,7 @@ export type TypeInitialValues = {
   object?: string;
   mailText?: string;
   campagnes?: string[] | null;
+  delay?: string;
 } | null;
 
 const AddFormContext = createContext<TypeAddFormContext | null>(null);

@@ -67,8 +67,8 @@ const Options = ({ options, type }: OptionsPropsTypes) => {
         ))}
       {type == "number" && stateOptions.length <= 3 ? (
         <PLusSVG
-          width="40"
-          height="40"
+          width="30"
+          height="30"
           className="svg-option-plus"
           onClick={() => handleAddOption()}
         />

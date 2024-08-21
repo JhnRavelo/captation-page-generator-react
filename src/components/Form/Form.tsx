@@ -109,6 +109,8 @@ const FormFields = ({
                         formContext.title == "add") ||
                       formContext?.url == "/page"
                     ? "campagne-input-add"
+                    : formContext?.url == "/campagne/mail"
+                    ? "campagne-input-add-email"
                     : ""
                 }
               >
@@ -149,20 +151,21 @@ const FormFields = ({
                           <ErrorForm error={error} errors={errors[form.name]} />
                         </div>
                       );
-                    } else if (form.name == "mailText") {
+                    } else if (form.type == "mail") {
                       return (
-                        <Fragment key={index}>
+                        <div className="input-container" key={index}>
+                          <label htmlFor={form.name}>{form.header}</label>
                           <MailForm
                             setFieldValue={setFieldValue}
                             name={form.name}
                             mail={
-                              initialValues?.mailText
-                                ? initialValues.mailText
+                              initialValues[form.name]
+                                ? initialValues[form.name]
                                 : null
                             }
                           />
                           <ErrorForm error={error} errors={errors[form.name]} />
-                        </Fragment>
+                        </div>
                       );
                     } else
                       return (

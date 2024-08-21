@@ -22,7 +22,7 @@ const SingleCampagne = () => {
     },
     {
       title: "Mail",
-      url: "/marketing/campagne/" + id + "/mail",
+      url: "/marketing/campagne/" + id + "/mail/" + id + "MAIL1",
     },
     {
       title: "Utilisateur",
@@ -52,7 +52,7 @@ const SingleCampagne = () => {
           }
           idCampagne={id ? id : ""}
         />
-        <Options options={options} />
+        <Options options={options} type="standard" />
         <div className="single-campagne-page-container">
           <CampagneRouter />
         </div>

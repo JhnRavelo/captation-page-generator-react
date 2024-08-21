@@ -19,13 +19,13 @@ type MailFromPropsTypes = {
     values: string,
     shouldValidate?: boolean
   ) => Promise<void | FormikErrors<TypeInitialValues>>;
-  name: "mailText";
-  mail: string | null;
+  name: string;
+  mail?: string | null;
 };
 
 const MailForm = ({ setFieldValue, name, mail }: MailFromPropsTypes) => {
   const [model, setModel] = useState(() => {
-    return mail ? mail : localStorage.getItem("savedText") || "";
+    return mail ? mail : localStorage.getItem("savedText" + name) || "";
   });
   const height = window.innerHeight;
 
@@ -40,17 +40,31 @@ const MailForm = ({ setFieldValue, name, mail }: MailFromPropsTypes) => {
         }}
         config={{
           placeholderText: "Écrivez votre mail ici ...",
-          heightMax: height > 800 ? 300 : height > 740 ? 240 : 190,
-          height: height > 800 ? 300 : height > 740 ? 240 : 190,
-          saveInterval: 2000,
+          heightMax:
+            name == "title"
+              ? 50
+              : height > 800
+                ? 300
+                : height > 740
+                  ? 240
+                  : 190,
+          height:
+            name == "title"
+              ? 50
+              : height > 800
+                ? 300
+                : height > 740
+                  ? 240
+                  : 190,
+          saveInterval: 4000,
           fontFamily: {
             "Lato, sans-serif": "Lato",
             "'Futura', Arial, sans-serif": "Futura MD",
-            "Montserrat": "Montserrat",
+            Montserrat: "Montserrat",
           },
           events: {
             "save.before": function (html: string) {
-              localStorage.setItem("savedText", html);
+              localStorage.setItem("savedText" + name, html);
             },
           },
         }}

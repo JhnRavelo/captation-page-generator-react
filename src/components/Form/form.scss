@@ -12,3 +12,21 @@
   width: 800px;
   gap: 15px;
 }
+
+.campagne-input-add-email {
+  overflow: hidden;
+  scrollbar-width: none;
+  overflow-x: scroll;
+  height: 52vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 20px;
+
+  .labelInput {
+    &.imgCampagne {
+      margin-top: 10px;
+      width: 350px;
+    }
+  }
+}

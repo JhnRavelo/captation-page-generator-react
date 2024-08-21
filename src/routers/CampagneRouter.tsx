@@ -9,7 +9,7 @@ const CampagneRouter = () => {
     <Routes>
       <Route path="*" element={<CampagneEdit />} />
       <Route path="/chart" element={<CampagneChart />} />
-      <Route path="/mail" element={<CampagneMail />} />
+      <Route path="/mail/:idMail" element={<CampagneMail />} />
       <Route path="/user" element={<CampagneUser />} />
     </Routes>
   );

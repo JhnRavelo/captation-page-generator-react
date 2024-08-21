@@ -8,6 +8,7 @@ import { TypeInitialValues } from "../../../../context/AddFormProvider";
 import { validateCampagneMail } from "../../../../utils/validationSchema";
 import useFilterCampagne from "../../../../hooks/useFilterCampagne";
 import { useParams } from "react-router-dom";
+import Options from "../../../../components/Options/Options";
 
 const CampagneMail = () => {
   const formContext = useForm();
@@ -36,10 +37,19 @@ const CampagneMail = () => {
     return () => {
       setInitialValues(null);
     };
-  }, [id]);
+  }, [id, campagneContext?.campagnes]);
 
   return (
     <div className="edit-campagne-container">
+      <Options
+        options={[
+          {
+            title: "1",
+            url: "/marketing/campagne/" + id + "/mail/" + id + "MAIL1",
+          },
+        ]}
+        type="number"
+      />
       <FormFields
         setState={campagneContext?.setCampagnes}
         initialValues={initialValues}

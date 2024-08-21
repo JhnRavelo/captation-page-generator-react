@@ -38,8 +38,26 @@ export const campagneMail: TypeAddFormFields = [
     placeholder: "Objet de l'email",
   },
   {
+    name: "title",
+    type: "mail",
+    header: "Titre de l'email",
+    placeholder: "Titre de l'email",
+  },
+  {
+    name: "imgCampagne",
+    type: "file",
+    header: "Image de l'email",
+    placeholder: "Image de l'email",
+  },
+  {
+    name: "delay",
+    type: "number",
+    header: "Nombre de jour de délais",
+    placeholder: "Nombre de jour de délais",
+  },
+  {
     name: "mailText",
-    type: "textarea",
+    type: "mail",
     header: "Contenu de l'email",
     placeholder: "Contenu de l'email",
   },
