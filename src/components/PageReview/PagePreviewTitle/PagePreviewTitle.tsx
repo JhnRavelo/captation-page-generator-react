@@ -71,13 +71,13 @@ const PagePreviewTitle = () => {
         <h1
           style={{ color: page?.titleColor, fontFamily: '"Lato", sans-serif' }}
         >
-          {page?.title}
+          {page?.sloganCampagne}
         </h1>
       </div>
       <div className="slogan-image-container">
         <div className="slogan-container">
           <div className="slogan-content">
-            <span style={{ color: page?.titleColor }}>{page?.sloganCampagne}</span>
+            <span style={{ color: page?.titleColor }}>{page?.description}</span>
           </div>
           <div className="input-email">
             <input

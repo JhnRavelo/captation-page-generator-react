@@ -36,12 +36,12 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
             >
               <div className="ordi-logo-title">
                 <img src={entrepriseContext?.entreprise.img} alt="logo" />
-                <h4 style={{ color: page.titleColor }}>{page.title}</h4>
+                <h4 style={{ color: page.titleColor }}>{page.sloganCampagne}</h4>
               </div>
               <div className="ordi-campagne">
                 <div className="left">
                   <span style={{ color: page.titleColor, fontWeight: 800 }}>
-                    {page.sloganCampagne}
+                    {page.description}
                   </span>
                   <div className="input-ordi">
                     <span>Veuillez mettre votre email</span>
@@ -66,7 +66,7 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
           >
             <div className="phone-title">
               <img src={entrepriseContext?.entreprise.img} alt="logo" />
-              <h4 style={{ color: page.titleColor }}>{page.title}</h4>
+              <h4 style={{ color: page.titleColor }}>{page.sloganCampagne}</h4>
             </div>
             <div className="phone-img-campagne">
               <img src={page.imgCampagne} alt="image campagne" />
