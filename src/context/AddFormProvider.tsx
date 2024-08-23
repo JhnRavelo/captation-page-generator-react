@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
 import { TypeValidateForm } from "../utils/validationSchema";
 
-export type TypeSlug = "Campagne" | "Page" | "" | "QR-Code";
+export type TypeSlug = "Campagne" | "Page" | "" | "QR-Code" | "Mail";
 
 export type TypeTitleModal = "add" | "delete" | "update";
 

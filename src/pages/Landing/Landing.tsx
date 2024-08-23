@@ -14,6 +14,7 @@ import usePage from "../../hooks/usePage";
 import { axiosDefault } from "../../api/axios";
 import useStat from "../../hooks/useStat";
 import useLog from "../../hooks/useLog";
+import useMail from "../../hooks/useMail";
 
 const Landing = () => {
   const formContext = useForm();
@@ -24,6 +25,7 @@ const Landing = () => {
   const pageContext = usePage();
   const statContext = useStat();
   const logContext = useLog();
+  const mailContext = useMail();
 
   useEffect(() => {
     (async () => {
@@ -35,6 +37,14 @@ const Landing = () => {
           formContext?.setYears(fetchCampagnes.data.years);
         } else {
           toast.error(fetchCampagnes.data.message);
+        }
+
+        const fetchMails = await axiosPrivate.get("/campagne/mail");
+
+        if (fetchMails.data.success) {
+          mailContext?.setMails(fetchMails.data.datas);
+        } else {
+          toast.error(fetchMails.data.message);
         }
 
         const fetchEntreprises = await axiosPrivate.get("/entreprise");

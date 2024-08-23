@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./options.scss";
 import useActive from "../../hooks/useActive";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -21,6 +21,10 @@ const Options = ({ options, type }: OptionsPropsTypes) => {
   const active = useActive();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    setStateOptions(options);
+  }, [options]);
 
   const handleAddOption = () => {
     const newItem = {

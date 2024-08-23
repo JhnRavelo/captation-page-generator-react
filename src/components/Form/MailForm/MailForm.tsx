@@ -11,7 +11,7 @@ import "froala-editor/js/plugins.pkgd.min.js";
 import "./mailForm.scss";
 import { TypeInitialValues } from "../../../context/AddFormProvider";
 import { FormikErrors } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type MailFromPropsTypes = {
   setFieldValue: (
@@ -29,6 +29,12 @@ const MailForm = ({ setFieldValue, name, mail }: MailFromPropsTypes) => {
   });
   const height = window.innerHeight;
 
+  useEffect(() => {
+    if (mail) {
+      setModel(mail);
+    }
+  }, [mail]);
+
   return (
     <div className="mail-input">
       <FroalaEditor
@@ -44,18 +50,18 @@ const MailForm = ({ setFieldValue, name, mail }: MailFromPropsTypes) => {
             name == "title"
               ? 50
               : height > 800
-                ? 300
-                : height > 740
-                  ? 240
-                  : 190,
+              ? 300
+              : height > 740
+              ? 240
+              : 190,
           height:
             name == "title"
               ? 50
               : height > 800
-                ? 300
-                : height > 740
-                  ? 240
-                  : 190,
+              ? 300
+              : height > 740
+              ? 240
+              : 190,
           saveInterval: 4000,
           fontFamily: {
             "Lato, sans-serif": "Lato",

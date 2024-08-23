@@ -12,6 +12,7 @@ import "./form.scss";
 import ErrorForm from "./ErrorForm/ErrorForm";
 import InputCheckBox from "./InputCheckBox/InputCheckBox";
 import useCampagne from "../../hooks/useCampagne";
+import { useParams } from "react-router-dom";
 
 type FormFieldsPropsType = {
   setState: TypeSetState | undefined;
@@ -29,6 +30,7 @@ const FormFields = ({
   const [error, setError] = useState("");
   const entrepriseContext = useMediaEntreprise();
   const campagneContext = useCampagne();
+  const { idMail } = useParams();
 
   const handleSubmit = async (values: TypeInitialValues) => {
     if (!values || !entrepriseContext?.entreprise) {
@@ -40,6 +42,7 @@ const FormFields = ({
     formData.append("entreprise", entrepriseContext?.entreprise.company);
     formData.append("media", entrepriseContext.media.media);
     formData.append("id", `${formContext?.idUpdate}`);
+    formData.append("idMail", idMail ? idMail : "");
     valuesEntries.forEach(([key, value]) => {
       if (value instanceof File) {
         formData.append(`${key}`, value);
@@ -90,6 +93,7 @@ const FormFields = ({
     }
   };
 
+
   return (
     <>
       {initialValues ? (
@@ -97,6 +101,7 @@ const FormFields = ({
           initialValues={initialValues}
           onSubmit={(value) => handleSubmit(value)}
           validationSchema={formContext?.validate}
+          enableReinitialize={true}
         >
           {({ errors, setFieldValue, values }) => (
             <Form>
@@ -183,7 +188,18 @@ const FormFields = ({
                   })}
               </div>
               <div className="button-container">
-                <button type="submit">Enregistrer</button>
+                <button
+                  type="submit"
+                  onClick={() => {
+                    formContext?.formFields.map((item) => {
+                      if (errors[item.name]) {
+                        toast.error(errors[item.name]);
+                      }
+                    });
+                  }}
+                >
+                  Enregistrer
+                </button>
               </div>
             </Form>
           )}

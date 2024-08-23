@@ -146,6 +146,16 @@ export const validateCampagneMail = Yup.object({
     "Le contenu de l'email ne doit pas être vide"
   ),
   object: Yup.string().required("L'objet de l'email ne doit pas être vide"),
+  delay: Yup.number().required("Vous mettre un délais entre les emails"),
+  title: Yup.string().required("Vous devez mettre le titre de l'email"),
+});
+
+export const validateCampagneMailOne = Yup.object({
+  mailText: Yup.string().required(
+    "Le contenu de l'email ne doit pas être vide"
+  ),
+  object: Yup.string().required("L'objet de l'email ne doit pas être vide"),
+  title: Yup.string().required("Vous devez mettre le titre de l'email"),
 });
 
 export const validateQRCode = Yup.object({

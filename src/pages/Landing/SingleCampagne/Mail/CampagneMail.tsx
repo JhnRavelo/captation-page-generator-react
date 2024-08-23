@@ -3,56 +3,85 @@ import { useEffect, useState } from "react";
 import FormFields from "../../../../components/Form/Form";
 import useForm from "../../../../hooks/useForm";
 import { campagneMail } from "../../../../assets/ts/campagne";
-import useCampagne from "../../../../hooks/useCampagne";
-import { TypeInitialValues } from "../../../../context/AddFormProvider";
-import { validateCampagneMail } from "../../../../utils/validationSchema";
+import {
+  validateCampagneMail,
+  validateCampagneMailOne,
+} from "../../../../utils/validationSchema";
 import useFilterCampagne from "../../../../hooks/useFilterCampagne";
 import { useParams } from "react-router-dom";
-import Options from "../../../../components/Options/Options";
+import Options, { TypeOptions } from "../../../../components/Options/Options";
+import useMail from "../../../../hooks/useMail";
+import { Card } from "../../../../components/Card/Card";
 
 const CampagneMail = () => {
   const formContext = useForm();
-  const campagneContext = useCampagne();
-  const [initialValues, setInitialValues] = useState<TypeInitialValues>(null);
+  const [initialValues, setInitialValues] = useState<Card>();
+  const [options, setOptions] = useState<TypeOptions>([]);
+  const [once, setOnce] = useState(true);
   const filterCampagne = useFilterCampagne();
-  const { id } = useParams();
+  const { id, idMail } = useParams();
+  const mailContext = useMail();
 
   useEffect(() => {
-    formContext?.setFormFields(campagneMail);
+    if (id) {
+      setOptions([
+        {
+          title: "1",
+          url: "/marketing/campagne/" + id + "/mail/" + id + "MAIL1",
+        },
+      ]);
+    }
+  }, [id]);
+
+  useEffect(() => {
     formContext?.setUrl("/campagne/mail");
     formContext?.setTitle("update");
-    formContext?.setSlug("Campagne");
-    formContext?.setValidate(validateCampagneMail);
-    formContext?.setIdUpdate(id ? id : "");
-
-    const currentCampagne = filterCampagne(campagneContext?.campagnes, id);
-    if (currentCampagne) {
-      const newInitialValues: TypeInitialValues = {
-        mailText: currentCampagne.mailText,
-        object: currentCampagne.object,
-      };
-      setInitialValues(newInitialValues);
+    formContext?.setSlug("Mail");
+    if (idMail && idMail?.includes("MAIL1")) {
+      const currentFields = campagneMail.filter(
+        (item) => item.name !== "delay"
+      );
+      formContext?.setFormFields(currentFields);
+      formContext?.setValidate(validateCampagneMailOne);
+    } else {
+      formContext?.setFormFields(campagneMail);
+      formContext?.setValidate(validateCampagneMail);
     }
+    formContext?.setIdUpdate(id ? id : "");
+  }, [id, idMail]);
 
-    return () => {
-      setInitialValues(null);
-    };
-  }, [id, campagneContext?.campagnes]);
+  useEffect(() => {
+    if (mailContext?.mails && mailContext?.mails.length > 0 && idMail && id) {
+      const currentMail = filterCampagne(mailContext?.mails, idMail);
+      const currentOptions = mailContext.mails
+        .filter((item) => item.idData == id)
+        .map((item, index) => {
+          return {
+            title: `${index + 1}`,
+            url: "/marketing/campagne/" + id + "/mail/" + item.id,
+          };
+        });
+
+      if (currentOptions && currentOptions.length > 0 && once) {
+        setOptions(currentOptions);
+        setOnce(false);
+      }
+      setInitialValues(currentMail);
+    }
+  }, [id, idMail, mailContext?.mails]);
 
   return (
     <div className="edit-campagne-container">
-      <Options
-        options={[
-          {
-            title: "1",
-            url: "/marketing/campagne/" + id + "/mail/" + id + "MAIL1",
-          },
-        ]}
-        type="number"
-      />
+      <Options options={options} type="number" />
       <FormFields
-        setState={campagneContext?.setCampagnes}
-        initialValues={initialValues}
+        setState={mailContext?.setMails}
+        initialValues={{
+          title: initialValues?.title ? initialValues.title : "",
+          imgCampagne: null,
+          delay: initialValues?.delay ? initialValues.delay : "",
+          object: initialValues?.object ? initialValues.object : "",
+          mailText: initialValues?.mailText ? initialValues.mailText : "",
+        }}
       />
     </div>
   );
