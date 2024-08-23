@@ -1,5 +1,23 @@
 @import "../../../variables.scss";
 
+.input-file-image-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  a {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .input-file-image {
+    width: 60px;
+    object-fit: contain;
+  }
+}
+
 .labelInput {
   box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
   border: 1px solid $black-border;

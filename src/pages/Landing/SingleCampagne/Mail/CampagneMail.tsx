@@ -77,7 +77,9 @@ const CampagneMail = () => {
         setState={mailContext?.setMails}
         initialValues={{
           title: initialValues?.title ? initialValues.title : "",
-          imgCampagne: null,
+          imgCampagne: initialValues?.imgCampagne
+            ? { name: initialValues.imgCampagne }
+            : null,
           delay: initialValues?.delay ? initialValues.delay : "",
           object: initialValues?.object ? initialValues.object : "",
           mailText: initialValues?.mailText ? initialValues.mailText : "",

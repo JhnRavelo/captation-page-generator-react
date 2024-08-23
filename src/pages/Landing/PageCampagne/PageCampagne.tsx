@@ -21,6 +21,7 @@ const PageCampagne = () => {
     formContext?.setValidate(validatePage);
     formContext?.setTitle("add");
     formContext?.setUrl("/page");
+    pageContext?.setPage(null);
   };
 
   return (

@@ -22,7 +22,9 @@ const ModalPage = () => {
     sloganCampagne: pageContext?.page?.sloganCampagne
       ? pageContext.page.sloganCampagne
       : "",
-    imgCampagne: null,
+    imgCampagne: pageContext?.page?.imgCampagne
+      ? { name: pageContext.page.imgCampagne }
+      : null,
     campagnes: pageContext?.page?.id ? [pageContext.page.id] : null,
   };
 

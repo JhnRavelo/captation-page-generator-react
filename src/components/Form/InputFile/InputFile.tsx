@@ -2,6 +2,10 @@ import { FormikErrors } from "formik";
 import imgGallery from "../../../assets/png/gallery.png";
 import { TypeInitialValues } from "../../../context/AddFormProvider";
 import "./inputFile.scss";
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 type InputFileProps = {
   name: "logo" | "imgCampagne";
@@ -11,9 +15,19 @@ type InputFileProps = {
     shouldValidate?: boolean
   ) => Promise<void | FormikErrors<TypeInitialValues>>;
   value: string | undefined;
+  img?: string | null;
 };
 
-const InputFile = ({ name, setFieldValue, value }: InputFileProps) => {
+const InputFile = ({ name, setFieldValue, value, img }: InputFileProps) => {
+  const { idMail } = useParams();
+
+  useEffect(() => {
+    Fancybox.bind("[data-fancybox]");
+    return () => {
+      Fancybox.destroy();
+    };
+  }, []);
+
   return (
     <>
       <input
@@ -36,12 +50,21 @@ const InputFile = ({ name, setFieldValue, value }: InputFileProps) => {
         />
         <span>
           {value
-            ? value
-            : (name == "logo" && !value)
+            ? value.split("/")[value.split("/").length - 1]
+            : name == "logo" && !value
             ? "Si vous ne choisissez pas, le logo par défaut sera choisit."
             : "Choisissez votre image pour la campagne."}
         </span>
       </label>
+      {img && idMail && (
+        <a href={img} data-fancybox="gallery">
+          <img
+            src={img}
+            alt="image campagne ou logo"
+            className="input-file-image"
+          />
+        </a>
+      )}
     </>
   );
 };

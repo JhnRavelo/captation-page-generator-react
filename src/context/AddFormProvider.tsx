@@ -78,7 +78,7 @@ export type TypeInitialValues = {
   titleColor?: string;
   titleBackgroundColor?: string;
   sloganCampagne?: string;
-  imgCampagne?: File | null;
+  imgCampagne?: File | null | { name: string };
   object?: string;
   mailText?: string;
   campagnes?: string[] | null;

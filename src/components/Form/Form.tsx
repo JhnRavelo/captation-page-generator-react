@@ -93,7 +93,6 @@ const FormFields = ({
     }
   };
 
-
   return (
     <>
       {initialValues ? (
@@ -144,7 +143,11 @@ const FormFields = ({
                       return (
                         <div
                           className={
-                            form.name == "imgCampagne" ? "input-container" : ""
+                            form.name == "imgCampagne" && idMail
+                              ? "input-container input-file-image-container"
+                              : !idMail && form.name == "logo"
+                              ? ""
+                              : "input-container"
                           }
                           key={index}
                         >
@@ -152,6 +155,7 @@ const FormFields = ({
                             name={form.name}
                             setFieldValue={setFieldValue}
                             value={values[form.name]?.name}
+                            img={initialValues[form.name]?.name}
                           />
                           <ErrorForm error={error} errors={errors[form.name]} />
                         </div>
