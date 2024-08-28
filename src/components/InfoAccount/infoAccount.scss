@@ -118,13 +118,16 @@
       color: aliceblue;
       transform: scale(0.97);
     }
-    &:first-child:hover {
-      background-color: #cc1ebdd4;
+    &:nth-child(1):hover {
+      background-color: #211eccd4;
     }
     &:nth-child(2):hover {
-      background-color: rgb(28, 152, 177);
+      background-color: #cc1ebdd4;
     }
     &:nth-child(3):hover {
+      background-color: rgb(28, 152, 177);
+    }
+    &:nth-child(4):hover {
       background-color: green;
     }
     &:last-child:hover {

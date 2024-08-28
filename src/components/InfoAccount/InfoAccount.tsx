@@ -11,6 +11,8 @@ import useAuth from "../../hooks/useAuth";
 import MailExportSVG from "../../assets/svg/MailExportSVG";
 import useExportXLSX from "../../hooks/useExportXLSX";
 import FileChartSVG from "../../assets/svg/FileChartSVG";
+import SaveSVG from "../../assets/svg/SaveSVG";
+import useDownload from "../../hooks/useDownload";
 
 type InfoAccountPropsType = {
   img: string;
@@ -25,6 +27,7 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
   const axiosPrivate = useAxiosPrivate();
   const authContext = useAuth();
   const inputRef = useRef<HTMLInputElement>(null);
+  const download = useDownload();
 
   const handleChangePicture = async (
     e: React.ChangeEvent<HTMLInputElement>
@@ -53,6 +56,13 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
   return (
     <>
       <div className="options" ref={optionsRef}>
+        <div
+          className="option"
+          onClick={() => download("save.zip", "/data/export")}
+        >
+          <span>Sauvegarder</span>
+          <SaveSVG width="30" height="20" />
+        </div>
         <div className="option" onClick={() => exportXLS("chart")}>
           <span>Exporter Chart</span>
           <FileChartSVG width="30" height="18" />
