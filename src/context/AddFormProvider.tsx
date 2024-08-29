@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
 import { TypeValidateForm } from "../utils/validationSchema";
+import { TypeSetBoolean } from "./CampagneProvider";
 
 export type TypeSlug = "Campagne" | "Page" | "" | "QR-Code" | "Mail";
 
@@ -24,7 +25,7 @@ type TypeAddFormContext = {
   slug: TypeSlug;
   setSlug: React.Dispatch<React.SetStateAction<TypeSlug>>;
   openForm: boolean;
-  setOpenForm: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenForm: TypeSetBoolean;
   validate: TypeValidateForm;
   setValidate: React.Dispatch<React.SetStateAction<TypeValidateForm>>;
   formFields: TypeAddFormFields;

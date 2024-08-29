@@ -4,11 +4,13 @@ import { Card } from "../components/Card/Card";
 
 export type TypeSetState = React.Dispatch<React.SetStateAction<Card[]>>;
 
+export type TypeSetBoolean = React.Dispatch<React.SetStateAction<boolean>>;
+
 type TypeCampagnesValues = {
   campagnes: Card[];
   setCampagnes: TypeSetState;
   isCampagne: boolean;
-  setIsCampagne: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsCampagne: TypeSetBoolean;
 } | null;
 
 const CampagneContext = createContext<TypeCampagnesValues>(null);

@@ -32,8 +32,8 @@ const CardContentQRCode = ({ qrcode }: QRCodePropsType) => {
                 "-" +
                 qrcode.media +
                 "-" +
-                qrcode.entreprise +
-                ".png",
+                qrcode.entreprise,
+              "png",
               "/qr-code/download/",
               qrcode.img
             )

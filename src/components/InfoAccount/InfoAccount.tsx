@@ -5,14 +5,17 @@ import ThreeDotSVG from "../../assets/svg/ThreeDotSVG";
 import "./infoAccount.scss";
 import { useNavigate } from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import { toast } from "react-toastify";
+// import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+// import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import MailExportSVG from "../../assets/svg/MailExportSVG";
 import useExportXLSX from "../../hooks/useExportXLSX";
 import FileChartSVG from "../../assets/svg/FileChartSVG";
 import SaveSVG from "../../assets/svg/SaveSVG";
 import useDownload from "../../hooks/useDownload";
+import RestoreSVG from "../../assets/svg/RestoreSVG";
+import useSendFile from "../../hooks/useSendFile";
+import useCampagne from "../../hooks/useCampagne";
 
 type InfoAccountPropsType = {
   img: string;
@@ -24,41 +27,69 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
   const exportXLS = useExportXLSX();
   const optionsRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const axiosPrivate = useAxiosPrivate();
+  // const axiosPrivate = useAxiosPrivate();
   const authContext = useAuth();
   const inputRef = useRef<HTMLInputElement>(null);
+  const inputRestoreRef = useRef<HTMLInputElement>(null);
   const download = useDownload();
+  const send = useSendFile();
+  const campagneContext = useCampagne();
 
-  const handleChangePicture = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (e.target.files && e.target.files?.length > 0) {
-      const formData = new FormData();
-      formData.append("avatar", e.target.files[0]);
-      try {
-        const res = await axiosPrivate.put("auth/edit/avatar", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+  // const handleChangePicture = async (
+  //   e: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   if (e.target.files && e.target.files?.length > 0) {
+  //     const formData = new FormData();
+  //     formData.append("avatar", e.target.files[0]);
+  //     try {
+  //       const res = await axiosPrivate.put("auth/edit/avatar", formData, {
+  //         headers: { "Content-Type": "multipart/form-data" },
+  //       });
 
-        if (res.data.success) {
-          authContext?.setAuth(res.data.user);
-          toast.success("Image de Profile Modifier");
-        } else {
-          toast.error(res.data.message);
-        }
-      } catch (error) {
-        toast.error("Erreur serveur");
-        console.log(error);
-      }
-    }
-  };
+  //       if (res.data.success) {
+  //         authContext?.setAuth(res.data.user);
+  //         toast.success("Image de Profile Modifier");
+  //       } else {
+  //         toast.error(res.data.message);
+  //       }
+  //     } catch (error) {
+  //       toast.error("Erreur serveur");
+  //       console.log(error);
+  //     }
+  //   }
+  // };
+
+  // const handleRestore = async (e: React.ChangeEvent<HTMLInputElement>) => {};
 
   return (
     <>
       <div className="options" ref={optionsRef}>
+        <input
+          type="file"
+          id="file-export"
+          style={{ display: "none" }}
+          ref={inputRestoreRef}
+          onChange={(e) => {
+            if (campagneContext?.setIsCampagne) {
+              send(e, "/data/import", campagneContext.setIsCampagne);
+            }
+          }}
+        />
+        <label
+          htmlFor="file-export"
+          className="option"
+          onClick={() => {
+            if (inputRestoreRef.current) {
+              inputRestoreRef.current.value = "";
+            }
+          }}
+        >
+          <span>Restaurer</span>
+          <RestoreSVG width="30" height="20" />
+        </label>
         <div
           className="option"
-          onClick={() => download("save.zip", "/data/export")}
+          onClick={() => download("save", "zip", "/data/export")}
         >
           <span>Sauvegarder</span>
           <SaveSVG width="30" height="20" />
@@ -89,7 +120,11 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
               id="img-profile"
               style={{ display: "none" }}
               ref={inputRef}
-              onChange={(e) => handleChangePicture(e)}
+              onChange={(e) => {
+                if (authContext?.setAuth) {
+                  send(e, "auth/edit/avatar", authContext.setAuth);
+                }
+              }}
             />
             <label
               className="image-overlay"
