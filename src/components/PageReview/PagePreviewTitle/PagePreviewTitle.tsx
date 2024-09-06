@@ -6,12 +6,14 @@ import useFilterCampagne from "../../../hooks/useFilterCampagne";
 import { Card } from "../../Card/Card";
 import { companies, TypeCompaniesObject } from "../../../assets/ts/company";
 import { axiosDefault } from "../../../api/axios";
+import useAuth from "../../../hooks/useAuth";
 
 const PagePreviewTitle = () => {
   const [page, setPage] = useState<Card>();
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState<TypeCompaniesObject>();
   const { idCampagne, media } = useParams();
+  const authContext = useAuth();
   const filter = useFilterCampagne();
   const navigate = useNavigate();
 
@@ -33,7 +35,7 @@ const PagePreviewTitle = () => {
           }
           const id = localStorage.getItem("idStatCampagne");
 
-          if (id) return;
+          if (id || authContext?.auth) return;
           const stat = await axiosDefault.post("/stat", { idCampagne, media });
 
           if (stat.data.success) {
@@ -44,7 +46,7 @@ const PagePreviewTitle = () => {
         console.log(error);
       }
     })();
-  }, [idCampagne, media]);
+  }, [idCampagne, media, authContext?.auth]);
 
   const handleSubmit = async () => {
     const id = localStorage.getItem("idStatCampagne");
