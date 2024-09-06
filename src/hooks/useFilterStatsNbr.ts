@@ -2,15 +2,12 @@
 import { useEffect, useState } from "react";
 import useFilterDatas from "./useFilterDatas";
 import useStat from "./useStat";
-// import { Card } from "../components/Card/Card";
-import useMediaEntreprise from "./useMediaEntreprise";
 import useGetChart from "./useGetChart";
 import { dataHome } from "../assets/ts/data";
 import usePercentagePerMonth from "./usePercentagePerMonth";
 
 const useFilterStatsNbr = (id?: string) => {
   const statContext = useStat();
-  const mediaContext = useMediaEntreprise();
   const getChart = useGetChart();
   const getPercentagePerMonth = usePercentagePerMonth();
   const nbrScans = useFilterDatas(statContext?.nbrScans);
@@ -34,21 +31,26 @@ const useFilterStatsNbr = (id?: string) => {
     id
   );
   const nbrOpened = useFilterDatas(statContext?.nbrOpened);
-  const nbrOpenedPerCampagnes = useFilterDatas(statContext?.nbrOpenedPerCampagnes, id);
+  const nbrOpenedPerCampagnes = useFilterDatas(
+    statContext?.nbrOpenedPerCampagnes,
+    id
+  );
+  const nbrOpenedMonths = useFilterDatas(statContext?.nbrChartOpened);
   const [nbrMailPerMonths, setNbrMailPerMonths] = useState(dataHome);
   const [nbrScanPerMonths, setNbrScanPerMonths] = useState(dataHome);
   const [nbrMailMonthPerCampagnes, setNbrMailMonthPerCampagnes] =
     useState(dataHome);
   const [nbrScanMonthPerCampagnes, setNbrScanMonthPerCampagnes] =
     useState(dataHome);
+  const [nbrOpenedPerMonths, setNbrOpenedPerMonths] = useState(dataHome);
   const [mailPercentagePerMonth, setMailPercentagePerMonth] = useState(0);
   const [scanPercentagePerMonth, setScanPercentagePerMonth] = useState(0);
+  const [openedPercentagePerMonth, setOpenedPercentagePerMonth] = useState(0);
   const [mailPercentagePerCampagne, setMailPercentagePerCampagne] = useState(0);
   const [scanPercentagePerCampagne, setScanPercentagePerCampagne] = useState(0);
 
   useEffect(() => {
     if (id) {
-
       if (nbrMailChartPerCampagnes) {
         const nbrMailMonthPerCampagnes = getChart(
           dataHome,
@@ -72,30 +74,35 @@ const useFilterStatsNbr = (id?: string) => {
         );
         setScanPercentagePerCampagne(scanPercentagePerMonth);
       }
-    }
+    } else {
+      if (nbrMailMonths) {
+        const nbrMailMonth = getChart(dataHome, nbrMailMonths);
+        setNbrMailPerMonths(nbrMailMonth);
+        const mailPercentagePerMonth = getPercentagePerMonth(nbrMailMonths);
+        setMailPercentagePerMonth(mailPercentagePerMonth);
+      }
 
-    if (nbrMailMonths) {
-      const nbrMailMonth = getChart(dataHome, nbrMailMonths);
-      setNbrMailPerMonths(nbrMailMonth);
-      const mailPercentagePerMonth = getPercentagePerMonth(nbrMailMonths);
-      setMailPercentagePerMonth(mailPercentagePerMonth);
-    }
+      if (nbrScanMonths) {
+        const nbrScanMonth = getChart(dataHome, nbrScanMonths);
+        setNbrScanPerMonths(nbrScanMonth);
+        const scanPercentagePerMonth = getPercentagePerMonth(nbrScanMonths);
+        setScanPercentagePerMonth(scanPercentagePerMonth);
+      }
 
-    if (nbrScanMonths) {
-      const nbrScanMonth = getChart(dataHome, nbrScanMonths);
-      setNbrScanPerMonths(nbrScanMonth);
-      const scanPercentagePerMonth = getPercentagePerMonth(nbrScanMonths);
-      setScanPercentagePerMonth(scanPercentagePerMonth);
+      if (nbrOpenedMonths) {
+        const nbrOpenedMonth = getChart(dataHome, nbrOpenedMonths);
+        setNbrOpenedPerMonths(nbrOpenedMonth);
+        const openedPercentagePerMonth = getPercentagePerMonth(nbrOpenedMonths);
+        setOpenedPercentagePerMonth(openedPercentagePerMonth);
+      }
     }
   }, [
-    statContext?.nbrMails,
-    statContext?.nbrScans,
+    nbrScanChartPerCampagnes,
+    nbrMailChartPerCampagnes,
     id,
-    mediaContext?.media.media,
     nbrMailMonths,
     nbrScanMonths,
-    statContext?.nbrChartMails,
-    statContext?.nbrChartScans,
+    nbrOpenedMonths,
   ]);
 
   return {
@@ -113,6 +120,8 @@ const useFilterStatsNbr = (id?: string) => {
     scanPercentagePerCampagne,
     nbrOpened,
     nbrOpenedPerCampagnes,
+    nbrOpenedPerMonths,
+    openedPercentagePerMonth,
   };
 };
 

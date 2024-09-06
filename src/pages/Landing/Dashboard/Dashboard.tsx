@@ -32,9 +32,9 @@ const Dashboard = () => {
           nbrTotal={nbrSTat.nbrOpened[0]?.count ? nbrSTat.nbrOpened[0].count : 0}
           color="#388218"
           dataKey="users"
-          chartData={nbrSTat.nbrMailPerMonths}
+          chartData={nbrSTat.nbrOpenedPerMonths}
           title="Emails ouverts"
-          percentage={nbrSTat.mailPercentagePerMonth}
+          percentage={nbrSTat.openedPercentagePerMonth}
         />
       </div>
     </MediaCompanyContainer>

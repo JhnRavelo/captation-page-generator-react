@@ -94,6 +94,9 @@ const Landing = () => {
           statContext?.setNbrOpenedPerCampagnes(
             fetchStats.data.nbrMailOpenedPerCampagneStats
           );
+          statContext?.setNbrChartOpened(
+            fetchStats.data.nbrMailOpenedPerMonthStats
+          );
         } else {
           toast.error(fetchStats.data.message);
         }
