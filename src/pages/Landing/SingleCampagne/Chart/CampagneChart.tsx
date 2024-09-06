@@ -46,9 +46,9 @@ const CampagneChart = () => {
             }
             color="#388218"
             dataKey="users"
-            chartData={nbrStat.nbrMailMonthPerCampagnes}
+            chartData={nbrStat.nbrOpenedPerMonthPerCampagnes}
             title="Emails ouverts"
-            percentage={nbrStat.mailPercentagePerCampagne}
+            percentage={nbrStat.openedPercentagePerCampagne}
           />
         </div>
       </div>

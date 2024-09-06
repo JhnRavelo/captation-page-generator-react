@@ -36,6 +36,10 @@ const useFilterStatsNbr = (id?: string) => {
     id
   );
   const nbrOpenedMonths = useFilterDatas(statContext?.nbrChartOpened);
+  const nbrOpenedChartPerCampagnes = useFilterDatas(
+    statContext?.nbrChartOpenedPerCampagnes,
+    id
+  );
   const [nbrMailPerMonths, setNbrMailPerMonths] = useState(dataHome);
   const [nbrScanPerMonths, setNbrScanPerMonths] = useState(dataHome);
   const [nbrMailMonthPerCampagnes, setNbrMailMonthPerCampagnes] =
@@ -43,11 +47,15 @@ const useFilterStatsNbr = (id?: string) => {
   const [nbrScanMonthPerCampagnes, setNbrScanMonthPerCampagnes] =
     useState(dataHome);
   const [nbrOpenedPerMonths, setNbrOpenedPerMonths] = useState(dataHome);
+  const [nbrOpenedPerMonthPerCampagnes, setNbrOpenedPerMonthPerCampagnes] =
+    useState(dataHome);
   const [mailPercentagePerMonth, setMailPercentagePerMonth] = useState(0);
   const [scanPercentagePerMonth, setScanPercentagePerMonth] = useState(0);
   const [openedPercentagePerMonth, setOpenedPercentagePerMonth] = useState(0);
   const [mailPercentagePerCampagne, setMailPercentagePerCampagne] = useState(0);
   const [scanPercentagePerCampagne, setScanPercentagePerCampagne] = useState(0);
+  const [openedPercentagePerCampagne, setOpenedPercentagePerCampagne] =
+    useState(0);
 
   useEffect(() => {
     if (id) {
@@ -74,6 +82,18 @@ const useFilterStatsNbr = (id?: string) => {
         );
         setScanPercentagePerCampagne(scanPercentagePerMonth);
       }
+
+      if (nbrOpenedChartPerCampagnes) {
+        const nbrOpenedMonthPerCampagnes = getChart(
+          dataHome,
+          nbrOpenedChartPerCampagnes
+        );
+        setNbrOpenedPerMonthPerCampagnes(nbrOpenedMonthPerCampagnes);
+        const openedPercentagePerMonth = getPercentagePerMonth(
+          nbrOpenedChartPerCampagnes
+        );
+        setOpenedPercentagePerCampagne(openedPercentagePerMonth);
+      }
     } else {
       if (nbrMailMonths) {
         const nbrMailMonth = getChart(dataHome, nbrMailMonths);
@@ -99,6 +119,7 @@ const useFilterStatsNbr = (id?: string) => {
   }, [
     nbrScanChartPerCampagnes,
     nbrMailChartPerCampagnes,
+    nbrOpenedChartPerCampagnes,
     id,
     nbrMailMonths,
     nbrScanMonths,
@@ -122,6 +143,8 @@ const useFilterStatsNbr = (id?: string) => {
     nbrOpenedPerCampagnes,
     nbrOpenedPerMonths,
     openedPercentagePerMonth,
+    openedPercentagePerCampagne,
+    nbrOpenedPerMonthPerCampagnes,
   };
 };
 
