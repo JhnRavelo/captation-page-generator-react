@@ -93,6 +93,16 @@ export type TypeValidateForm =
         campagnes: "";
       },
       ""
+    >
+  | Yup.ObjectSchema<
+      {
+        company: string;
+      },
+      Yup.AnyObject,
+      {
+        company: undefined;
+      },
+      ""
     >;
 
 export const validateLogin = Yup.object({
@@ -197,5 +207,15 @@ export const validateUpdatePage = Yup.object({
   ),
   titleBackgroundColor: Yup.string().required(
     "Vous devez choisir une couleur pour le fond"
+  ),
+});
+
+export const validateEntreprise = Yup.object({
+  company: Yup.string().required(
+    "Vous devez remplir votre nom d'entreprise"
+  ),
+  logo: Yup.mixed().required("Vous devez choisir le logo pour le QR Code"),
+  imgCampagne: Yup.mixed().required(
+    "Vous devez choisir le logo de l'entreprise"
   ),
 });

@@ -8,6 +8,7 @@ import useCampagne from "../../hooks/useCampagne";
 import { campagneInitialValues } from "../../assets/ts/campagne";
 import useQRCode from "../../hooks/useQRCode";
 import usePage from "../../hooks/usePage";
+import ModalEntreprise from "./ModalEntreprise/ModalEntreprise";
 
 const Modal = () => {
   const formContext = useForm();
@@ -35,6 +36,8 @@ const Modal = () => {
               <ModalQRCode />
             ) : formContext?.slug == "Page" ? (
               <ModalPage />
+            ) : formContext?.slug == "Entreprise" ? (
+              <ModalEntreprise />
             ) : (
               <FormFields
                 setState={campagneContext?.setCampagnes}

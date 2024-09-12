@@ -10,7 +10,7 @@ export const pageFields: TypeAddFormFields = [
     name: "imgCampagne",
     type: "file",
     header: "Image de la campagne",
-    placeholder: "Image de la campagne",
+    placeholder: "Choisissez votre image pour la campagne.",
   },
   {
     name: "sloganCampagne",

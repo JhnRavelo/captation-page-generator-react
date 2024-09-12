@@ -33,14 +33,22 @@ const FormFields = ({
   const { idMail } = useParams();
 
   const handleSubmit = async (values: TypeInitialValues) => {
-    if (!values || !entrepriseContext?.entreprise) {
-      toast.error("Erreur valeur nulle ou entreprise nulle");
+    if (!values) {
+      toast.error("Erreur valeur nulle");
       return;
     }
     const formData = new FormData();
     const valuesEntries = Object.entries(values);
-    formData.append("entreprise", entrepriseContext?.entreprise.company);
-    formData.append("media", entrepriseContext.media.media);
+    formData.append(
+      "entreprise",
+      entrepriseContext?.entreprise?.company
+        ? entrepriseContext.entreprise.company
+        : ""
+    );
+    formData.append(
+      "media",
+      entrepriseContext?.media.media ? entrepriseContext.media.media : ""
+    );
     formData.append("id", `${formContext?.idUpdate}`);
     formData.append("idMail", idMail ? idMail : "");
     valuesEntries.forEach(([key, value]) => {
@@ -111,7 +119,8 @@ const FormFields = ({
                     ? "campagne-input-update"
                     : (formContext?.url == "/campagne" &&
                         formContext.title == "add") ||
-                      formContext?.url == "/page"
+                      formContext?.url == "/page" ||
+                      formContext?.url == "/entreprise"
                     ? "campagne-input-add"
                     : formContext?.url == "/campagne/mail"
                     ? "campagne-input-add-email"
@@ -145,6 +154,9 @@ const FormFields = ({
                           className={
                             form.name == "imgCampagne" && idMail
                               ? "input-container input-file-image-container"
+                              : form.name == "logo" &&
+                                formContext.slug == "Entreprise"
+                              ? "input-container input-file-entreprise"
                               : !idMail && form.name == "logo"
                               ? ""
                               : "input-container"
@@ -156,6 +168,7 @@ const FormFields = ({
                             setFieldValue={setFieldValue}
                             value={values[form.name]?.name}
                             img={initialValues[form.name]?.name}
+                            placeholder={form.placeholder}
                           />
                           <ErrorForm error={error} errors={errors[form.name]} />
                         </div>

@@ -21,7 +21,7 @@ export const menus: TypeMenus = [
     SVG: <DashboardSVG height="30" width="30" />,
   },
   {
-    url: "/marketing/entreprise",
+    url: "/marketing/company",
     title: "Entreprise",
     SVG: <EntrepriseSVG height="23" width="30" />,
   },

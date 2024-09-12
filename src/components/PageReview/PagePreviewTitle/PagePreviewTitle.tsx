@@ -2,36 +2,25 @@
 import { useEffect, useState } from "react";
 import "./pagePreviewTitle.scss";
 import { useNavigate, useParams } from "react-router-dom";
-import useFilterCampagne from "../../../hooks/useFilterCampagne";
 import { Card } from "../../Card/Card";
-import { companies, TypeCompaniesObject } from "../../../assets/ts/company";
 import { axiosDefault } from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 
 const PagePreviewTitle = () => {
   const [page, setPage] = useState<Card>();
   const [email, setEmail] = useState("");
-  const [company, setCompany] = useState<TypeCompaniesObject>();
   const { idCampagne, media } = useParams();
   const authContext = useAuth();
-  const filter = useFilterCampagne();
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       try {
         if (idCampagne && media) {
-          const pages = await axiosDefault.get("/page");
+          const page = await axiosDefault.get("/page/single-page?idCampagne="+idCampagne);
 
-          if (pages.data.success) {
-            const filterPage = filter(pages.data.datas, idCampagne);
-            if (filterPage) {
-              const filterCompany = companies.find(
-                (company) => company.company === filterPage?.entreprise
-              );
-              setPage(filterPage);
-              setCompany(filterCompany);
-            }
+          if (page.data.success) {
+            setPage(page.data.data);
           }
           const id = localStorage.getItem("idStatCampagne");
 
@@ -69,7 +58,7 @@ const PagePreviewTitle = () => {
       style={{ backgroundColor: page?.titleBackgroundColor }}
     >
       <div className="title-container">
-        <img src={company?.img} alt="logo" />
+        <img src={page?.logo} alt="logo" />
         <h1
           style={{ color: page?.titleColor, fontFamily: '"Lato", sans-serif' }}
         >

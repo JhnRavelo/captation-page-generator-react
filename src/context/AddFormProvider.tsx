@@ -3,7 +3,13 @@ import { ContextPropsType } from "./AuthProvider";
 import { TypeValidateForm } from "../utils/validationSchema";
 import { TypeSetBoolean } from "./CampagneProvider";
 
-export type TypeSlug = "Campagne" | "Page" | "" | "QR-Code" | "Mail";
+export type TypeSlug =
+  | "Campagne"
+  | "Page"
+  | ""
+  | "QR-Code"
+  | "Mail"
+  | "Entreprise";
 
 export type TypeTitleModal = "add" | "delete" | "update";
 
@@ -15,7 +21,8 @@ export type TypeUrl =
   | "/campagne/mail"
   | "/qr-code/delete"
   | "/campagne/delete"
-  | "/page/delete";
+  | "/page/delete"
+  | "/entreprise";
 
 export type StrNb = number | string;
 
@@ -61,7 +68,9 @@ export type TypeAddFormFields = {
     | "mailText"
     | "title"
     | "campagnes"
-    | "delay";
+    | "delay"
+    | "entreprise"
+    | "company";
   header: string;
   type: string;
   placeholder: string;
@@ -75,7 +84,7 @@ export type TypeInitialValues = {
   description?: string;
   user?: string;
   title?: string;
-  logo?: File | null;
+  logo?: File | null | { name: string };
   titleColor?: string;
   titleBackgroundColor?: string;
   sloganCampagne?: string;
@@ -84,6 +93,8 @@ export type TypeInitialValues = {
   mailText?: string;
   campagnes?: string[] | null;
   delay?: string;
+  entreprise?: string;
+  company?: string;
 } | null;
 
 const AddFormContext = createContext<TypeAddFormContext | null>(null);

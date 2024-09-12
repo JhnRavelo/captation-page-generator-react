@@ -16,9 +16,16 @@ type InputFileProps = {
   ) => Promise<void | FormikErrors<TypeInitialValues>>;
   value: string | undefined;
   img?: string | null;
+  placeholder: string;
 };
 
-const InputFile = ({ name, setFieldValue, value, img }: InputFileProps) => {
+const InputFile = ({
+  name,
+  setFieldValue,
+  value,
+  img,
+  placeholder,
+}: InputFileProps) => {
   const { idMail } = useParams();
 
   useEffect(() => {
@@ -49,11 +56,7 @@ const InputFile = ({ name, setFieldValue, value, img }: InputFileProps) => {
           style={{ width: "20px", height: "20px" }}
         />
         <span>
-          {value
-            ? value.split("/")[value.split("/").length - 1]
-            : name == "logo" && !value
-            ? "Si vous ne choisissez pas, le logo par défaut sera choisit."
-            : "Choisissez votre image pour la campagne."}
+          {value ? value.split("/")[value.split("/").length - 1] : placeholder}
         </span>
       </label>
       {img && idMail && (

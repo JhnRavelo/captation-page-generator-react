@@ -24,14 +24,14 @@ const useFilterDatas = (datas?: Card[], id?: string) => {
       } else if (datas[0]?.media && entrepriseContext?.media) {
         filterCampagnes = datas.filter(
           (campagne) =>
-            campagne.entreprise == entrepriseContext?.entreprise.company &&
+            campagne.entreprise == entrepriseContext?.entreprise?.company &&
             campagne.dateDebut?.split("-")[0] == formContext?.year &&
             campagne.media == entrepriseContext.media.media
         );
       } else {
         filterCampagnes = datas.filter(
           (campagne) =>
-            campagne.entreprise == entrepriseContext.entreprise.company &&
+            campagne.entreprise == entrepriseContext.entreprise?.company &&
             campagne.dateDebut?.split("-")[0] == formContext.year
         );
       }
