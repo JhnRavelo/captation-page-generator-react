@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
 import { ContextPropsType } from "./AuthProvider";
 import { medias, TypeMediasObject } from "../assets/ts/media";
-import { companies, TypeCompaniesObject } from "../assets/ts/company";
+import { Card } from "../components/Card/Card";
 
 type TypeMediaEntrepriseContextValue = {
   media: TypeMediasObject;
   setMedia: React.Dispatch<React.SetStateAction<TypeMediasObject>>;
-  entreprise: TypeCompaniesObject;
-  setEntreprise: React.Dispatch<React.SetStateAction<TypeCompaniesObject>>;
+  entreprise: Card | null;
+  setEntreprise: React.Dispatch<React.SetStateAction<Card | null>>;
 };
 
 const MediaEntrepriseContext =
@@ -15,9 +15,7 @@ const MediaEntrepriseContext =
 
 const MediaEntrepriseProvider = ({ children }: ContextPropsType) => {
   const [media, setMedia] = useState<TypeMediasObject>(medias[0]);
-  const [entreprise, setEntreprise] = useState<TypeCompaniesObject>(
-    companies[0]
-  );
+  const [entreprise, setEntreprise] = useState<Card | null>(null);
 
   return (
     <MediaEntrepriseContext.Provider

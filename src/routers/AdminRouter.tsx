@@ -7,6 +7,7 @@ import PageCampagne from "../pages/Landing/PageCampagne/PageCampagne";
 import Log from "../pages/Landing/Log/Log";
 import Notif from "../pages/Landing/Notif/Notif";
 import User from "../pages/Landing/User/User";
+import Entreprise from "../pages/Landing/Entreprise/Entreprise";
 
 const AdminRouter = () => {
   return (
@@ -19,6 +20,7 @@ const AdminRouter = () => {
       <Route path="/log" element={<Log />} />
       <Route path="/notif" element={<Notif />} />
       <Route path="/user" element={<User />} />
+      <Route path="/company" element={<Entreprise />} />
     </Routes>
   );
 };

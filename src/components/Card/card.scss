@@ -43,6 +43,20 @@
     }
   }
 
+  &.Entreprise {
+    width: 31.5%;
+
+    .description {
+      margin-top: 10px;
+      padding-left: 20px;
+      gap: 15px;
+
+      .campagne-description {
+        align-items: center;
+      }
+    }
+  }
+
   &:hover {
     .title {
       .title-right {
@@ -70,7 +84,7 @@
 
       .title-scan-nbr {
         color: $orange;
-        
+
         svg {
           margin-right: 5px;
           color: $orange;
@@ -81,7 +95,7 @@
     .icon {
       cursor: pointer;
       transition: 0.2s ease-in-out;
-      
+
       &.delete {
         color: red;
       }

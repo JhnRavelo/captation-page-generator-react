@@ -10,8 +10,13 @@ import useColorCampagne from "../../../hooks/useColorCampagne";
 import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
 import usePage from "../../../hooks/usePage";
 import { pageFields } from "../../../assets/ts/page";
-import { validateUpdatePage } from "../../../utils/validationSchema";
+import {
+  validateEntreprise,
+  validateUpdatePage,
+} from "../../../utils/validationSchema";
 import useFilterStatsNbr from "../../../hooks/useFilterStatsNbr";
+import useEntreprise from "../../../hooks/useEntreprise";
+import { companyFields } from "../../../assets/ts/company";
 
 type CardTitlePropsType = {
   card: Card;
@@ -23,8 +28,9 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
   const formContext = useForm();
   const navigate = useNavigate();
   const color = useColorCampagne(card.id);
-  const entrepriseContext = useMediaEntreprise();
+  const mediaContext = useMediaEntreprise();
   const pageContext = usePage();
+  const entrepriseContext = useEntreprise();
   const nbrSTat = useFilterStatsNbr(card.id);
 
   const handleDelete = () => {
@@ -36,7 +42,7 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
     formContext?.setUrl(url);
   };
 
-  const handleEdit = () => {
+  const handleEditPage = () => {
     pageContext?.setPage(card);
     formContext?.setSlug("Page");
     formContext?.setOpenForm(true);
@@ -47,30 +53,45 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
     formContext?.setUrl("/page");
   };
 
+  const handleEditEntreprise = () => {
+    entrepriseContext?.setEntreprise(card);
+    formContext?.setSlug("Entreprise");
+    formContext?.setOpenForm(true);
+    formContext?.setIdUpdate(card.idData ? card.idData : "");
+    formContext?.setFormFields(companyFields);
+    formContext?.setValidate(validateEntreprise);
+    formContext?.setTitle("update");
+    formContext?.setUrl("/page");
+  };
+
   return (
     <div className="title">
       <div className="title-left">
-        <div
-          className={
-            color == "red" ? "circle circle-red" : "circle circle-green"
-          }
-        ></div>
+        {slug !== "Entreprise" && (
+          <div
+            className={
+              color == "red" ? "circle circle-red" : "circle circle-green"
+            }
+          ></div>
+        )}
         <h3>{card.id}</h3>
       </div>
       <div className="title-right">
-        {slug == "Page" && (
+        {slug === "Page" ? (
           <>
             <div className="title-scan-nbr">
               <ScanSVG width="27" height="27" />
               <span>
-                {nbrSTat.nbrScanPerCampagnes[0]?.count ? nbrSTat.nbrScanPerCampagnes[0].count : 0}
+                {nbrSTat.nbrScanPerCampagnes[0]?.count
+                  ? nbrSTat.nbrScanPerCampagnes[0].count
+                  : 0}
               </span>
             </div>
             <EditSVG
               width="30"
               height="30"
               className="icon edit"
-              onClick={() => handleEdit()}
+              onClick={() => handleEditPage()}
             />
             <ViewSVG
               width="30"
@@ -78,12 +99,19 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
               className="icon view"
               onClick={() => {
                 navigate(
-                  "/campagne/" + card.id + "/" + entrepriseContext?.media.url
+                  "/campagne/" + card.id + "/" + mediaContext?.media.url
                 );
               }}
             />
           </>
-        )}
+        ) : slug === "Entreprise" ? (
+          <EditSVG
+            width="30"
+            height="30"
+            className="icon edit"
+            onClick={() => handleEditEntreprise()}
+          />
+        ) : null}
         <DeleteSVG
           width="30"
           height="30"

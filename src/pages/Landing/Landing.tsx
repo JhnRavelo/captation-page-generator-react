@@ -11,7 +11,6 @@ import { toast } from "react-toastify";
 import useEntreprise from "../../hooks/useEntreprise";
 import useQRCode from "../../hooks/useQRCode";
 import usePage from "../../hooks/usePage";
-import { axiosDefault } from "../../api/axios";
 import useStat from "../../hooks/useStat";
 import useLog from "../../hooks/useLog";
 import useMail from "../../hooks/useMail";
@@ -63,7 +62,7 @@ const Landing = () => {
           toast.error(fetchQRCodes.data.message);
         }
 
-        const fetchPages = await axiosDefault.get("/page");
+        const fetchPages = await axiosPrivate.get("/page");
 
         if (fetchPages.data.success) {
           pageContext?.setPages(fetchPages.data.datas);

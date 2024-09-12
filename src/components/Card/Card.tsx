@@ -5,8 +5,8 @@ import CampagneCardContent from "./CardContentCampagne/CardContentCampagne";
 import "./card.scss";
 import CardContentQRCode from "./CardContentQRCode/CardContentQRCode";
 import CardContentPage from "./CardContentPage/CardContentPage";
-import { TypeCompany } from "../../assets/ts/company";
 import { TypeMedia } from "../../assets/ts/media";
+import CardContentCompany from "./CardContentCompany/CardContentCompany";
 
 type CampagnePropsType = {
   card: Card;
@@ -25,11 +25,11 @@ export type Card = {
   url?: string;
   img?: string;
   scanNbr?: number;
-  entreprise?: TypeCompany;
+  entreprise?: string;
   mailText?: string;
   object?: string;
-  logo?: string | File;
-  qrcode?: string | File;
+  logo?: string;
+  qrcode?: string;
   campagnes?: string[];
   media?: TypeMedia;
   idData?: string;
@@ -43,6 +43,7 @@ export type Card = {
   mail?: string;
   deleteId?: string;
   delay?: string;
+  company?: string;
 };
 
 const Card = ({ card, slug, isClickable, url }: CampagnePropsType) => {
@@ -68,11 +69,13 @@ const Card = ({ card, slug, isClickable, url }: CampagnePropsType) => {
     >
       <CardTitle card={card} slug={slug} url={url} />
       <div className="description">
-        {slug != "Page" && <h4>{card.title}</h4>}
-        {slug == "Campagne" ? (
+        {slug !== "Page" && slug !== "Entreprise" && <h4>{card.title}</h4>}
+        {slug === "Campagne" ? (
           <CampagneCardContent campagne={card} />
-        ) : slug == "Page" ? (
+        ) : slug === "Page" ? (
           <CardContentPage page={card} />
+        ) : slug === "Entreprise" ? (
+          <CardContentCompany company={card} />
         ) : (
           <CardContentQRCode qrcode={card} />
         )}
