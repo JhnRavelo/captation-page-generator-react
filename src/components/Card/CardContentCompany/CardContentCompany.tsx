@@ -2,6 +2,7 @@ import { useState } from "react";
 import FilePNGSVG from "../../../assets/svg/FilePNGSVG";
 import { Card } from "../Card";
 import "./CardContentCompany.scss";
+import FontSVG from "../../../assets/svg/FontSVG";
 
 const CardContentCompany = ({ company }: { company: Card }) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -24,6 +25,10 @@ const CardContentCompany = ({ company }: { company: Card }) => {
 
   return (
     <>
+      <div className="campagne-description">
+        <FontSVG width="20" height="20" />
+        <span style={{fontSize: "14px", fontWeight: 'normal',}}>{company.fontFamily}</span>
+      </div>
       <div className="campagne-description">
         <FilePNGSVG width="26" height="26" />
         {typeof company.logo === "string" ? (

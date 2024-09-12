@@ -8,6 +8,12 @@ export const companyFields: TypeAddFormFields = [
     placeholder: "Nom de l'entreprise",
   },
   {
+    name: "fontFamily",
+    type: "text",
+    header: "Nom de police",
+    placeholder: "Nom de police de l'entreprise",
+  },
+  {
     name: "logo",
     type: "img",
     header: "Logo de l'entreprise",

@@ -61,7 +61,7 @@ const CardTitle = ({ card, slug, url }: CardTitlePropsType) => {
     formContext?.setFormFields(companyFields);
     formContext?.setValidate(validateEntreprise);
     formContext?.setTitle("update");
-    formContext?.setUrl("/page");
+    formContext?.setUrl("/entreprise");
   };
 
   return (
