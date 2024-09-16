@@ -42,7 +42,7 @@ export const menus: TypeMenus = [
   },
   {
     url: "/marketing/user",
-    title: "Utilisateur",
+    title: "Prospects",
     SVG: <UserSVG height="20" width="30" />,
   },
   {

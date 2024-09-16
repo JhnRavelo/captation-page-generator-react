@@ -1,16 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./company.scss";
-import { useEffect, useRef, useState } from "react";
-import useActive from "../../hooks/useActive";
+import { Fragment, useEffect, useRef, useState } from "react";
 import useMediaEntreprise from "../../hooks/useMediaEntreprise";
 import { useLocation } from "react-router-dom";
 import useEntreprise from "../../hooks/useEntreprise";
+import SingleCompany from "./SingleCompany/SingleCompany";
 
 const Company = () => {
   const [once, setOnce] = useState(true);
   const { pathname } = useLocation();
   const listCompanyRef = useRef<HTMLDivElement>(null);
-  const active = useActive();
   const companyContext = useMediaEntreprise();
   const entrepriseContext = useEntreprise();
 
@@ -37,20 +36,9 @@ const Company = () => {
         {entrepriseContext?.entreprises &&
           companyContext?.entreprise &&
           entrepriseContext?.entreprises.map((company, index) => (
-            <div
-              className={
-                companyContext?.entreprise?.company == company.company
-                  ? "company-content active"
-                  : "company-content"
-              }
-              onClick={(e) => {
-                active(e, listCompanyRef);
-                companyContext?.setEntreprise(company);
-              }}
-              key={index}
-            >
-              <img src={company.img} alt={"logo " + company.company} />
-            </div>
+            <Fragment key={index}>
+              <SingleCompany company={company} />
+            </Fragment>
           ))}
       </div>
     </div>

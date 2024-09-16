@@ -1,16 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import FilePNGSVG from "../../../assets/svg/FilePNGSVG";
 import { Card } from "../Card";
 import "./CardContentCompany.scss";
 import FontSVG from "../../../assets/svg/FontSVG";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-
-// const url = import.meta.env.VITE_SERVER_PATH;
+import { axiosDefault } from "../../../api/axios";
+import useGetImagePrivate from "../../../hooks/useGetImagePrivate";
+import useEntreprise from "../../../hooks/useEntreprise";
 
 const CardContentCompany = ({ company }: { company: Card }) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const axiosPrivate = useAxiosPrivate();
   const [url, setUrl] = useState({ urlLogo: "", urlImg: "" });
+  const getImage = useGetImagePrivate();
+  const entrepriseContext = useEntreprise();
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth, naturalHeight } = event.currentTarget;
@@ -32,23 +34,23 @@ const CardContentCompany = ({ company }: { company: Card }) => {
     (async () => {
       if (company.idData) {
         try {
-          const resLogo = await axiosPrivate.get(
-            "/entreprise/logo/" + company.idData,
-            { responseType: "blob" }
+          const urlLogo = await getImage(
+            axiosDefault,
+            company.idData,
+            "/entreprise/logo/"
           );
-          const resImg = await axiosPrivate.get(
-            "/entreprise/img/" + company.idData,
-            { responseType: "blob" }
+          const urlImg = await getImage(
+            axiosDefault,
+            company.idData,
+            "/entreprise/img/"
           );
-          const urlLogo = window.URL.createObjectURL(new Blob([resLogo.data]));
-          const urlImg = window.URL.createObjectURL(new Blob([resImg.data]));
           setUrl({ urlImg, urlLogo });
         } catch (error) {
           console.log(error);
         }
       }
     })();
-  }, [company.idData, axiosPrivate]);
+  }, [company.idData, entrepriseContext?.entreprises]);
 
   return (
     <>
