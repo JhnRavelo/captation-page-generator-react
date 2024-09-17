@@ -9,12 +9,14 @@ import { campagneInitialValues } from "../../assets/ts/campagne";
 import useQRCode from "../../hooks/useQRCode";
 import usePage from "../../hooks/usePage";
 import ModalEntreprise from "./ModalEntreprise/ModalEntreprise";
+import useEntreprise from "../../hooks/useEntreprise";
 
 const Modal = () => {
   const formContext = useForm();
   const campagneContext = useCampagne();
   const qrCodeContext = useQRCode();
   const pageContext = usePage();
+  const entrepriseContext = useEntreprise();
 
   return (
     <div className="add">
@@ -52,7 +54,9 @@ const Modal = () => {
                 ? campagneContext?.setCampagnes
                 : formContext.slug == "Page"
                 ? pageContext?.setPages
-                : qrCodeContext?.setQrCodes
+                : formContext.slug == "QR-Code"
+                ? qrCodeContext?.setQrCodes
+                : entrepriseContext?.setEntreprises
             }
           />
         )}
