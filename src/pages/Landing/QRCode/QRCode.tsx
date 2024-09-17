@@ -29,7 +29,7 @@ const QRCode = () => {
         <AddButton handleClick={handleClick} />
         <div className="qr-container cards-container">
           {qrCodes &&
-            qrCodes.length > 0 &&
+            qrCodes.length > 0 ?
             qrCodes.map((qrCode, index) => (
               <Fragment key={index}>
                 <Card
@@ -39,7 +39,7 @@ const QRCode = () => {
                   url="/qr-code/delete"
                 />
               </Fragment>
-            ))}
+            )) : null}
         </div>
       </div>
     </MediaCompanyContainer>

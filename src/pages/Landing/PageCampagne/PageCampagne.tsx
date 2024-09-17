@@ -30,7 +30,7 @@ const PageCampagne = () => {
         <AddButton handleClick={handleCLick} />
         <div className="cards-container Page">
           {pages &&
-            pages.length > 0 &&
+            pages.length > 0 ?
             pages.map((pageCampagne, index) => (
               <Fragment key={index}>
                 <Card
@@ -40,7 +40,7 @@ const PageCampagne = () => {
                   url="/page/delete"
                 />
               </Fragment>
-            ))}
+            )) : null}
         </div>
       </div>
     </MediaCompanyContainer>

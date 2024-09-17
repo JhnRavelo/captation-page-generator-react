@@ -25,16 +25,19 @@ const Entreprise = () => {
       <div className="page-cards-container">
         <AddButton handleClick={handleClick} />
         <div className="cards-container Entreprise">
-          {entrepriseContext?.entreprises.map((company, index) => (
-            <Fragment key={index}>
-              <EntrepriseCard
-                card={company}
-                slug="Entreprise"
-                isClickable={false}
-                url="/entreprise"
-              />
-            </Fragment>
-          ))}
+          {entrepriseContext?.entreprises &&
+          entrepriseContext?.entreprises?.length > 0
+            ? entrepriseContext.entreprises.map((company, index) => (
+                <Fragment key={index}>
+                  <EntrepriseCard
+                    card={company}
+                    slug="Entreprise"
+                    isClickable={false}
+                    url="/entreprise"
+                  />
+                </Fragment>
+              ))
+            : null}
         </div>
       </div>
     </div>

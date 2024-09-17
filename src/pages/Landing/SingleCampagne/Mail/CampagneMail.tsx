@@ -27,7 +27,7 @@ const CampagneMail = () => {
       setOptions([
         {
           title: "1",
-          url: "/marketing/campagne/" + id + "/mail/" + id + "MAIL1",
+          url: encodeURI("/marketing/campagne/" + id + "/mail/" + id + "MAIL1"),
         },
       ]);
     }
@@ -58,7 +58,7 @@ const CampagneMail = () => {
         .map((item, index) => {
           return {
             title: `${index + 1}`,
-            url: "/marketing/campagne/" + id + "/mail/" + item.id,
+            url: encodeURI("/marketing/campagne/" + id + "/mail/" + item.id),
           };
         });
 

@@ -11,22 +11,23 @@ const SingleCampagne = () => {
   const { id } = useParams();
   const nbrStat = useFilterStatsNbr(id);
 
+  const campagneId = encodeURI(id ? id : "");
   const options: TypeOptions = [
     {
       title: "Modifier",
-      url: "/marketing/campagne/" + id + "/edit",
+      url: "/marketing/campagne/" + campagneId + "/edit",
     },
     {
       title: "Charte graphique",
-      url: "/marketing/campagne/" + id + "/chart",
+      url: "/marketing/campagne/" + campagneId + "/chart",
     },
     {
       title: "Mail",
-      url: "/marketing/campagne/" + id + "/mail/" + id + "MAIL1",
+      url: "/marketing/campagne/" + campagneId + "/mail/" + campagneId + "MAIL1",
     },
     {
       title: "Utilisateur",
-      url: "/marketing/campagne/" + id + "/user",
+      url: "/marketing/campagne/" + campagneId + "/user",
     },
   ];
 

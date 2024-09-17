@@ -29,13 +29,14 @@ const Options = ({ options, type }: OptionsPropsTypes) => {
   const handleAddOption = () => {
     const newItem = {
       title: `${stateOptions.length + 1}`,
-      url:
+      url: encodeURI(
         "/marketing/campagne/" +
-        id +
-        "/mail/" +
-        id +
-        "MAIL" +
-        `${stateOptions.length + 1}`,
+          id +
+          "/mail/" +
+          id +
+          "MAIL" +
+          `${stateOptions.length + 1}`
+      ),
     };
     setStateOptions([...stateOptions, newItem]);
   };
@@ -53,8 +54,7 @@ const Options = ({ options, type }: OptionsPropsTypes) => {
         stateOptions.map((option, index) => (
           <div
             className={
-              type == "standard" &&
-              option.url.slice(0, 35) == pathname.slice(0, 35)
+              type == "standard" && option.url == pathname
                 ? "option active"
                 : type == "number" && option.url == pathname
                 ? "option active"
@@ -69,6 +69,7 @@ const Options = ({ options, type }: OptionsPropsTypes) => {
             <span>{option.title}</span>
           </div>
         ))}
+
       {type == "number" && stateOptions.length <= 3 ? (
         <PLusSVG
           width="30"

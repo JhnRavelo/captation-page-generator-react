@@ -29,17 +29,18 @@ const Campagne = () => {
       <div className="page-cards-container">
         <AddButton handleClick={handleClick} />
         <div className="campagne-container cards-container">
-          {campagnes?.length > 0 &&
-            campagnes.map((campagne, index) => (
-              <Fragment key={index}>
-                <CampagneCard
-                  card={campagne}
-                  slug="Campagne"
-                  isClickable={true}
-                  url="/campagne/delete"
-                />
-              </Fragment>
-            ))}
+          {campagnes?.length > 0
+            ? campagnes.map((campagne, index) => (
+                <Fragment key={index}>
+                  <CampagneCard
+                    card={campagne}
+                    slug="Campagne"
+                    isClickable={true}
+                    url="/campagne/delete"
+                  />
+                </Fragment>
+              ))
+            : null}
         </div>
       </div>
     </MediaCompanyContainer>
