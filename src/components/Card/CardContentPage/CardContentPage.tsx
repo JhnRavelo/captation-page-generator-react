@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import OrdinateurSVG from "../../../assets/svg/OrdinateurSVG";
 import WebSVG from "../../../assets/svg/WebSVG";
 import { Card } from "../Card";
@@ -7,6 +8,10 @@ import imgTher from "../../../assets/png/thermique.png";
 import imgEco from "../../../assets/png/recycler.png";
 import PhoneSVG from "../../../assets/svg/PhoneSVG";
 import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
+import { useEffect, useState } from "react";
+import useGetImagePrivate from "../../../hooks/useGetImagePrivate";
+import { axiosDefault } from "../../../api/axios";
+import useEntreprise from "../../../hooks/useEntreprise";
 
 type CardContentPagePropsType = {
   page: Card;
@@ -16,6 +21,26 @@ const urlFront = import.meta.env.VITE_FRONT_PATH;
 
 const CardContentPage = ({ page }: CardContentPagePropsType) => {
   const entrepriseContext = useMediaEntreprise();
+  const [urlImg, setUrlImg] = useState("");
+  const getImage = useGetImagePrivate();
+  const companyContext = useEntreprise();
+
+  useEffect(() => {
+    (async () => {
+      if (page.entrepriseId) {
+        try {
+          const urlImg = await getImage(
+            axiosDefault,
+            page.entrepriseId,
+            "/entreprise/img/"
+          );
+          setUrlImg(urlImg);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })();
+  }, [page.entrepriseId, companyContext?.entreprises]);
 
   const url =
     urlFront + "/campagne/" + page.id + "/" + entrepriseContext?.media.url;
@@ -35,7 +60,7 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
               style={{ backgroundColor: page.titleBackgroundColor }}
             >
               <div className="ordi-logo-title">
-                <img src={entrepriseContext?.entreprise.img} alt="logo" />
+                <img src={urlImg} alt="logo" />
                 <h4 style={{ color: page.titleColor }}>{page.sloganCampagne}</h4>
               </div>
               <div className="ordi-campagne">
@@ -65,7 +90,7 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
             style={{ backgroundColor: page.titleBackgroundColor }}
           >
             <div className="phone-title">
-              <img src={entrepriseContext?.entreprise.img} alt="logo" />
+              <img src={urlImg} alt="logo" />
               <h4 style={{ color: page.titleColor }}>{page.sloganCampagne}</h4>
             </div>
             <div className="phone-img-campagne">

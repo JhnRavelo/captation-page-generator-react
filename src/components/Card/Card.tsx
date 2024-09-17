@@ -45,6 +45,7 @@ export type Card = {
   delay?: string;
   company?: string;
   fontFamily?: string;
+  entrepriseId?: string;
 };
 
 const Card = ({ card, slug, isClickable, url }: CampagnePropsType) => {
