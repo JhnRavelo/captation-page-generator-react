@@ -37,7 +37,9 @@ const useFilterDatas = (datas?: Card[], id?: string) => {
       }
       if (filterCampagnes) {
         setFilterDatas(filterCampagnes);
-      }
+      } else setFilterDatas([]);
+    } else {
+      setFilterDatas([]);
     }
   }, [
     entrepriseContext?.entreprise,
