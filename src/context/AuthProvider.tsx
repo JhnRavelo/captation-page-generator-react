@@ -4,7 +4,9 @@ export type ContextPropsType = {
   children: ReactNode;
 };
 
-export type TypeSetAuth = React.Dispatch<React.SetStateAction<TypeAuthUser | null>>;
+export type TypeSetAuth = React.Dispatch<
+  React.SetStateAction<TypeAuthUser | null>
+>;
 
 export type TypeAuthUser = {
   id: number;

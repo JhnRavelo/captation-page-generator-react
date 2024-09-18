@@ -1,7 +1,6 @@
 import "./menu.scss";
 import logo from "../../assets/png/Logo_aluhd.png";
 import { Link } from "react-router-dom";
-import imgAvatar from "../../assets/png/reglages.png";
 import useActive from "../../hooks/useActive";
 import { useEffect, useRef, useState } from "react";
 import useAuth from "../../hooks/useAuth";
@@ -70,7 +69,6 @@ const Menu = () => {
           ))}
         </div>
         <InfoAccount
-          img={authContext?.auth?.avatar ? authContext.auth.avatar : imgAvatar}
           name={authContext?.auth?.name ? authContext.auth.name : "Anonymous"}
         />
       </div>

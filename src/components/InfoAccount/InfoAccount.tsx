@@ -1,12 +1,11 @@
-import { useRef } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useRef, useState } from "react";
 import EditSVG from "../../assets/svg/EditSVG";
 import LogoutSVG from "../../assets/svg/LogoutSVG";
 import ThreeDotSVG from "../../assets/svg/ThreeDotSVG";
 import "./infoAccount.scss";
 import { useNavigate } from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
-// import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-// import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import MailExportSVG from "../../assets/svg/MailExportSVG";
 import useExportXLSX from "../../hooks/useExportXLSX";
@@ -16,50 +15,45 @@ import useDownload from "../../hooks/useDownload";
 import RestoreSVG from "../../assets/svg/RestoreSVG";
 import useSendFile from "../../hooks/useSendFile";
 import useCampagne from "../../hooks/useCampagne";
+import useGetImagePrivate from "../../hooks/useGetImagePrivate";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import imgAvatar from "../../assets/png/reglages.png";
 
 type InfoAccountPropsType = {
-  img: string;
   name: string;
 };
 
-const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
+const InfoAccount = ({ name }: InfoAccountPropsType) => {
   const logout = useLogout();
   const exportXLS = useExportXLSX();
   const optionsRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  // const axiosPrivate = useAxiosPrivate();
   const authContext = useAuth();
   const inputRef = useRef<HTMLInputElement>(null);
   const inputRestoreRef = useRef<HTMLInputElement>(null);
   const download = useDownload();
   const send = useSendFile();
   const campagneContext = useCampagne();
+  const getImage = useGetImagePrivate();
+  const axiosPrivate = useAxiosPrivate();
+  const [url, setUrl] = useState("");
 
-  // const handleChangePicture = async (
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   if (e.target.files && e.target.files?.length > 0) {
-  //     const formData = new FormData();
-  //     formData.append("avatar", e.target.files[0]);
-  //     try {
-  //       const res = await axiosPrivate.put("auth/edit/avatar", formData, {
-  //         headers: { "Content-Type": "multipart/form-data" },
-  //       });
-
-  //       if (res.data.success) {
-  //         authContext?.setAuth(res.data.user);
-  //         toast.success("Image de Profile Modifier");
-  //       } else {
-  //         toast.error(res.data.message);
-  //       }
-  //     } catch (error) {
-  //       toast.error("Erreur serveur");
-  //       console.log(error);
-  //     }
-  //   }
-  // };
-
-  // const handleRestore = async (e: React.ChangeEvent<HTMLInputElement>) => {};
+  useEffect(() => {
+    (async () => {
+      if (authContext?.auth?.id) {
+        try {
+          const urlImg = await getImage(
+            axiosPrivate,
+            authContext.auth.id,
+            "/auth/img/"
+          );
+          setUrl(urlImg);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })();
+  }, [authContext?.auth]);
 
   return (
     <>
@@ -114,7 +108,7 @@ const InfoAccount = ({ img, name }: InfoAccountPropsType) => {
       <div className="account-info">
         <div className="account-info-picture">
           <span>
-            <img src={img} alt="Account" />
+            <img src={url ? url : imgAvatar} alt="Account" />
             <input
               type="file"
               id="img-profile"
