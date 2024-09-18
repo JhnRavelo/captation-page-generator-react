@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Card } from "../../Card/Card";
 import { axiosDefault } from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
+import useGetImagePrivate from "../../../hooks/useGetImagePrivate";
 
 const PagePreviewTitle = () => {
   const [page, setPage] = useState<Card>();
@@ -12,15 +13,30 @@ const PagePreviewTitle = () => {
   const { idCampagne, media } = useParams();
   const authContext = useAuth();
   const navigate = useNavigate();
+  const getImage = useGetImagePrivate();
+  const [url, setUrl] = useState({ urlLogo: "", urlImg: "" });
 
   useEffect(() => {
     (async () => {
       try {
         if (idCampagne && media) {
-          const page = await axiosDefault.get("/page/single-page?idCampagne="+idCampagne);
+          const page = await axiosDefault.get(
+            "/page/single-page?idCampagne=" + idCampagne
+          );
 
           if (page.data.success) {
             setPage(page.data.data);
+            const urlLogo = await getImage(
+              axiosDefault,
+              page.data.data.entrepriseId,
+              "/entreprise/img/"
+            );
+            const urlImg = await getImage(
+              axiosDefault,
+              page.data.data.idData,
+              "/page/img/"
+            );
+            setUrl({ urlImg, urlLogo });
           }
           const id = localStorage.getItem("idStatCampagne");
 
@@ -58,7 +74,7 @@ const PagePreviewTitle = () => {
       style={{ backgroundColor: page?.titleBackgroundColor }}
     >
       <div className="title-container">
-        <img src={page?.logo} alt="logo" />
+        {url.urlLogo ? <img src={url.urlLogo} alt="logo" /> : null}
         <h1
           style={{ color: page?.titleColor, fontFamily: '"Lato", sans-serif' }}
         >
@@ -80,7 +96,9 @@ const PagePreviewTitle = () => {
             <button onClick={() => handleSubmit()}>Envoyer</button>
           </div>
         </div>
-        <img src={page?.imgCampagne} alt="image de campagne" />
+        {url.urlImg ? (
+          <img src={url.urlImg} alt="image de campagne" />
+        ) : null}
       </div>
     </div>
   );

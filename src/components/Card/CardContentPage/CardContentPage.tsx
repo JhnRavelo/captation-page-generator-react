@@ -22,12 +22,13 @@ const urlFront = import.meta.env.VITE_FRONT_PATH;
 const CardContentPage = ({ page }: CardContentPagePropsType) => {
   const entrepriseContext = useMediaEntreprise();
   const [urlImg, setUrlImg] = useState("");
+  const [urlImgCampagne, setUrlImgCampagne] = useState("");
   const getImage = useGetImagePrivate();
   const companyContext = useEntreprise();
 
   useEffect(() => {
     (async () => {
-      if (page.entrepriseId) {
+      if (page?.entrepriseId && page?.idData) {
         try {
           const urlImg = await getImage(
             axiosDefault,
@@ -35,12 +36,18 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
             "/entreprise/img/"
           );
           setUrlImg(urlImg);
+          const urlImgCampagne = await getImage(
+            axiosDefault,
+            page.idData,
+            "/page/img/"
+          );
+          setUrlImgCampagne(urlImgCampagne);
         } catch (error) {
           console.log(error);
         }
       }
     })();
-  }, [page.entrepriseId, companyContext?.entreprises]);
+  }, [page.entrepriseId, companyContext?.entreprises, page.idData]);
 
   const url =
     urlFront + "/campagne/" + page.id + "/" + entrepriseContext?.media.url;
@@ -60,8 +67,10 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
               style={{ backgroundColor: page.titleBackgroundColor }}
             >
               <div className="ordi-logo-title">
-                <img src={urlImg} alt="logo" />
-                <h4 style={{ color: page.titleColor }}>{page.sloganCampagne}</h4>
+                {urlImg ? <img src={urlImg} alt="logo" /> : null}
+                <h4 style={{ color: page.titleColor }}>
+                  {page.sloganCampagne}
+                </h4>
               </div>
               <div className="ordi-campagne">
                 <div className="left">
@@ -73,7 +82,9 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
                     <button>Envoyer</button>
                   </div>
                 </div>
-                <img src={page.imgCampagne} alt="image campagne" />
+                {urlImgCampagne ? (
+                  <img src={urlImgCampagne} alt="image campagne" />
+                ) : null}
               </div>
             </div>
             <div className="ordi-avantage">
@@ -94,7 +105,7 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
               <h4 style={{ color: page.titleColor }}>{page.sloganCampagne}</h4>
             </div>
             <div className="phone-img-campagne">
-              <img src={page.imgCampagne} alt="image campagne" />
+              <img src={urlImgCampagne} alt="image campagne" />
             </div>
             <div className="phone-input">
               <span>Veuillez mettre votre email</span>
