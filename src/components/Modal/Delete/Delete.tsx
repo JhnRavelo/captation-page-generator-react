@@ -20,7 +20,10 @@ const Delete = ({ setState }: DeletePropsType) => {
       const res = await axiosPrivate.delete(
         formContext.url + "/" + formContext.idDelete
       );
-      if (res.data.success && formContext.slug == "Campagne") {
+      if (
+        res.data.success &&
+        (formContext.slug == "Campagne" || formContext.slug == "Entreprise")
+      ) {
         campagneContext?.setIsCampagne((prev) => !prev);
         toast.success(res.data.message);
         formContext.setOpenForm(false);
