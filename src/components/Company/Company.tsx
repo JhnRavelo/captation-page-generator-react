@@ -37,7 +37,7 @@ const Company = () => {
           companyContext?.entreprise &&
           entrepriseContext?.entreprises.map((company, index) => (
             <Fragment key={index}>
-              <SingleCompany company={company} />
+              <SingleCompany company={company} index={index} />
             </Fragment>
           ))}
       </div>

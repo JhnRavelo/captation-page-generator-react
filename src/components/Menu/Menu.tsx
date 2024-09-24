@@ -1,5 +1,4 @@
 import "./menu.scss";
-import logo from "../../assets/png/Logo_aluhd.png";
 import { Link } from "react-router-dom";
 import useActive from "../../hooks/useActive";
 import { useEffect, useRef, useState } from "react";
@@ -9,6 +8,7 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { toast } from "react-toastify";
 import InfoAccount from "../InfoAccount/InfoAccount";
 import { menus } from "../../assets/ts/menu";
+import useEntreprise from "../../hooks/useEntreprise";
 
 const Menu = () => {
   const active = useActive();
@@ -17,6 +17,7 @@ const Menu = () => {
   const logContext = useLog();
   const [length, setLength] = useState(0);
   const axiosPrivate = useAxiosPrivate();
+  const entrepriseContext = useEntreprise();
 
   const handleNotification = async (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -38,8 +39,16 @@ const Menu = () => {
 
   return (
     <menu className="menu-content content">
-      <img src={logo} alt="" className="logo" />
-      <div className="separator"></div>
+      {entrepriseContext?.urlImg ? (
+        <>
+          <img
+            src={entrepriseContext?.urlImg}
+            alt="logo Company"
+            className="logo"
+          />
+          <div className="separator"></div>
+        </>
+      ) : null}
       <div className="navigator">
         <div className="item" ref={menuRef}>
           {menus.map((menu, index) => (
