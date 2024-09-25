@@ -7,7 +7,7 @@ import useGetImagePrivate from "../../../hooks/useGetImagePrivate";
 import { axiosDefault } from "../../../api/axios";
 import useEntreprise from "../../../hooks/useEntreprise";
 
-const SingleCompany = ({ company, index }: { company: Card, index: number }) => {
+const SingleCompany = ({ company }: { company: Card }) => {
   const listCompanyRef = useRef<HTMLDivElement>(null);
   const [url, setUrl] = useState("");
   const active = useActive();
@@ -25,9 +25,6 @@ const SingleCompany = ({ company, index }: { company: Card, index: number }) => 
             "/entreprise/img/"
           );
           setUrl(urlImg);
-          if (index == 0) {
-            entrepriseContext?.setUrlImg(urlImg);
-          }
         } catch (error) {
           console.log(error);
         }

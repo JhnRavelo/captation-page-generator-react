@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./menu.scss";
 import { Link } from "react-router-dom";
 import useActive from "../../hooks/useActive";
@@ -9,6 +10,8 @@ import { toast } from "react-toastify";
 import InfoAccount from "../InfoAccount/InfoAccount";
 import { menus } from "../../assets/ts/menu";
 import useEntreprise from "../../hooks/useEntreprise";
+import { axiosDefault } from "../../api/axios";
+import useGetImagePrivate from "../../hooks/useGetImagePrivate";
 
 const Menu = () => {
   const active = useActive();
@@ -18,6 +21,8 @@ const Menu = () => {
   const [length, setLength] = useState(0);
   const axiosPrivate = useAxiosPrivate();
   const entrepriseContext = useEntreprise();
+  const getImage = useGetImagePrivate();
+  const [url, setUrl] = useState("");
 
   const handleNotification = async (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -37,15 +42,28 @@ const Menu = () => {
     }
   }, [logContext?.notifs.length]);
 
+  useEffect(() => {
+    (async () => {
+      if (entrepriseContext?.entreprises[0].idData) {
+        try {
+          const urlImg = await getImage(
+            axiosDefault,
+            entrepriseContext?.entreprises[0].idData,
+            "/entreprise/img/"
+          );
+          setUrl(urlImg);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })();
+  }, [entrepriseContext?.entreprises]);
+
   return (
     <menu className="menu-content content">
-      {entrepriseContext?.urlImg ? (
+      {url ? (
         <>
-          <img
-            src={entrepriseContext?.urlImg}
-            alt="logo Company"
-            className="logo"
-          />
+          <img src={url} alt="logo Company" className="logo" />
           <div className="separator"></div>
         </>
       ) : null}
