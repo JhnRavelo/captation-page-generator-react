@@ -1,17 +1,17 @@
-import FroalaEditor from "react-froala-wysiwyg";
-import "froala-editor/css/froala_style.min.css";
-import "froala-editor/css/froala_editor.pkgd.min.css";
-import "froala-editor/js/plugins/align.min";
-import "froala-editor/js/plugins/font_family.min";
-import "froala-editor/js/plugins/font_size.min";
-import "froala-editor/js/plugins/word_paste.min";
-import "froala-editor/js/plugins/url.min";
-import "froala-editor/js/plugins/save.min";
-import "froala-editor/js/plugins.pkgd.min.js";
 import "./mailForm.scss";
 import { TypeInitialValues } from "../../../context/AddFormProvider";
 import { FormikErrors } from "formik";
 import { useEffect, useState } from "react";
+import "react-quill/dist/quill.snow.css";
+import { formats, modules } from "../../../assets/ts/quill";
+import ReactQuill, { Quill } from "react-quill"; 
+import "react-quill/dist/quill.snow.css";
+
+Quill.register(Quill.import("attributors/style/direction"), true);
+Quill.register(Quill.import("attributors/style/align"), true);
+const Size = Quill.import("attributors/style/size");
+Size.whitelist = ["0.75em", "1em", "1.5em", "2.5em"];
+Quill.register(Size, true);
 
 type MailFromPropsTypes = {
   setFieldValue: (
@@ -24,10 +24,7 @@ type MailFromPropsTypes = {
 };
 
 const MailForm = ({ setFieldValue, name, mail }: MailFromPropsTypes) => {
-  const [model, setModel] = useState(() => {
-    return mail ? mail : localStorage.getItem("savedText" + name) || "";
-  });
-  const height = window.innerHeight;
+  const [model, setModel] = useState("");
 
   useEffect(() => {
     if (mail) {
@@ -37,43 +34,14 @@ const MailForm = ({ setFieldValue, name, mail }: MailFromPropsTypes) => {
 
   return (
     <div className="mail-input">
-      <FroalaEditor
-        tag="textarea"
-        model={model}
-        onModelChange={(e: string) => {
+      <ReactQuill
+        value={model}
+        onChange={(e) => {
           setFieldValue(name, e);
           setModel(e);
         }}
-        config={{
-          placeholderText: "Écrivez votre mail ici ...",
-          heightMax:
-            name == "title"
-              ? 50
-              : height > 800
-              ? 300
-              : height > 740
-              ? 240
-              : 190,
-          height:
-            name == "title"
-              ? 50
-              : height > 800
-              ? 300
-              : height > 740
-              ? 240
-              : 190,
-          saveInterval: 4000,
-          fontFamily: {
-            "Lato, sans-serif": "Lato",
-            "'Futura', Arial, sans-serif": "Futura MD",
-            Montserrat: "Montserrat",
-          },
-          events: {
-            "save.before": function (html: string) {
-              localStorage.setItem("savedText" + name, html);
-            },
-          },
-        }}
+        modules={modules}
+        formats={formats}
       />
     </div>
   );
