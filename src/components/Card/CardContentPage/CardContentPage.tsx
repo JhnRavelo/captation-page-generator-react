@@ -3,15 +3,16 @@ import OrdinateurSVG from "../../../assets/svg/OrdinateurSVG";
 import WebSVG from "../../../assets/svg/WebSVG";
 import { Card } from "../Card";
 import "./cardContentPage.scss";
-import imgDur from "../../../assets/png/durabilite.png";
-import imgTher from "../../../assets/png/thermique.png";
-import imgEco from "../../../assets/png/recycler.png";
+// import imgDur from "../../../assets/png/durabilite.png";
+// import imgTher from "../../../assets/png/thermique.png";
+// import imgEco from "../../../assets/png/recycler.png";
 import PhoneSVG from "../../../assets/svg/PhoneSVG";
 import useMediaEntreprise from "../../../hooks/useMediaEntreprise";
 import { useEffect, useState } from "react";
 import useGetImagePrivate from "../../../hooks/useGetImagePrivate";
 import { axiosDefault } from "../../../api/axios";
 import useEntreprise from "../../../hooks/useEntreprise";
+import { avantages } from "../../../assets/ts/page";
 
 type CardContentPagePropsType = {
   page: Card;
@@ -88,9 +89,14 @@ const CardContentPage = ({ page }: CardContentPagePropsType) => {
               </div>
             </div>
             <div className="ordi-avantage">
-              <img src={imgDur} alt="image durabilité" />
+              {avantages.map((avantage, index) => (
+                <div key={index} style={{backgroundColor: avantage.color}} className="ordi-icon-container">
+                  {avantage.img}
+                </div>
+              ))}
+              {/* <img src={imgDur} alt="image durabilité" />
               <img src={imgEco} alt="image recyclage" />
-              <img src={imgTher} alt="image thermique" />
+              <img src={imgTher} alt="image thermique" /> */}
             </div>
           </div>
         </div>

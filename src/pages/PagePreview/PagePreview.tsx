@@ -1,8 +1,8 @@
 import "./pagePreview.scss";
 import PagePreviewTitle from "../../components/PageReview/PagePreviewTitle/PagePreviewTitle";
-import { agences, avantages } from "../../assets/ts/page";
 import PagePreviewCard from "../../components/PageReview/PagePreviewCard/PagePreviewCard";
 import PagePreviewFooter from "../../components/PageReview/PagePreviewFooter/PagePreviewFooter";
+import { agences, avantages } from "../../assets/ts/page";
 
 const PagePreview = () => {
   return (

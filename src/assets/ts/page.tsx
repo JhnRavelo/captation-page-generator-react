@@ -1,9 +1,9 @@
 import { TypePageCard } from "../../components/PageReview/PagePreviewCard/PagePreviewCard";
 import { TypeAddFormFields } from "../../context/AddFormProvider";
-import imgDur from "../png/durabilite.png";
-import imgTher from "../png/thermique.png";
-import imgEco from "../png/recycler.png";
 import { TypeAgence } from "../../components/PageReview/PagePreviewFooter/PagePreviewFooter";
+import DiamondSVG from "../svg/DiamondSVG";
+import MissionSVG from "../svg/MissionSVG";
+import ObjectifSVG from "../svg/ObjectifSVG";
 
 export const pageFields: TypeAddFormFields = [
   {
@@ -40,22 +40,25 @@ export const pageFields: TypeAddFormFields = [
 
 export const avantages: TypePageCard[] = [
   {
-    img: imgDur,
-    title: "Durabilité",
+    img: <DiamondSVG width="25" height="25" />,
+    title: "Valeur",
     description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum ea temporibus et sequi id rerum. Vel iure molestias dolores earum nesciunt totam rerum vero minima, corporis accusamus dolorummolestiae numquam!",
+      "Chez Europ'Alu, nous plaçons l'innovation, la qualité, et la satisfaction client au cœur de tout ce que nous entreprenons. Nous nous engageons à respecter les standards les plus élevés en matière de sécurité et d'excellence, tout en favorisant un environnement de travail collaboratif et respectueux.",
+    color: "#FFCC66",
   },
   {
-    img: imgEco,
-    title: "Écologique",
+    img: <MissionSVG width="25" height="25" />,
+    title: "Mission",
     description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum ea temporibus et sequi id rerum. Vel iure molestias dolores earum nesciunt totam rerum vero minima, corporis accusamus dolorummolestiae numquam!",
+      "Notre mission est de concevoir et fournir des solutions en aluminium de haute qualité, répondant aux besoins spécifiques de nos clients. Nous visons à améliorer le confort et l’esthétique des bâtiments tout en intégrant des technologies durables et performantes.",
+    color: "#FF9966",
   },
   {
-    img: imgTher,
-    title: "Thermique",
+    img: <ObjectifSVG width="25" height="25" />,
+    title: "Objectif",
     description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum ea temporibus et sequi id rerum. Vel iure molestias dolores earum nesciunt totam rerum vero minima, corporis accusamus dolorummolestiae numquam!",
+      "L’objectif d’Europ'Alu est de devenir le partenaire de référence dans le domaine de l'aluminium, en offrant des produits et services qui allient design, durabilité et innovation, tout en construisant des relations de confiance avec nos clients et partenaires.",
+    color: "#33CCCC",
   },
 ];
 

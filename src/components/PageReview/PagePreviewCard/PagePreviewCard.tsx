@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import "./pagePreviewCard.scss";
 
 type PagePreviewCardPropsTypes = {
@@ -5,15 +6,21 @@ type PagePreviewCardPropsTypes = {
 };
 
 export type TypePageCard = {
-  img: string;
+  img: ReactNode;
   description: string;
   title: string;
+  color: string;
 };
 
 const PagePreviewCard = ({ pageCard }: PagePreviewCardPropsTypes) => {
   return (
     <div className="page-preview-card">
-      <img src={pageCard.img} alt="image écologie" />
+      <div
+        className="page-preview-icon-container"
+        style={{ backgroundColor: pageCard.color }}
+      >
+        {pageCard.img}
+      </div>
       <h2>{pageCard.title}</h2>
       <div className="avantage">
         <span>{pageCard.description}</span>
