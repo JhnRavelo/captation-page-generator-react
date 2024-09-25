@@ -13,7 +13,11 @@ const useCurrentCampagne = () => {
   const entrepriseContext = useMediaEntreprise();
 
   useEffect(() => {
-    if (campagnes && campagnes.length > 0) {
+    if (
+      campagnes &&
+      campagnes.length > 0 &&
+      entrepriseContext?.entreprise?.company
+    ) {
       const listCampagnes = campagnes
         .map((campagne) => {
           const currentDate = new Date().getTime();
@@ -23,20 +27,20 @@ const useCurrentCampagne = () => {
 
           if (
             currentDate < campagneDate &&
-            campagne.entreprise === entrepriseContext?.entreprise.company
+            campagne.entreprise === entrepriseContext?.entreprise?.company
           ) {
             return campagne;
           } else return undefined;
         })
         .filter((campagne): campagne is Card => campagne !== undefined);
-      
+
       if (listCampagnes.length > 0) {
         setCurrentCampagnes(listCampagnes);
         const checkbox = listCampagnes.map((campagne) => campagne.id);
         setCampagneCheckbox(checkbox);
       }
     }
-  }, [campagnes]);
+  }, [campagnes, entrepriseContext?.entreprise?.company]);
 
   return { currentCampagnes, campagneCheckbox };
 };
