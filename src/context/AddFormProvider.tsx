@@ -71,7 +71,8 @@ export type TypeAddFormFields = {
     | "delay"
     | "entreprise"
     | "company"
-    | "fontFamily";
+    | "fontFamily"
+    | "facebook";
   header: string;
   type: string;
   placeholder: string;
@@ -97,6 +98,7 @@ export type TypeInitialValues = {
   entreprise?: string;
   company?: string;
   fontFamily?: string;
+  facebook?: string;
 } | null;
 
 const AddFormContext = createContext<TypeAddFormContext | null>(null);

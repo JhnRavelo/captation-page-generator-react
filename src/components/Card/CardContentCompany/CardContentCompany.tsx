@@ -7,6 +7,7 @@ import FontSVG from "../../../assets/svg/FontSVG";
 import { axiosDefault } from "../../../api/axios";
 import useGetImagePrivate from "../../../hooks/useGetImagePrivate";
 import useEntreprise from "../../../hooks/useEntreprise";
+import FacebookSVG from "../../../assets/svg/FacebookSVG";
 
 const CardContentCompany = ({ company }: { company: Card }) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -58,6 +59,12 @@ const CardContentCompany = ({ company }: { company: Card }) => {
         <FontSVG width="20" height="20" />
         <span style={{ fontSize: "14px", fontWeight: "normal" }}>
           {company.fontFamily}
+        </span>
+      </div>
+      <div className="campagne-description">
+        <FacebookSVG width="23" height="23" />
+        <span style={{ fontSize: "11px", fontWeight: "normal" }}>
+          {company.facebook}
         </span>
       </div>
       <div className="campagne-description">

@@ -25,4 +25,10 @@ export const companyFields: TypeAddFormFields = [
     header: "Image de l'entreprise",
     placeholder: "Logo de l'entreprise standard",
   },
+  {
+    name: "facebook",
+    type: "text",
+    header: "Lien Facebook",
+    placeholder: "Lien pour la compte Facebook",
+  },
 ];

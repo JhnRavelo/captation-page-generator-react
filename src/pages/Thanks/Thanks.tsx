@@ -1,7 +1,9 @@
 import "./thanks.scss";
 import imgThank from "../../assets/png/thank.png";
+import usePage from "../../hooks/usePage";
 
 const Thanks = () => {
+  const pageContext = usePage();
   return (
     <div className="thank-container">
       <div className="thank-content">
@@ -14,7 +16,9 @@ const Thanks = () => {
             attendre quelques minutes.
           </p>
         </div>
-        <button>Facebook</button>
+        <button>
+          <a href={pageContext?.page?.facebook}>Facebook</a>
+        </button>
       </div>
     </div>
   );

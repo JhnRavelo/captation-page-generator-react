@@ -2,16 +2,18 @@
 import { useEffect, useState } from "react";
 import "./pagePreviewTitle.scss";
 import { useNavigate, useParams } from "react-router-dom";
-import { Card } from "../../Card/Card";
+// import { Card } from "../../Card/Card";
 import { axiosDefault } from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import useGetImagePrivate from "../../../hooks/useGetImagePrivate";
+import usePage from "../../../hooks/usePage";
 
 const PagePreviewTitle = () => {
-  const [page, setPage] = useState<Card>();
+  // const [page, setPage] = useState<Card>();
   const [email, setEmail] = useState("");
   const { idCampagne, media } = useParams();
   const authContext = useAuth();
+  const pageContext = usePage();
   const navigate = useNavigate();
   const getImage = useGetImagePrivate();
   const [url, setUrl] = useState({ urlLogo: "", urlImg: "" });
@@ -25,7 +27,7 @@ const PagePreviewTitle = () => {
           );
 
           if (page.data.success) {
-            setPage(page.data.data);
+            pageContext?.setPage(page.data.data);
             const urlLogo = await getImage(
               axiosDefault,
               page.data.data.entrepriseId,
@@ -71,20 +73,25 @@ const PagePreviewTitle = () => {
   return (
     <div
       className="page-preview-title-container"
-      style={{ backgroundColor: page?.titleBackgroundColor }}
+      style={{ backgroundColor: pageContext?.page?.titleBackgroundColor }}
     >
       <div className="title-container">
         {url.urlLogo ? <img src={url.urlLogo} alt="logo" /> : null}
         <h1
-          style={{ color: page?.titleColor, fontFamily: '"Lato", sans-serif' }}
+          style={{
+            color: pageContext?.page?.titleColor,
+            fontFamily: '"Lato", sans-serif',
+          }}
         >
-          {page?.sloganCampagne}
+          {pageContext?.page?.sloganCampagne}
         </h1>
       </div>
       <div className="slogan-image-container">
         <div className="slogan-container">
           <div className="slogan-content">
-            <span style={{ color: page?.titleColor }}>{page?.description}</span>
+            <span style={{ color: pageContext?.page?.titleColor }}>
+              {pageContext?.page?.description}
+            </span>
           </div>
           <div className="input-email">
             <input
@@ -96,9 +103,7 @@ const PagePreviewTitle = () => {
             <button onClick={() => handleSubmit()}>Envoyer</button>
           </div>
         </div>
-        {url.urlImg ? (
-          <img src={url.urlImg} alt="image de campagne" />
-        ) : null}
+        {url.urlImg ? <img src={url.urlImg} alt="image de campagne" /> : null}
       </div>
     </div>
   );

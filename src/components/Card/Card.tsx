@@ -46,6 +46,7 @@ export type Card = {
   company?: string;
   fontFamily?: string;
   entrepriseId?: string;
+  facebook?: string;
 };
 
 const Card = ({ card, slug, isClickable, url }: CampagnePropsType) => {

@@ -21,6 +21,7 @@ const AppRouter = () => {
       <Route path="/forget" element={<ForgetPassword />} />
       <Route path="/campagne/:idCampagne/:media" element={<PagePreview />} />
       <Route path="/thank-you" element={<Thanks />} />
+      <Route path="*" element={<Login />} />
     </Routes>
   );
 };

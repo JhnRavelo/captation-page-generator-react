@@ -44,7 +44,7 @@ const Menu = () => {
 
   useEffect(() => {
     (async () => {
-      if (entrepriseContext?.entreprises[0].idData) {
+      if (entrepriseContext?.entreprises[0]?.idData) {
         try {
           const urlImg = await getImage(
             axiosDefault,

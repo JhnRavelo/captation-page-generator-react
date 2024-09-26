@@ -17,6 +17,9 @@ const ModalEntreprise = () => {
     fontFamily: entreprisesContext?.entreprise?.fontFamily
       ? entreprisesContext.entreprise.fontFamily
       : "",
+    facebook: entreprisesContext?.entreprise?.facebook
+      ? entreprisesContext.entreprise.facebook
+      : "",
   };
 
   return (

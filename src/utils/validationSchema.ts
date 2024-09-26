@@ -211,11 +211,10 @@ export const validateUpdatePage = Yup.object({
 });
 
 export const validateEntreprise = Yup.object({
-  company: Yup.string().required(
-    "Vous devez remplir votre nom d'entreprise"
-  ),
+  company: Yup.string().required("Vous devez remplir votre nom d'entreprise"),
   logo: Yup.mixed().required("Vous devez choisir le logo pour le QR Code"),
   imgCampagne: Yup.mixed().required(
     "Vous devez choisir le logo de l'entreprise"
   ),
+  facebook: Yup.string().required("Vous devez remplir le lien pour facebook"),
 });
