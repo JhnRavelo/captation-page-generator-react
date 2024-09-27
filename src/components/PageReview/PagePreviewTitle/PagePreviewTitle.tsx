@@ -2,14 +2,12 @@
 import { useEffect, useState } from "react";
 import "./pagePreviewTitle.scss";
 import { useNavigate, useParams } from "react-router-dom";
-// import { Card } from "../../Card/Card";
 import { axiosDefault } from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import useGetImagePrivate from "../../../hooks/useGetImagePrivate";
 import usePage from "../../../hooks/usePage";
 
 const PagePreviewTitle = () => {
-  // const [page, setPage] = useState<Card>();
   const [email, setEmail] = useState("");
   const { idCampagne, media } = useParams();
   const authContext = useAuth();
